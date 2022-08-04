@@ -13,21 +13,21 @@ return [
     // 数据库类型
     'type'            => 'mysql',
     // 服务器地址
-//    'hostname'        => 'rm-k5qa6qjiy5587027kko.mysql.rds.aliyuncs.com',
-//    'hostname'        => 'rm-k5qa6qjiy5587027k.mysql.rds.aliyuncs.com',
+//    'hostname'        => 'rm-.mysqlrds.aliyuncs.com',
+//    'hostname'        => 'rm-.mysql.rds.aliyuncs.com',
     'hostname'        => '127.0.0.1',
     // 数据库名
-//    'database'        => 'yanbao',
+//    'database'        => '',
     // 用户名
-    'username'        => 'root',
+    'username'        => '',
     // 密码
-    'password'        => 'lnmp.org#28480',
+    'password'        => '',
     // 数据库名
-    'database'        => 'property',
+    'database'        => '',
     // 用户名
-//    'username'        => 'root',
+//    'username'        => '',
 //    // 密码
-//    'password'        => 'wxpassword886+!',
+//    'password'        => '+!',
     // 端口
     'hostport'        => '3306',
     // 连接dsn
