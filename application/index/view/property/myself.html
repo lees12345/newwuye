@@ -1,0 +1,424 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,	minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../../../../public/static/property_project/CSS/index.css">
+    <link rel="stylesheet" href="../../../../public/static/property_project/CSS/vant.css" />
+    <script src="../../../../public/static/property_project/js/rem.js"></script>
+    <script src="../../../../public/static/property_project/js/vue.js"></script>
+    <script src="../../../../public/static/property_project/js/axios.js"></script>
+    <script src="../../../../public/static/property_project/js/vant.js"></script>
+    <title>我的项目</title>
+    <style>
+        html,
+        body,
+        #app {
+            height: 100%;
+        }
+
+        .emptyBox {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+            height: 100%;
+        }
+
+        .emptyBox>img {
+            display: block;
+            width: 1.76rem;
+            height: 1.48rem;
+        }
+
+        .emptyBox>p {
+            text-align: center;
+            font-size: 14px;
+            font-family: PingFang-SC-Medium, PingFang-SC;
+            font-weight: 500;
+            color: #999999;
+            line-height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- typeNav -->
+        <div v-if="type" class="navContainer">
+            <div class="navBarItem" @click="changeNavFn(index)" v-for="(item,index) in navButtonList" :key="index">
+                <span :style=" item.navLineShow ? { color: '#3A9EFF' } : '' ">{{ item.button }}</span>
+                <div :class=" item.navLineShow ? 'bottomLine' : '' "></div>
+            </div>
+        </div>
+        <!-- strNav -->
+        <div v-if="str" class="navContainer">
+            <div class="navBarItem" @click="changeStrNavFn(index)" v-for="(item,index) in navButtonList" :key="index">
+                <span :style=" item.navLineShow ? { color: '#3A9EFF' } : '' ">{{ item.button }}</span>
+                <div :class=" item.navLineShow ? 'bottomLine' : '' "></div>
+            </div>
+        </div>
+        <!-- 信息栏 -->
+        <div v-if="orderList.length > 0">
+            <div class="infoItem" v-for=" item in orderList" :key="item.id">
+
+                <div class="top">
+                    <div class="icon">
+                        <img v-if="item.type == 1" :src="iconList.property">
+                        <img v-if="item.type == 2" :src="iconList.engineering">
+                        <img v-if="item.type == 3" :src="iconList.transaction">
+                    </div>
+                    <div class="text">
+                        <p class="p1">报修人：{{ item.user_name }}（{{ item.user_tel }}）</p>
+                        <p class="p2">维修地址：{{ item.address }}</p>
+                    </div>
+                </div>
+
+                <div class="middle">
+                    <div class="title">
+                        <p>维修事件任务提醒</p>
+                    </div>
+                    <div class="content">
+                        <p>{{ item.order_remark }}</p>
+                    </div>
+                </div>
+
+                <div class="bottom">
+                    <div @click="gotoWorkFn(item)" class="detail">
+                        <p>查看详情>></p>
+                    </div>
+                    <div class="button">
+                        <button @click="endTaskFn(item)" v-if="item.order_status == 1 && userinfoList.auth !== 0"
+                            class="b1">结束任务</button>
+                        <button @click="progressReportFn(item)" v-if="item.order_status == 1 && userinfoList.auth !== 0"
+                            class="b2">进度汇报</button>
+                        <button @click="followUpFn(item)" v-if="item.order_status == 2" class="b2">进度查询</button>
+                        <button @click="receiveTaskFn(item)" v-if="item.order_status == 0 && userinfoList.auth !== 0"
+                            class="b2">接收任务</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div v-else class="emptyBox">
+            <img src="../../../../public/static/property_project/img/noContent.png">
+            <p>暂时没有内容哦~</p>
+        </div>
+    </div>
+
+    <script>
+        Vue.use(vant.DropdownMenu);
+        Vue.use(vant.DropdownItem);
+        var app = new Vue({
+            el: '#app',
+            data: {
+                userinfoList: {},
+                // 带来的值，确定状态
+                str: '',
+                // 信息栏小图标
+                iconList: {
+                    engineering: '../../../../public/static/property_project/img/gear.png',
+                    property: '../../../../public/static/property_project/img/wrench.png',
+                    transaction: '../../../../public/static/property_project/img/personalCenter.png'
+                },
+                // 订单列表
+                orderList: [],
+                // 导航栏按钮
+                navButtonList: [{
+                    navLineShow: true,
+                    button: '全部'
+                }, {
+                    navLineShow: false,
+                    button: '未接收'
+                }, {
+                    navLineShow: false,
+                    button: '处理中'
+                }, {
+                    navLineShow: false,
+                    button: '已完成'
+                }, ]
+            },
+            methods: {
+                // 点击了进度查询按钮
+                followUpFn(item) {
+                    window.location.href = 'http://estate.1yuaninfo.com/index/property/query?id=' + item.id
+                },
+                // 点击了结束按钮的方法
+                endTaskFn(item) {
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/order/end',
+                        headers: {
+                            authorization: window.localStorage.getItem('token') || ''
+                        },
+                        data: {
+                            id: item.id
+                        }
+                    }).then(res => {
+                        console.log('结束任务接口调用成功',res)
+                        this.getOrderListAPI({
+                            order_status: 1
+                        })
+                        alert('已结束任务')
+                    }).catch(err => {
+                        console.log('结束任务接口进入catch',err)
+                    })
+                },
+                // 进度汇报按钮点击事件
+                progressReportFn(item) {
+                    window.location.href = 'http://estate.1yuaninfo.com/index/property/report?id=' + item.id
+                },
+                // 接收任务按钮点击事件
+                receiveTaskFn(item) {
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/order/receive',
+                        headers: {
+                            authorization: window.localStorage.getItem('token') || ''
+                        },
+                        data: {
+                            id: item.id
+                        }
+                    }).then(res => {
+                        console.log('接收任务接口调用成功', res)
+                        alert('您已成功接收任务')
+                        this.getOrderListAPI({
+                            order_status: 0
+                        })
+                    }).catch(err => {
+                        console.log('接收任务接口进入catch', err)
+                    })
+                },
+                // 编码工具函数 暂时用不到！
+                // setUrlParam(params, targetUrl) {
+                //     var url = '';
+                //     if (params && targetUrl) {
+                //         // json系列化为字符串，并编码
+                //         var enRequestParams = encodeURIComponent(JSON.stringify(params));
+                //         // get拼接
+                //         url = targetUrl + '?orderObj=' + enRequestParams;
+                //     }
+                //     return url
+                // },
+
+                // 跳转到任务详情页面的方法
+                gotoWorkFn(item) {
+                    // console.log(item)
+                    window.location.href = 'http://estate.1yuaninfo.com/index/property/work?id=' + item.id
+                },
+                // 调用订单列表接口函数
+                getOrderListAPI({
+                    type = null,
+                    order_status = null
+                }) {
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/order/list',
+                        headers: {
+                            authorization: window.localStorage.getItem('token') || ''
+                        },
+                        data: {
+                            type,
+                            order_status
+                        }
+                    }).then(res => {
+                        console.log('调用订单列表成功', res)
+                        this.orderList = res.data.result
+                    }).catch(err => {
+                        console.log('调用订单列表进入catch', err)
+                    })
+                },
+                // 取值函数
+                GetRequest() {
+                    var url = location.search; //获取url中"?"符后的字串
+                    var theRequest = new Object();
+                    if (url.indexOf("?") != -1) {
+                        var str = url.substr(1);
+                        var strs = str.split("&");
+                        for (var i = 0; i < strs.length; i++) {
+                            theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+                        }
+                    }
+                    return theRequest;
+                },
+                // type控制的导航栏
+                changeNavFn(index) {
+                    // console.log(index)
+                    for (var i = 0; i < this.navButtonList.length; i++) {
+                        this.navButtonList[i].navLineShow = false
+                    }
+                    this.navButtonList[index].navLineShow = true
+                    if (index == 0) {
+                        if (this.type == 'engineering') {
+                            // 当携带的参数时是工程维修
+                            this.getOrderListAPI({
+                                type: 2
+                            })
+                        } else if (this.type == 'property') {
+                            // 当携带的参数时是物业维修
+                            this.getOrderListAPI({
+                                type: 1
+                            })
+                        } else {
+                            // 当携带的参数时是事务维修
+                            this.getOrderListAPI({
+                                type: 3
+                            })
+                        }
+                    } else if (index == 1) {
+                        if (this.type == 'engineering') {
+                            // 当携带的参数时是工程维修
+                            this.getOrderListAPI({
+                                type: 2,
+                                order_status: 0
+                            })
+                        } else if (this.type == 'property') {
+                            // 当携带的参数时是物业维修
+                            this.getOrderListAPI({
+                                type: 1,
+                                order_status: 0
+                            })
+                        } else {
+                            // 当携带的参数时是事务维修
+                            this.getOrderListAPI({
+                                type: 3,
+                                order_status: 0
+                            })
+                        }
+                    } else if (index == 2) {
+                        if (this.type == 'engineering') {
+                            // 当携带的参数时是工程维修
+                            this.getOrderListAPI({
+                                type: 2,
+                                order_status: 1
+                            })
+                        } else if (this.type == 'property') {
+                            // 当携带的参数时是物业维修
+                            this.getOrderListAPI({
+                                type: 1,
+                                order_status: 1
+                            })
+                        } else {
+                            // 当携带的参数时是事务维修
+                            this.getOrderListAPI({
+                                type: 3,
+                                order_status: 1
+                            })
+                        }
+                    } else if (index == 3) {
+                        if (this.type == 'engineering') {
+                            // 当携带的参数时是工程维修
+                            this.getOrderListAPI({
+                                type: 2,
+                                order_status: 2
+                            })
+                        } else if (this.type == 'property') {
+                            // 当携带的参数时是物业维修
+                            this.getOrderListAPI({
+                                type: 1,
+                                order_status: 2
+                            })
+                        } else {
+                            // 当携带的参数时是事务维修
+                            this.getOrderListAPI({
+                                type: 3,
+                                order_status: 2
+                            })
+                        }
+                    }
+                },
+                // str控制的导航栏
+                changeStrNavFn(index) {
+                    for (var i = 0; i < this.navButtonList.length; i++) {
+                        this.navButtonList[i].navLineShow = false
+                    }
+                    this.navButtonList[index].navLineShow = true
+                    if (index == 0) {
+                        this.getOrderListAPI({})
+                    } else if (index == 1) {
+                        this.getOrderListAPI({
+                            order_status: 0
+                        })
+                    } else if (index == 2) {
+                        this.getOrderListAPI({
+                            order_status: 1
+                        })
+                    } else if (index == 3) {
+                        this.getOrderListAPI({
+                            order_status: 2
+                        })
+                    }
+                },
+                // 获取个人信息方法
+                getUserinfoFn() {
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/getUserInfo',
+                        headers: {
+                            authorization: window.localStorage.getItem('token') || ''
+                        }
+                    }).then(res => {
+                        console.log('个人信息', res)
+                        if (res.data.status == 1002) {
+                            // token过期
+                            alert('登录已过期')
+                            window.location.href = 'http://estate.1yuaninfo.com/index/property/logins'
+                        } else if (res.data.status == 200) {
+                            // 一切正常
+                            this.userinfoList = res.data.result
+                        }
+                    }).catch(err => {
+                        console.log('个人信息进入catch', err)
+                    })
+                }
+            },
+            created() {
+                this.str = this.GetRequest().str
+                this.type = this.GetRequest().type
+                this.getUserinfoFn()
+                if (this.str === 'not') {
+                    this.changeNavFn(1)
+                    this.getOrderListAPI({
+                        order_status: 0
+                    })
+                } else if (this.str === 'deal') {
+                    this.changeNavFn(2)
+                    this.getOrderListAPI({
+                        order_status: 1
+                    })
+                } else if (this.str === 'end') {
+                    this.changeNavFn(3)
+                    this.getOrderListAPI({
+                        order_status: 2
+                    })
+                } else if (this.str === 'all') {
+                    this.changeNavFn(0)
+                    this.getOrderListAPI({})
+                }
+
+                if (this.type === 'engineering') {
+                    this.changeNavFn(0)
+                    this.getOrderListAPI({
+                        type: 2
+                    })
+                } else if (this.type === 'property') {
+                    this.changeNavFn(0)
+                    this.getOrderListAPI({
+                        type: 1
+                    })
+                } else if (this.type === 'transaction') {
+                    this.changeNavFn(0)
+                    this.getOrderListAPI({
+                        type: 3
+                    })
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,288 @@
+---------------------------------------------------------------
+[ 2021-12-08T10:51:07+08:00 ] 101.89.239.245 GET only.1yuaninfo.com/index/register/index.html
+[运行时间：0.014952s] [吞吐率：66.88req/s] [内存消耗：1,929.48kb] [文件加载：47]
+[ error ] [8]未定义数组索引: code[/home/wwwroot/only.1yuaninfo.com/application/index/controller/Register.php:27]
+---------------------------------------------------------------
+[ 2021-12-08T10:52:04+08:00 ] 124.65.171.250 POST only.1yuaninfo.com/wxadmint1/news/tishi_insert.html
+[运行时间：0.042470s] [吞吐率：23.55req/s] [内存消耗：3,466.40kb] [文件加载：68]
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'type_id' in 'where clause'[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T10:56:09+08:00 ] 124.65.171.250 POST only.1yuaninfo.com/wxadmint1/news/tishi_insert.html
+[运行时间：0.042843s] [吞吐率：23.34req/s] [内存消耗：3,467.20kb] [文件加载：68]
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'type_id' in 'where clause'[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T11:02:16+08:00 ] 124.65.171.250 POST only.1yuaninfo.com/wxadmint1/news/tishi_insert.html
+[运行时间：0.042548s] [吞吐率：23.50req/s] [内存消耗：3,468.69kb] [文件加载：68]
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'u.user_tel' in 'field list'[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T11:03:24+08:00 ] 124.65.171.250 POST only.1yuaninfo.com/wxadmint1/news/tishi_insert.html
+[运行时间：0.042005s] [吞吐率：23.81req/s] [内存消耗：3,468.19kb] [文件加载：68]
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 's.type_id' in 'where clause'[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T14:02:06+08:00 ] 124.65.171.250 POST only.1yuaninfo.com/wxadmint1/news/tishi_insert.html
+[运行时间：0.044906s] [吞吐率：22.27req/s] [内存消耗：3,467.70kb] [文件加载：68]
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'type_id' in 'where clause'[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T14:02:29+08:00 ] 124.65.171.250 POST only.1yuaninfo.com/wxadmint1/news/tishi_insert.html
+[运行时间：0.044226s] [吞吐率：22.61req/s] [内存消耗：3,467.78kb] [文件加载：68]
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'users.type_id' in 'where clause'[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T14:03:49+08:00 ] 124.65.171.250 POST only.1yuaninfo.com/wxadmint1/news/tishi_insert.html
+[运行时间：0.042915s] [吞吐率：23.30req/s] [内存消耗：3,465.48kb] [文件加载：66]
+[ error ] [0]method not exist:think\db\Query->hasOne[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Query.php:103]
+---------------------------------------------------------------
+[ 2021-12-08T14:11:24+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/wxadmint1/users/index.html?v=1&user_develop_people=&user_activate_people=&user_first_people=&search=&user_remark=&wx_nickname=&type_id=2&user_status=&type_time=&is_agree=&is_extend=&start_date=&end_date=
+[运行时间：0.078926s] [吞吐率：12.67req/s] [内存消耗：3,780.42kb] [文件加载：71]
+[ error ] [8]未定义变量: click_num[/home/wwwroot/only.1yuaninfo.com/application/wxadmint1/controller/Users.php:157]
+---------------------------------------------------------------
+[ 2021-12-08T14:13:10+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/wxadmint1/users/index.html?v=1&user_develop_people=&user_activate_people=&user_first_people=&search=&user_remark=&wx_nickname=&type_id=2&user_status=&type_time=&is_agree=&is_extend=&start_date=&end_date=&page=1
+[运行时间：0.078984s] [吞吐率：12.66req/s] [内存消耗：3,785.12kb] [文件加载：70]
+[ error ] [0]致命错误: Cannot use object as array[/home/wwwroot/only.1yuaninfo.com/application/wxadmint1/controller/Users.php:147]
+---------------------------------------------------------------
+[ 2021-12-08T14:15:38+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/wxadmint1/users/index.html?v=1&user_develop_people=&user_activate_people=&user_first_people=&search=&user_remark=&wx_nickname=&type_id=2&user_status=&type_time=&is_agree=&is_extend=&start_date=&end_date=&page=1
+[运行时间：0.075240s] [吞吐率：13.29req/s] [内存消耗：3,785.12kb] [文件加载：70]
+[ error ] [0]致命错误: Unsupported operand types[/home/wwwroot/only.1yuaninfo.com/application/wxadmint1/controller/Users.php:168]
+---------------------------------------------------------------
+[ 2021-12-08T15:21:57+08:00 ] 124.65.171.250 GET only.1yuaninfo.com//index/click/check.html
+[运行时间：0.022504s] [吞吐率：44.44req/s] [内存消耗：2,997.55kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:24:05+08:00 ] 124.65.171.250 GET only.1yuaninfo.com//index/click/check.html
+[运行时间：0.023688s] [吞吐率：42.22req/s] [内存消耗：2,996.74kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:24:39+08:00 ] 124.65.171.250 GET only.1yuaninfo.com//index/click/check.html
+[运行时间：0.022902s] [吞吐率：43.66req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:24:41+08:00 ] 124.65.171.250 GET only.1yuaninfo.com//index/click/check.html
+[运行时间：0.022485s] [吞吐率：44.47req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:25:12+08:00 ] 124.65.171.250 GET only.1yuaninfo.com//index/click/check.html
+[运行时间：0.022856s] [吞吐率：43.75req/s] [内存消耗：2,997.88kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:25:50+08:00 ] 124.65.171.250 GET only.1yuaninfo.com//index/click/check.html
+[运行时间：0.023823s] [吞吐率：41.98req/s] [内存消耗：2,997.88kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:25:51+08:00 ] 124.65.171.250 GET only.1yuaninfo.com//index/click/check.html
+[运行时间：0.026598s] [吞吐率：37.60req/s] [内存消耗：2,997.88kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:25:52+08:00 ] 124.65.171.250 GET only.1yuaninfo.com//index/click/check.html
+[运行时间：0.024598s] [吞吐率：40.65req/s] [内存消耗：2,997.88kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:27:44+08:00 ] 124.65.171.250 GET only.1yuaninfo.com//index/click/check.html
+[运行时间：0.021374s] [吞吐率：46.79req/s] [内存消耗：2,711.49kb] [文件加载：55]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:27:46+08:00 ] 124.65.171.250 GET only.1yuaninfo.com//index/click/check.html
+[运行时间：0.022676s] [吞吐率：44.10req/s] [内存消耗：2,711.49kb] [文件加载：55]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:27:47+08:00 ] 124.65.171.250 GET only.1yuaninfo.com//index/click/check.html
+[运行时间：0.021563s] [吞吐率：46.38req/s] [内存消耗：2,711.49kb] [文件加载：55]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:27:54+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.020580s] [吞吐率：48.59req/s] [内存消耗：2,711.15kb] [文件加载：55]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:28:14+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.026429s] [吞吐率：37.84req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:28:14+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.022728s] [吞吐率：44.00req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:28:15+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023959s] [吞吐率：41.74req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:28:15+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023676s] [吞吐率：42.24req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:28:15+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023377s] [吞吐率：42.78req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:28:15+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023217s] [吞吐率：43.07req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:28:16+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.022441s] [吞吐率：44.56req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:32+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023901s] [吞吐率：41.84req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:34+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023443s] [吞吐率：42.66req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:35+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023862s] [吞吐率：41.91req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:36+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023425s] [吞吐率：42.69req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:37+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023410s] [吞吐率：42.72req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:39+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.024216s] [吞吐率：41.30req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:40+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023502s] [吞吐率：42.55req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:40+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.024280s] [吞吐率：41.19req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:41+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.024028s] [吞吐率：41.62req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:41+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.022783s] [吞吐率：43.89req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:41+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.024059s] [吞吐率：41.56req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:41+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.022149s] [吞吐率：45.15req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:41+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023894s] [吞吐率：41.85req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:42+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023435s] [吞吐率：42.67req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:47+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023839s] [吞吐率：41.95req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:47+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023607s] [吞吐率：42.36req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:49+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.024195s] [吞吐率：41.33req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:50+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023102s] [吞吐率：43.29req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:50+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.022721s] [吞吐率：44.01req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:51+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023191s] [吞吐率：43.12req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:51+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.022340s] [吞吐率：44.76req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:52+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023507s] [吞吐率：42.54req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:52+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.022404s] [吞吐率：44.63req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:52+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.022730s] [吞吐率：43.99req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:53+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023738s] [吞吐率：42.13req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:35:54+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.024332s] [吞吐率：41.10req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:36:45+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023484s] [吞吐率：42.58req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:36:46+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023750s] [吞吐率：42.11req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:36:47+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023594s] [吞吐率：42.38req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:36:48+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.022864s] [吞吐率：43.74req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:36:49+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023466s] [吞吐率：42.61req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:36:50+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023515s] [吞吐率：42.53req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:36:51+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023319s] [吞吐率：42.88req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:37:12+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023298s] [吞吐率：42.92req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:37:13+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023062s] [吞吐率：43.36req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:37:14+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.024768s] [吞吐率：40.37req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:37:15+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.024365s] [吞吐率：41.04req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:37:16+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.022612s] [吞吐率：44.22req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T15:37:16+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023913s] [吞吐率：41.82req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T16:09:30+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.022714s] [吞吐率：44.03req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T16:09:30+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.022374s] [吞吐率：44.69req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]
+---------------------------------------------------------------
+[ 2021-12-08T16:09:31+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/click/check.html
+[运行时间：0.023343s] [吞吐率：42.84req/s] [内存消耗：2,997.87kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'only1.user_news_click.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:385]

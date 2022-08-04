@@ -1,0 +1,121 @@
+
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<script type="text/javascript">
+			try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+		</script>
+
+		<ul class="breadcrumb">
+			<li>
+				<i class="icon-home home-icon"></i>
+				<a href="#">首页</a>
+			</li>
+
+			<li>
+				<a href="#">红包雨</a>
+			</li>
+			<li class="active">发放记录</li>
+		</ul><!-- .breadcrumb -->
+
+		<div class="nav-search" id="nav-search">
+			<form class="form-search">
+				<span class="input-icon">
+					<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+					<i class="icon-search nav-search-icon"></i>
+				</span>
+			</form>
+		</div><!-- #nav-search -->
+	</div>
+
+	<div class="page-content">
+		<div class="page-header">
+			<h1>
+				红包雨
+				<small>
+					<i class="icon-double-angle-right"></i>
+				发放记录
+				</small>
+			</h1>
+		</div><!-- /.page-header -->
+
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- PAGE CONTENT BEGINS -->
+
+				<div class="row">
+					<div class="col-xs-12">
+				
+						<div class="table-responsive">
+						<!-- 搜索框 -->
+		
+		<br/>
+		<span class="btn btn-sm" data-rel="tooltip" title="" data-original-title="Default">发放总数：{$moneys}元</span>	
+		
+							<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th class="center">
+											<label>
+												<input type="checkbox" class="ace" />
+												<span class="lbl"></span>
+											</label>
+										</th>
+										<th>发放id</th>
+										<th>昵称</th>
+										<th>发放的状态</th>
+										<th>发放金额</th>
+										<th>发放的时间</th>
+									
+									</tr>
+								</thead>
+						{volist name="res" id="res" key="key"}
+								<tbody>
+									<tr>
+										<td style="text-align:center;vertical-align:middle;"></td>
+										<td style="text-align:center;vertical-align:middle;">{$res.fa_id}</td>
+										<td style="text-align:center;vertical-align:middle;"><?php echo base64_decode($res['wx_nickname']);?></td>
+										<td style="text-align:center;vertical-align:middle;"><span style="color:red;font-weight:bold;">{$res.msg}</span></td>
+										<td style="text-align:center;vertical-align:middle;">{$res.users_money}</td>
+										<td style="text-align:center;vertical-align:middle;">{$res.addtime|date="Y-m-d H:i:s",###}</td>
+									</tr>
+								</tbody>
+							{/volist}
+
+<!-- <script src="__HSTYLE__/js/jquery.min.js"></script> -->
+<script src="__HSTYLE__/data_files/laydate.js"></script>
+<link type="text/css" rel="stylesheet" href="__HSTYLE__data_files/laydate.css">
+<link type="text/css" rel="stylesheet" href="__HSTYLE__data_files/laydate(1).css" id="LayDateSkin">
+<!-- 日期插件 -->
+<script>
+;!function(){
+laydate({
+   elem: '#demo'
+})
+}();
+</script>
+
+<script>
+;!function(){
+laydate({
+   elem: '#dates'
+})
+}();
+</script>
+
+							
+					
+							</table>
+							
+							
+						</div><!-- /.table-responsive -->
+					</div><!-- /span -->
+				</div><!-- /row -->
+
+		
+				
+
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.page-content -->
+</div><!-- /.main-content -->
+

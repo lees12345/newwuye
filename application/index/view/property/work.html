@@ -1,0 +1,328 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任务详情</title>
+    <script src="../../../../public/static/property_project/js/rem.js"></script>
+    <script src="../../../../public/static/property_project/js/vue.js"></script>
+    <script src="../../../../public/static/property_project/js/axios.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            background-color: #eeeeee;
+        }
+
+        #app {
+            width: 7.5rem;
+        }
+
+        .mBody {
+            width: 6.9rem;
+            margin: 0 auto;
+        }
+
+        .view {
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: .16rem;
+            margin-top: .2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-top: .3rem;
+            padding-bottom: .3rem;
+        }
+
+        .view_ {
+            width: 100%;
+            height: .4rem;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .view_content {
+            width: 100%;
+            color: #666666;
+            font-size: .24rem;
+            font-family: PingFang-SC-Medium, PingFang-SC;
+            line-height: .34rem;
+        }
+
+        .view_content p {
+            padding: 0 .3rem 0 .3rem;
+        }
+
+        .view_img {
+            width: .28rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: .3rem;
+        }
+
+        .view_img img {
+            width: .28rem;
+            height: .32rem;
+        }
+
+        .view_title {
+            height: 100%;
+            color: #999999;
+            font-size: .28rem;
+            line-height: .4rem;
+            margin-left: .14rem;
+            font-family: PingFang-SC-Medium, PingFang-SC;
+        }
+
+        .view_value {
+            height: 100%;
+            color: #222222;
+            font-size: .28rem;
+            line-height: .4rem;
+            margin-left: .14rem;
+            font-family: PingFang-SC-Medium, PingFang-SC;
+        }
+
+        .margin_bottom20 {
+            margin-bottom: .2rem;
+        }
+
+        .margin_bottom16 {
+            margin-bottom: .16rem;
+        }
+
+        .padding30 {
+            width: calc(100% - .6rem);
+            padding: .3rem;
+        }
+
+        .view_row {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            margin-bottom: .16rem;
+        }
+
+        .view_row_height {
+            height: .34rem;
+        }
+
+        .view_row:nth-last-child(1) {
+            margin-bottom: 0;
+        }
+
+        .view_row_left {
+            width: 1.4rem;
+            line-height: .34rem;
+            font-size: .24rem;
+            color: #999999;
+            font-family: PingFang-SC-Medium, PingFang-SC;
+        }
+
+        .view_row_right {
+            line-height: .34rem;
+            font-size: .24rem;
+            color: #222222;
+            font-family: PingFang-SC-Medium, PingFang-SC;
+        }
+
+        .view_row_copy_column {
+            width: .56rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: .16rem;
+        }
+
+        .view_row_copy {
+            width: .56rem;
+            height: .26rem;
+            border-radius: .15rem;
+            background-color: #eeeeee;
+            color: #222222;
+            font-size: .16rem;
+            line-height: .26rem;
+            font-family: PingFang-SC-Medium, PingFang-SC;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="mBody">
+            <div class="view">
+                <div class="view_ margin_bottom20">
+                    <div class="view_img">
+                        <img src="../../../../public/static/property_project/img/fuwuleixingg.png" alt="">
+                    </div>
+                    <div class="view_title">服务类型：</div>
+                    <div v-if="orderList.type == 1" class="view_value">工程维修</div>
+                    <div v-if="orderList.type == 2" class="view_value">物业维修</div>
+                    <div v-if="orderList.type == 3" class="view_value">事务维修</div>
+                </div>
+            </div>
+            <div class="view">
+                <div class="view_ margin_bottom16">
+                    <div class="view_img">
+                        <img src="../../../../public/static/property_project/img/fuwuleixingg.png" alt="">
+                    </div>
+                    <div class="view_value">维修事件任务描述</div>
+                </div>
+                <div class="view_content">
+                    <p>{{orderList.order_remark}}</p>
+                </div>
+            </div>
+            <div class="view padding30">
+                <div class="view_row">
+                    <div class="view_row_left">
+                        <p>报修人：</p>
+                    </div>
+                    <div class="view_row_right">
+                        <p>{{orderList.user_name}}</p>
+                    </div>
+                </div>
+                <div class="view_row">
+                    <div class="view_row_left">
+                        <p>所在地区：</p>
+                    </div>
+                    <div class="view_row_right">
+                        <p>{{orderList.area}}</p>
+                    </div>
+                </div>
+                <div class="view_row">
+                    <div class="view_row_left">
+                        <p>维修地址：</p>
+                    </div>
+                    <div class="view_row_right">
+                        <p>{{orderList.address}}</p>
+                    </div>
+                </div>
+                <div class="view_row">
+                    <div class="view_row_left">
+                        <p>预约时间：</p>
+                    </div>
+                    <div class="view_row_right">
+                        <p>{{orderList.end_order_time}}</p>
+                    </div>
+                </div>
+                <div class="view_row">
+                    <div class="view_row_left">
+                        <p>联系人：</p>
+                    </div>
+                    <div class="view_row_right">
+                        <p>{{orderList.contact}}</p>
+                    </div>
+                </div>
+                <!-- <div class="view_row">
+                    <div class="view_row_left">
+                        <p>联系人：</p>
+                    </div>
+                    <div class="view_row_right">
+                        <p>张三</p>
+                    </div>
+                </div> -->
+                <div class="view_row view_row_height">
+                    <div class="view_row_left">
+                        <p>手机号：</p>
+                    </div>
+                    <div class="view_row_right">
+                        <p>{{orderList.user_tel}}</p>
+                    </div>
+                    <div class="view_row_copy_column">
+                        <div class="view_row_copy">
+                            <p>复制</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="view_row">
+                    <div class="view_row_left">
+                        <p>电话：</p>
+                    </div>
+                    <div class="view_row_right">
+                        <p>{{orderList.phone}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    // 订单ID
+                    orderList: {}
+                }
+            },
+            methods: {
+                // 解码,try处理多次编码的情况
+                decodeUrl(str) {
+                    str = decodeURIComponent(str);
+                    var json = null;
+                    try {
+                        json = JSON.parse(str);
+                        return json;
+                    } catch (e) {
+                        return this.decodeUrl(str);
+                    }
+                },
+                // 调用获取任务详情接口
+                getTaskDetailsAPI(id) {
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/order/info',
+                        headers: {
+                            authorization: window.localStorage.getItem('token') || ''
+                        },
+                        data: {
+                            id
+                        }
+                    }).then(res => {
+                        console.log('订单列表获取成功', res)
+                        if (res.data.status == 1002) {
+                            // token过期
+                            alert('登录已过期')
+                            window.location.href = 'http://estate.1yuaninfo.com/index/property/logins'
+                        }else if(res.data.status == 200) {
+                            console.log('正常')
+                            this.orderList = res.data.result
+                        }
+                    }).catch(err => {
+                        console.log('订单列表接口进入catch', err)
+                    })
+                },
+                // 取值函数
+                GetRequest() {
+                    var url = location.search; //获取url中"?"符后的字串
+                    var theRequest = new Object();
+                    if (url.indexOf("?") != -1) {
+                        var str = url.substr(1);
+                        var strs = str.split("&");
+                        for (var i = 0; i < strs.length; i++) {
+                            theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+                        }
+                    }
+                    return theRequest;
+                }
+            },
+            created() {
+               const id = this.GetRequest().id
+                this.getTaskDetailsAPI(id)
+            }
+        })
+    </script>
+</body>
+
+</html>

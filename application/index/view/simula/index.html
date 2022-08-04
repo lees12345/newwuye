@@ -1,0 +1,299 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://yyfw.1yuaninfo.com/html/more/calIndex.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="__STYLE__css/style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="__STYLE__css/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="__STYLE__css/simple-calendar.css">
+    <link rel="stylesheet" type="text/css" href="__STYLE__css/stylesheet.css">
+    <title>模拟交易</title>
+    <style>
+        #calendar {
+            width: 100%
+        }
+
+        .clearfix {
+            margin-bottom: 20px !important;
+        }
+        .sc-body{
+            height: inherit;
+        }
+        .time{
+            font-size: 16px;
+            margin: 0 2%;
+            color: grey;
+            font-weight: 600;
+        }
+        .mon{
+             padding: 2% 4%;
+            margin-bottom: 0;
+            font-size: 20px;
+            font-weight: 800;
+        }
+        .day{}
+        .threeImg img{width:100%;}
+    </style>
+</head>
+<body>
+<!-- <p class="mon">当前日期:<span class="time">2017-12-09</span></p> -->
+<input style="width:68%;border: 0.1rem solid #D4D0D0;margin:2% 4%; border-radius: 0.2rem;padding:2%;" placeholder="请输入日期:例如20170808" id="queryday"><button style="font-size: 1.2rem;background: #d43f3a;padding:0.5% 3%;color: #fff; border: 0; border-radius: 0.2rem;margin-top:2%" onclick="isDate()">搜索</button>
+<div id="content-wrapper">
+    <div class="inner clearfix">
+        <div id="calendar" style="height:27rem !important" class="sc-calendar"><div class="sc-header"> <div class="sc-actions">      <div class="sc-yleft">        ‹</div>      <select class="sc-select-year" name=""><option value="1900">1900</option><option value="1901">1901</option><option value="1902">1902</option><option value="1903">1903</option><option value="1904">1904</option><option value="1905">1905</option><option value="1906">1906</option><option value="1907">1907</option><option value="1908">1908</option><option value="1909">1909</option><option value="1910">1910</option><option value="1911">1911</option><option value="1912">1912</option><option value="1913">1913</option><option value="1914">1914</option><option value="1915">1915</option><option value="1916">1916</option><option value="1917">1917</option><option value="1918">1918</option><option value="1919">1919</option><option value="1920">1920</option><option value="1921">1921</option><option value="1922">1922</option><option value="1923">1923</option><option value="1924">1924</option><option value="1925">1925</option><option value="1926">1926</option><option value="1927">1927</option><option value="1928">1928</option><option value="1929">1929</option><option value="1930">1930</option><option value="1931">1931</option><option value="1932">1932</option><option value="1933">1933</option><option value="1934">1934</option><option value="1935">1935</option><option value="1936">1936</option><option value="1937">1937</option><option value="1938">1938</option><option value="1939">1939</option><option value="1940">1940</option><option value="1941">1941</option><option value="1942">1942</option><option value="1943">1943</option><option value="1944">1944</option><option value="1945">1945</option><option value="1946">1946</option><option value="1947">1947</option><option value="1948">1948</option><option value="1949">1949</option><option value="1950">1950</option><option value="1951">1951</option><option value="1952">1952</option><option value="1953">1953</option><option value="1954">1954</option><option value="1955">1955</option><option value="1956">1956</option><option value="1957">1957</option><option value="1958">1958</option><option value="1959">1959</option><option value="1960">1960</option><option value="1961">1961</option><option value="1962">1962</option><option value="1963">1963</option><option value="1964">1964</option><option value="1965">1965</option><option value="1966">1966</option><option value="1967">1967</option><option value="1968">1968</option><option value="1969">1969</option><option value="1970">1970</option><option value="1971">1971</option><option value="1972">1972</option><option value="1973">1973</option><option value="1974">1974</option><option value="1975">1975</option><option value="1976">1976</option><option value="1977">1977</option><option value="1978">1978</option><option value="1979">1979</option><option value="1980">1980</option><option value="1981">1981</option><option value="1982">1982</option><option value="1983">1983</option><option value="1984">1984</option><option value="1985">1985</option><option value="1986">1986</option><option value="1987">1987</option><option value="1988">1988</option><option value="1989">1989</option><option value="1990">1990</option><option value="1991">1991</option><option value="1992">1992</option><option value="1993">1993</option><option value="1994">1994</option><option value="1995">1995</option><option value="1996">1996</option><option value="1997">1997</option><option value="1998">1998</option><option value="1999">1999</option><option value="2000">2000</option><option value="2001">2001</option><option value="2002">2002</option><option value="2003">2003</option><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option><option value="2031">2031</option><option value="2032">2032</option><option value="2033">2033</option><option value="2034">2034</option><option value="2035">2035</option><option value="2036">2036</option><option value="2037">2037</option><option value="2038">2038</option><option value="2039">2039</option><option value="2040">2040</option><option value="2041">2041</option><option value="2042">2042</option><option value="2043">2043</option><option value="2044">2044</option><option value="2045">2045</option><option value="2046">2046</option><option value="2047">2047</option><option value="2048">2048</option><option value="2049">2049</option></select>      <div class="sc-yright">›</div>  </div><div class="sc-actions">    <div class="sc-mleft">      ‹</div>    <select class="sc-select-month" name=""><option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>    <div class="sc-mright">›</div></div><div class="sc-actions"><span class="sc-return-today ">返回今天</span></div><div class="sc-actions"><span class="sc-time">时间：15:04:25</span></div></div> <div class="sc-body"> <div class="sc-week">  <div class="sc-week-item">一</div> <div class="sc-week-item">二</div> <div class="sc-week-item">三</div> <div class="sc-week-item">四</div> <div class="sc-week-item">五</div> <div class="sc-week-item">六</div> <div class="sc-week-item">日</div></div> <div class="sc-days"> <div class="sc-item sc-othermenth" title=""><div class="day">31</div><div class="lunar-day">初九</div></div><div class="sc-item sc-festival" title=""><div class="day">1</div><div class="lunar-day">建军节</div></div><div class="sc-item" title=""><div class="day">2</div><div class="lunar-day">十一</div></div><div class="sc-item" title=""><div class="day">3</div><div class="lunar-day">十二</div></div><div class="sc-item" title=""><div class="day">4</div><div class="lunar-day">十三</div></div><div class="sc-item" title=""><div class="day">5</div><div class="lunar-day">十四</div></div><div class="sc-item" title=""><div class="day">6</div><div class="lunar-day">十五</div></div><div class="sc-item sc-festival" title=""><div class="day">7</div><div class="lunar-day">立秋</div></div><div class="sc-item" title=""><div class="day">8</div><div class="lunar-day">十七</div></div><div class="sc-item" title=""><div class="day">9</div><div class="lunar-day">十八</div></div><div class="sc-item" title=""><div class="day">10</div><div class="lunar-day">十九</div></div><div class="sc-item sc-selected" title=""><div class="day">11</div><div class="lunar-day">二十</div></div><div class="sc-item" title=""><div class="day">12</div><div class="lunar-day">廿一</div></div><div class="sc-item" title=""><div class="day">13</div><div class="lunar-day">廿二</div></div><div class="sc-item sc-today" title=""><div class="day">14</div><div class="lunar-day">廿三</div></div><div class="sc-item" title=""><div class="day">15</div><div class="lunar-day">廿四</div></div><div class="sc-item" title=""><div class="day">16</div><div class="lunar-day">廿五</div></div><div class="sc-item" title=""><div class="day">17</div><div class="lunar-day">廿六</div></div><div class="sc-item" title=""><div class="day">18</div><div class="lunar-day">廿七</div></div><div class="sc-item" title=""><div class="day">19</div><div class="lunar-day">廿八</div></div><div class="sc-item" title=""><div class="day">20</div><div class="lunar-day">廿九</div></div><div class="sc-item" title=""><div class="day">21</div><div class="lunar-day">三十</div></div><div class="sc-item sc-festival" title=""><div class="day">22</div><div class="lunar-day">处暑</div></div><div class="sc-item" title=""><div class="day">23</div><div class="lunar-day">初二</div></div><div class="sc-item" title=""><div class="day">24</div><div class="lunar-day">初三</div></div><div class="sc-item" title=""><div class="day">25</div><div class="lunar-day">初四</div></div><div class="sc-item" title=""><div class="day">26</div><div class="lunar-day">初五</div></div><div class="sc-item" title=""><div class="day">27</div><div class="lunar-day">初六</div></div><div class="sc-item" title=""><div class="day">28</div><div class="lunar-day">初七</div></div><div class="sc-item" title=""><div class="day">29</div><div class="lunar-day">初八</div></div><div class="sc-item" title=""><div class="day">30</div><div class="lunar-day">初九</div></div><div class="sc-item" title=""><div class="day">31</div><div class="lunar-day">初十</div></div><div class="sc-item sc-othermenth" title=""><div class="day">1</div><div class="lunar-day">十一</div></div><div class="sc-item sc-othermenth" title=""><div class="day">2</div><div class="lunar-day">十二</div></div><div class="sc-item sc-othermenth" title=""><div class="day">3</div><div class="lunar-day">十三</div></div></div></div></div>
+
+    </div>
+    <div class="threeImg" style="width: 93%;margin: 7rem auto 1rem;border:#000 solid 1px;" id="testdiv">
+        
+            {notempty name='data'}     
+     {volist name='data' id='data'}
+     {$data.sim_picture}
+     {/volist}
+ {/notempty}
+        
+      
+     
+    </div>
+
+
+<script type="text/javascript" src="__STYLE__js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="__STYLE__js/simple-calendar.js"></script>
+<script>
+    var myCalendar = new SimpleCalendar('#calendar');
+
+    myCalendar.options = {
+        width: '500px',
+        height: '500px',
+        language: 'CH', //����
+        showLunarCalendar: true, //����
+        showHoliday: true, //�ݼ�
+        showFestival: true, //����
+        showLunarFestival: true, //ũ������
+        showSolarTerm: true, //����
+        showMark: true, //���
+        timeRange: {
+            startYear: 1900,
+            endYear: 2049
+        },
+        mark: {
+            '2016-5-5': '��ѧ'
+        },
+        theme: {
+            changeAble: false,
+            weeks: {
+                backgroundColor: '#000',
+                fontColor: '#000',
+                fontSize: '20px',
+            },
+            days: {
+                backgroundColor: '#000',
+                fontColor: '#000',
+                fontSize: '50px'
+            },
+            todaycolor: 'red',
+            activeSelectColor: 'red',
+        }
+    }
+</script>
+
+<script>
+    window.onload=function(){
+        $(".sc-item").click(function(){
+            var clickclass = this.className;
+            var day=$(this).find(".day").text();
+            var today = new Date().getDate();
+            var tomon = new Date().getMonth()+1;
+            var toyea = new Date().getFullYear();
+            if(day<10){
+                day="0"+day;
+            }
+            if(today<10){
+                today="0"+today;
+            }
+            if(tomon<10){
+                tomon="0"+tomon;
+            }
+            var mon=$(".sc-select-month option:selected").text();
+            var year=$(".sc-select-year option:selected").text();
+
+            if (clickclass.indexOf("sc-othermenth")>0 && parseInt(day)>10 && tomon==mon){
+                mon= "0"+(parseInt(mon) -1);
+            };
+
+            if (clickclass.indexOf("sc-othermenth")>0 && parseInt(day)<10 && tomon==mon){
+                mon= "0"+(parseInt(mon) +1);
+            };  
+
+            var clickday = year+"-"+mon+"-"+day;
+            var newday = toyea+"-"+tomon+"-"+today;
+
+            if (clickday>=newday) {
+                alert("尚未更新");
+				//$('#testdiv').html('暂未更新');
+            }else{
+                selectBydate(year+mon+day);
+            };
+
+/*            if(tomon== mon&& parseInt(day)>today &&clickclass.indexOf("sc-othermenth")<0){//本月今天以后的
+                alert("尚未更新");
+                 selectBydate(year+mon+day);
+            }else if (tomon>mon || year>toyea){//界面以外的上月的日期
+                //alert("请输入日期搜索");
+                selectBydate(year+mon+day);
+            }else if (tomon<mon|| year<toyea){//界面以外的上月的日期
+                alert("尚未更新");
+                 selectBydate(year+mon+day);
+            }else if (clickclass.indexOf("sc-today")>0 && parseInt(day)==today){//今天
+                alert("尚未更新");
+                 selectBydate(year+mon+day);
+            }else if (clickclass.indexOf("sc-othermenth")<0 && parseInt(day)<today){//本月今天以前的日期
+                //alert("今天以前的本月日期");
+                selectBydate(year+mon+day);
+            }else if (clickclass.indexOf("sc-othermenth")>0 && parseInt(day)>10){//界面以内的上月的日期
+                //alert("上月的日期:"+year+"-"+(mon-1)+"-"+day);
+                if((mon-1)<10){
+                    mon="0"+(mon-1);
+                 selectBydate(year+mon+day);
+                }
+            };*/
+
+            // $(".threeImg").find("img").eq(0).attr("src","../public/plugs/calendar/ima/003885689.jpg");
+            // $(".threeImg").find("img").eq(1).attr("src","../public/plugs/calendar/ima/003885689.jpg");
+            // $(".threeImg").find("img").eq(2).attr("src","../public/plugs/calendar/ima/003885689.jpg");
+        })
+
+    }
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $(".sc-item").click(function(){
+          var clickclass = this.className;
+            var day=$(this).find(".day").text();
+             var mon=$(".sc-select-month option:selected").text();
+            var year=$(".sc-select-year option:selected").text();
+            var today = new Date().getDate();
+            var tomon = new Date().getMonth()+1;
+            var toyea = new Date().getFullYear();
+            var sim_date=year+'-'+mon+'-'+day;
+            // var testdiv = document.getElementById("testdiv");
+
+
+      //alert(sim_date);
+          $.ajax({
+                type:'POST',
+                data:'s_date='+sim_date,
+                url:"{:url('Index/simula/sel')}",
+                success:function(msg)
+              {
+                if(msg=='2')
+                  {
+                   $('#testdiv').html('暂未查到');
+                    //alert('暂未查到');
+                  }else
+                  {
+                    $('#testdiv').html(msg+'<br/>');
+
+
+                    // testdiv.innerHTML=msg;
+                    
+                  }
+              }
+          })
+      })
+    })
+</script>
+<script type="text/javascript">
+//根据日期查询
+function selectBydate (date){
+    
+    $.ajax({
+            url:'sel.html?act=jiaoyi&date='+date,
+            dataType:'json',
+            type:'GET',
+            success:function(data){ 
+
+               if(data=='2')
+                  {
+                    alert('暂未查到');
+                  }else
+                  {
+
+                    // testdiv.innerHTML=msg;
+                    
+                    $('#testdiv').html(data+'<br/>');
+                  }
+
+            },
+            error:function(status){
+                alert("error");
+                $(".threeImg").html("error");
+            }
+        });
+}
+</script>
+<script type="text/javascript">
+function query(){
+    var queryday = $("#queryday").val();
+    alert(isDate(queryday));
+};
+
+function isDate(){
+            var queryday = $("#queryday").val();
+          //年月日正则表达式
+          if(queryday==''){
+            alert("请输入日期");
+            return;
+          }else{
+            var reg = /^(\d{1,4})(\d{1,2})(\d{1,2})$/;     
+            var r = queryday.match(reg);  
+             if(r==null)    
+                alert('对不起，您输入的日期格式不正确!'); //请将“日期”改成你需要验证的属性名称!    
+            }      
+            selectBydate(queryday);
+         
+          }
+</script>
+<script type="text/javascript">
+    // $(".sc-header").css("display","none");//隐藏头部信息
+</script>
+
+<script type="text/javascript" >
+
+//缩放图片到合适大小
+function ResizeImages()
+{
+   var myimg,oldwidth,oldheight;
+   var maxwidth=380;
+   var maxheight=300;
+   var imgs = document.getElementById('testdiv').getElementsByTagName('img');   //如果你定义的id不是article，请修改此处
+
+   for(i=0;i<imgs.length;i++){
+     myimg = imgs[i];
+
+     if(myimg.width > myimg.height)
+     {
+         if(myimg.width > maxwidth)
+         {
+            oldwidth = myimg.width;
+            myimg.height = myimg.height * (maxwidth/oldwidth);
+            myimg.width = maxwidth;
+         }
+     }else{
+         if(myimg.height > maxheight)
+         {
+            oldheight = myimg.height;
+            myimg.width = myimg.width * (maxheight/oldheight);
+            myimg.height = maxheight;
+         }
+     }
+   }
+}
+//缩放图片到合适大小
+ResizeImages();
+</script>
+
+
+</body></html>

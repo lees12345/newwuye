@@ -1,0 +1,86 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>服务通知详情</title>
+		<link rel="stylesheet" type="text/css" href="__STYLE__css/all.css">
+		<script type="text/javascript" src="__CSS__js/jquery-1.11.2.min.js"></script>
+		<style type="text/css">
+		body,html{
+			margin: 0;
+		    padding: 0!important;
+		    min-height: 100%;
+				}
+		</style>
+	</head>
+	<body>
+		<div class="body_box_two"> 
+			
+				<h1><img src="__STYLE__img/details_of_bgimg.jpg" width="100%"></h1>
+			
+				<div class="entry_all_box details_of_position">
+					<p class="details_of_title">{if condition="$data.s_status eq 1"}获利提示{else /}风险提示{/if}<span class="details_of_title_span">服务时间：{$data.s_updtime|date='Y-m-d H:i:s',###} </span></p>
+					<div class="details_of_world"> {$data.s_statuscontent}  </div>
+				</div>
+
+
+		</div>	
+		<!--底部-->
+	 
+		<div class="aboutus_footer" style="font-size:15px;padding-top: 1rem">
+			<p>积少成多、聚沙成塔，<br />
+	            小而稳定的收益累积起来绝对惊人！</p>
+		    <h6 style="margin:5% auto;font-size:15px;color:#000; font-weight:normal;">
+			<!-- <p style="color:#1d5ba6;">服务专线：
+		    	<a href="tel:010-56519898" style="font-size:15px;font-weight:normal;text-decoration: none;color:#1d5ba6;">010-56519898</a></p>
+		    <p style="color:#cc0000">投诉建议：
+		    	<a href="tel:010-87777911" style="font-size:15px;font-weight:normal;text-decoration: none;color:#cc0000;">010-87777911 </a></p> -->
+		    </h6>
+		</div>
+		
+		<script type="text/javascript">
+
+			$(function(){ 
+				pushHistory(); 
+				window.addEventListener("popstate", function(e) { 
+				WeixinJSBridge.call('closeWindow');//根据自己的需求实现自己的功能 
+				}, false); 
+				function pushHistory() { 
+				var state = { 
+				title: "title", 
+				url: "#"
+				}; 
+				window.history.pushState(state, "title", "#"); 
+				} 
+				});
+
+		</script>
+		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	  <script type="text/javascript">
+
+	   window.onload=function(){
+	    var imglis = [];
+	    var imgObj = $(".details_of_world img");//img对象  注意路径必须为绝对路径
+	    function imginfo(){
+	    　　for(var i=0; i<imgObj.length; i++){
+	              imgObj.eq(i).click(function(){
+	    　　　　imglis = [('http://day.1yuaninfo.com'+$(this).attr('src'))]
+	        　　　　console.log($(this).attr('src'))
+	        　　　　var Imgurl = $(this).attr('src');
+	        　　　　WeixinJSBridge.invoke("imagePreview",{
+	        　　　　　　"urls":imglis,
+	        　　　　　　"current":Imgurl
+	        　　　　});
+	        　　});
+	     
+	    　　}
+	    }
+
+	    imginfo();
+	  }
+	  </script>
+	</body>
+</html>

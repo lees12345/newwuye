@@ -1,0 +1,86 @@
+<!--{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,	minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="__STYLE__/css/jijin/appointment.css" type="text/css"  rel="stylesheet"/>
+    <script src="__STYLE__/js/jquery-2.1.1.min.js"></script>
+    <script src="__STYLE__/js/jijin/ninety_day.js"></script>
+    <title>激进型</title>
+</head>
+<body>
+<h1 class="head_img">
+    <img src="__STYLE__/img/jijin/images_banner_1.png">
+</h1>
+<div class="index_info">
+    <p>{$data.learn_title}</p>
+    <p>已报名{$count}人 <span class="index_num">第{$sort}位报名</span></p>
+</div>
+<article>
+    <img src="__STYLE__/img/jijin/images_particulars_1.png">
+</article>
+<div>
+
+</div>
+&lt;!&ndash;<a href="enrollrad.html"><p class="footer">立即报名</p></a>&ndash;&gt;
+<p class="footerr">立即报名</p>
+&lt;!&ndash; 您已报名 颜色999999 &ndash;&gt;
+<script type="text/javascript">
+   $(document).ready(function(){
+        $(".footerr").click(function(){
+            alert("您已预约成功，请勿重复操作！")
+        })
+    }) 
+</script>
+
+</body>
+</html>-->
+
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width,	minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="__STYLE__css/jijin/short_appoin.css" rel="stylesheet" />
+     <script src="__STYLE__/js/jquery-2.1.1.min.js"></script>
+    <title></title>
+</head>
+<body>
+<div class="index_div">
+    <div class="in_head_img">
+        <img src="__STYLE__img/jijin/img_details_02.png" />
+        <span>
+					<img src="__STYLE__img/jijin/bg_headline.png">
+					<dl class="in_head_dl">
+						<dd class="in_head_time">{$data.learn_title}</dd>
+						<dd class="in_head_num">已报名{$count}人</dd>
+                        <dt class="in_head_result">已报名</dt>
+					</dl>
+				</span>
+    </div>
+
+    <img src="__STYLE__img/jijin/img_details_03.png" />
+    <img src="__STYLE__img/jijin/img_details_04.png" />
+</div>
+<!-- <h3 class="footer_btn"><img src="__STYLE__img/jijin/btn_apply.png"></h3> -->
+<p class="footerr">立即报名</p>
+<script type="text/javascript">
+   $(document).ready(function(){
+        $(".footerr").click(function(){
+            alert("您已报名成功，请勿重复操作！")
+        })
+    }) 
+</script>
+
+
+
+<!-- 短线激进体验报名弹框 -->
+
+</body>
+</html>
+
+
+
+

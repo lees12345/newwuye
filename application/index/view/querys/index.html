@@ -1,0 +1,196 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>最新推荐</title>
+
+
+<link type="text/css"  rel="stylesheet" href="__CSS__css/style.css" />
+<!--弹出层 开始 -->
+<link type="text/css" rel="stylesheet" href="__CSS__css/zdialog.css" />
+<script type="text/javascript" src="__CSS__js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="__CSS__js/zdialog.js"></script>
+<!--弹出层 结束 -->
+<link type="text/css" rel="stylesheet" href="__CSS__sweetalert.css" />
+<script type="text/javascript" src="__CSS__sweetalert.min.js"></script>
+
+
+</head>
+<body>
+
+<input id="oppen" type="hidden" value="{$res.openid}">
+
+<input id="ssd" type="hidden" value="{$res.sid}">
+
+
+<script>
+///
+  var time = '{$time.s_pushtime}';
+   window.onload=function(){
+	   $.DialogByZ.Confirm({Title: "", Content: time+"有推荐，您需要操作吗？",FunL:confirmL,FunR:Immediate})
+   }
+ 
+  
+///
+  function confirmL(){
+			$.DialogByZ.Close();	
+   }
+
+   //
+   function alerts(){
+	  $.DialogByZ.Close();
+   }
+   function Immediate(){
+	  //点击确定链接的页面
+var oppen = '{$res.openid}';
+var ssd = '{$res.sid}';
+    $.post("toRead.html",{name:oppen,market_id:ssd},function(data){
+                     if(data == 1){
+                        location.href = "/index/news/share?news_id={$res.sid}&openid={$res.openid}";
+                    }else if(data == -5){
+                       alert("尊敬的用户，您尚未成为会员，请联系客服");
+                       WeixinJSBridge.call('closeWindow');
+                    }else if(data == -6){
+                        
+                           swal({title: "", //弹出框的title
+                        text: "尊敬的会员，您已达持股上限3支（以上），再次与您确认是否需要？", //弹出框里面的提示文本
+                        type: "", //弹出框类型
+                        showCancelButton: true, //是否显示取消按钮
+                        confirmButtonColor: "#DD6B55",//确定按钮颜色
+                        confirmButtonText: "是",//确定按钮上面的文档
+                        cancelButtonText: "否",//取消按钮文本
+                        closeOnConfirm: true,
+                        closeOnCancel: true}, 
+                         function(isConfirm){
+                                  if (isConfirm) {
+                                  
+                                     $.post("erci.html",{name:oppen,market_id:ssd},function(data){
+                                        if(data == 6)
+                                        {
+                                            location.href = "/index/news/share?news_id={$res.sid}&openid={$res.openid}";
+                                        }else{
+                                            alert("此次消息太火爆，服务器正忙，请重试！");
+                                            WeixinJSBridge.call('closeWindow');
+                                        }
+                                     });
+                                  } else {
+                                        $.post("er.html",{name:oppen,market_id:ssd},function(data){
+                                          if(data == 16)
+                                          {
+                                              alert("唯有参与，才有机会赚钱！请继续关注本平台操作提示。");
+                                               WeixinJSBridge.call('closeWindow');
+                                          }else{
+                                             alert("此次消息太火爆，服务器正忙，请重试！");
+                                              WeixinJSBridge.call('closeWindow');
+                                          }
+                                        });
+                                  }
+                          });
+                          
+                       // location.href = "/index/news/share?news_id={$res.sid}&openid={$res.openid}";
+                        // window.open("http://www.baidu.com/");
+                    }else if(data == -7){
+                        alert("很遗憾，已超时，不得不放弃，请密切关注下次操作提示。");
+                        WeixinJSBridge.call('closeWindow');
+                    }else if(data == -8){
+                        alert("很遗憾，已达操作上限，不得不放弃，请密切关注下次操作提示。");
+                        WeixinJSBridge.call('closeWindow');
+                    }else if(data == -10){
+                        alert("此次消息太火爆，服务器正忙，请重试！");
+                        WeixinJSBridge.call('closeWindow');
+                    }else if(data == -11){
+                        alert("本信息您已查阅，请勿重复操作！请密切关注下次操作提示！");
+                        WeixinJSBridge.call('closeWindow');
+                    }else if(data['msg'] == -12){
+
+                        swal({title: "", //弹出框的title
+                        text: "尊敬的会员，您已达持股上限3支（以上），再次与您确认是否需要？", //弹出框里面的提示文本
+                        type: "", //弹出框类型
+                        showCancelButton: true, //是否显示取消按钮
+                        confirmButtonColor: "#DD6B55",//确定按钮颜色
+                        confirmButtonText: "是",//确定按钮上面的文档
+                        cancelButtonText: "否",//取消按钮文本
+                        closeOnConfirm: true,
+                        closeOnCancel: true}, 
+                         function(isConfirm){
+                                  if (isConfirm) {
+                                  
+                                     $.post("erci.html",{name:oppen,market_id:ssd},function(data){
+                                        if(data == 6)
+                                        {
+                                            location.href = "/index/news/share?news_id={$res.sid}&openid={$res.openid}";
+                                        }else{
+                                            alert("此次消息太火爆，服务器正忙，请重试！");
+                                            WeixinJSBridge.call('closeWindow');
+                                        }
+                                     });
+                                  } else {
+                                        $.post("er.html",{name:oppen,market_id:ssd},function(data){
+                                          if(data == 16)
+                                          {
+                                              alert("唯有参与，才有机会赚钱！请继续关注本平台操作提示。");
+                                               WeixinJSBridge.call('closeWindow');
+                                          }else{
+                                             alert("此次消息太火爆，服务器正忙，请重试！");
+                                              WeixinJSBridge.call('closeWindow');
+                                          }
+                                        });
+                                  }
+        });
+
+
+
+
+                        // var r=confirm("尊敬的会员，您已达持股上限3支（以上），再次与您确认是否需要？");
+                        //   if (r==true)
+                        //     {
+                             // $.post("erci.html",{name:oppen,market_id:ssd},function(data){
+                             //    if(data == 6)
+                             //    {
+                             //        location.href = "/index/news/share?news_id={$res.sid}&openid={$res.openid}";
+                             //    }else{
+                             //        alert("此次消息太火爆，服务器正忙，请重试！");
+                             //        WeixinJSBridge.call('closeWindow');
+                             //    }
+                             // });
+                        //     }
+                        //   else
+                        //     {
+                              // $.post("er.html",{name:oppen,market_id:ssd},function(data){
+                              //   if(data == 16)
+                              //   {
+                              //       alert("唯有参与，才有机会赚钱！请继续关注本平台操作提示。");
+                              //        WeixinJSBridge.call('closeWindow');
+                              //   }else{
+                              //      alert("此次消息太火爆，服务器正忙，请重试！");
+                              //       WeixinJSBridge.call('closeWindow');
+                              //   }
+                              // });
+                        //     }
+                        //location.href = "/index/news/share?news_id={$res.sid}&openid={$res.openid}";
+                    }else if(data == -15){
+                        alert("尊敬的会员，您已达操作次数上限，请联系客服充值。");
+                         WeixinJSBridge.call('closeWindow');
+                    }else if(data == -16){
+                        alert("尊敬的用户，您的余额不足，请及时充值。");
+                         WeixinJSBridge.call('closeWindow');
+                    }else{
+                        alert(data);
+                        WeixinJSBridge.call('closeWindow');
+                    }
+              })
+   
+   }
+  
+
+</script>
+<script type="text/javascript">
+  // history.go(1);
+</script>
+
+	
+</body>
+</html>
+

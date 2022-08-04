@@ -1,0 +1,157 @@
+
+
+<div class="main-content">
+    <div class="breadcrumbs" id="breadcrumbs">
+        <script type="text/javascript">
+            try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+        </script>
+
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home home-icon"></i>
+                <a href="#">首页</a>
+            </li>
+
+            <li>
+                <a href="#">订单管理</a>
+            </li>
+            <li class="active">用户基本信息</li>
+        </ul><!-- .breadcrumb -->
+
+        <div class="nav-search" id="nav-search">
+            <form class="form-search" method="post" action="{:url('wxadmint1/admin/auth_insert')}">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+            </form>
+        </div><!-- #nav-search -->
+    </div>
+
+    <div class="page-content">
+        <div class="page-header">
+            <h1>
+                订单管理
+                <small>
+                    <i class="icon-double-angle-right"></i>
+                    用户基本信息
+                </small>
+                <small>
+                    <i class="icon-double-angle-right"></i>
+                    用户基本信息参考
+                </small>
+            </h1>
+        </div><!-- /.page-header -->
+        <div>
+            <button>
+                <a href="{:url('wxadmint1/order/index')}" style="text-decoration:none">返回</a>
+            </button>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                <table id="sample-table-1" class="table table-striped table-bordered table-hover" style="width: 60%">
+                    <thead>
+                        <tr>
+                            <th colspan="8" style="text-align:center;vertical-align:middle;">用户基本信息参考<span style="color: #660000">（{$data.start_time} — {$data.end_time}）</span></th>
+                        </tr>
+                    </thead>
+                    <thead>
+                        <tr>
+                            <td rowspan="2" style="text-align:center;vertical-align:middle;"><b>序号</b></td>
+                            <td rowspan="2" style="text-align:center;vertical-align:middle;"><b>年龄段</b></td>
+                            <td rowspan="2" style="text-align:center;vertical-align:middle;"><b>人数</b></td>
+                            <td rowspan="2" style="text-align:center;vertical-align:middle;"><b>比例</b></td>
+                            <td colspan="4" align="center"><b>性别</b></td>
+                        </tr>
+                        <tr>
+                            <td align="center"><b>男</b></td>
+                            <td align="center"><b>比例</b></td>
+                            <td align="center"><b>女</b></td>
+                            <td align="center"><b>比例</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;vertical-align:middle;">1</td>
+                            <td style="text-align:center;vertical-align:middle;">30岁以下</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: #56004f;">{$data.under_thirty.count}</span>人</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: #057748;">{$data.under_thirty.per}</span>%</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: blue;">{$data.under_thirty.man}</span>人</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: red;">{$data.under_thirty.man_per}</span>%</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: blue;">{$data.under_thirty.woman}</span>人</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: red;">{$data.under_thirty.woman_per}</span>%</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;vertical-align:middle;">2</td>
+                            <td style="text-align:center;vertical-align:middle;">30岁—40岁</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: #56004f;">{$data.thirty_forty.count}</span>人</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: #057748;">{$data.thirty_forty.per}</span>%</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: blue;">{$data.thirty_forty.man}</span>人</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: red;">{$data.thirty_forty.man_per}</span>%</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: blue;">{$data.thirty_forty.woman}</span>人</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: red;">{$data.thirty_forty.woman_per}</span>%</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;vertical-align:middle;">3</td>
+                            <td style="text-align:center;vertical-align:middle;">40岁—50岁</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: #56004f;">{$data.forty_fifty.count}</span>人</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: #057748;">{$data.forty_fifty.per}</span>%</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: blue;">{$data.forty_fifty.man}</span>人</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: red;">{$data.forty_fifty.man_per}</span>%</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: blue;">{$data.forty_fifty.woman}</span>人</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: red;">{$data.forty_fifty.woman_per}</span>%</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;vertical-align:middle;">4</td>
+                            <td style="text-align:center;vertical-align:middle;">50岁—60岁</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: #56004f;">{$data.fifty_sixty.count}</span>人</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: #057748;">{$data.fifty_sixty.per}</span>%</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: blue;">{$data.fifty_sixty.man}</span>人</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: red;">{$data.fifty_sixty.man_per}</span>%</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: blue;">{$data.fifty_sixty.woman}</span>人</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: red;">{$data.fifty_sixty.woman_per}</span>%</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;vertical-align:middle;">5</td>
+                            <td style="text-align:center;vertical-align:middle;">60岁以上</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: #56004f;">{$data.over_sixty.count}</span>人</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: #057748;">{$data.over_sixty.per}</span>%</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: blue;">{$data.over_sixty.man}</span>人</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: red;">{$data.over_sixty.man_per}</span>%</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: blue;">{$data.over_sixty.woman}</span>人</td>
+                            <td style="text-align:center;vertical-align:middle;"><span style="color: red;">{$data.over_sixty.woman_per}</span>%</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;vertical-align:middle;"><b>汇总</b></td>
+                            <td></td>
+                            <td style="text-align:center;vertical-align:middle;"><b><span style="color: #003472;">{$data.all.count}</span>人</b></td>
+                            <td></td>
+                            <td style="text-align:center;vertical-align:middle;"><b><span style="color: #003472;">{$data.all.man}</span>人</b></td>
+                            <td style="text-align:center;vertical-align:middle;"><b><span style="color: #be002f;">{$data.all.man_per}</span>%</b></td>
+                            <td style="text-align:center;vertical-align:middle;"><b><span style="color: #003472;">{$data.all.woman}</span>人</b></td>
+                            <td style="text-align:center;vertical-align:middle;"><b><span style="color: #be002f;">{$data.all.woman_per}</span>%</b></td>
+                        </tr>
+                    </thead>
+
+                    <!--  -->
+                </table>
+
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+
+
+
+    </div>
+</div>

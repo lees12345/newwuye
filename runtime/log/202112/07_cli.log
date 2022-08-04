@@ -1,0 +1,2 @@
+[ 2021-12-07T09:01:08+08:00 ][ error ] [8]PDO::prepare(): send of 88 bytes failed with errno=32 Broken pipe[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:365]
+[ 2021-12-07T09:01:20+08:00 ][ error ] [8]PDO::prepare(): send of 88 bytes failed with errno=32 Broken pipe[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:365]

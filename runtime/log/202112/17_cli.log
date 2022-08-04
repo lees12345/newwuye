@@ -1,0 +1,8 @@
+[ 2021-12-17T08:53:52+08:00 ][ error ] [8]PDO::prepare(): send of 88 bytes failed with errno=32 Broken pipe[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:365]
+[ 2021-12-17T09:06:02+08:00 ][ error ] [8]PDO::prepare(): send of 88 bytes failed with errno=32 Broken pipe[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:365]
+[ 2021-12-17T09:06:11+08:00 ][ error ] [8]PDO::prepare(): send of 88 bytes failed with errno=32 Broken pipe[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:365]
+[ 2021-12-17T09:23:12+08:00 ][ error ] [8]PDO::prepare(): send of 88 bytes failed with errno=32 Broken pipe[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:365]
+[ 2021-12-17T09:24:51+08:00 ][ error ] [8]PDO::prepare(): send of 88 bytes failed with errno=32 Broken pipe[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:365]
+[ 2021-12-17T09:28:58+08:00 ][ error ] [8]PDO::prepare(): send of 88 bytes failed with errno=32 Broken pipe[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:365]
+[ 2021-12-17T09:32:04+08:00 ][ error ] [8]PDO::prepare(): send of 88 bytes failed with errno=32 Broken pipe[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:365]
+[ 2021-12-17T11:08:54+08:00 ][ error ] [8]PDO::prepare(): send of 88 bytes failed with errno=32 Broken pipe[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:365]

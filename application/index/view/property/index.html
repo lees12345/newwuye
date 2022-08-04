@@ -1,0 +1,559 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <link rel="stylesheet" href="../../../../public/static/property_project/CSS/vant.css" />
+    <script src="../../../../public/static/property_project/js/rem.js"></script>
+    <script src="../../../../public/static/property_project/js/vue.js"></script>
+    <script src="../../../../public/static/property_project/js/axios.js"></script>
+    <script src="../../../../public/static/property_project/js/vant.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            background-color: #EEEEEE;
+        }
+
+        .body {
+            width: 6.9rem;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top {
+            width: 100%;
+            height: 1.6rem;
+            padding-top: .3rem;
+            display: flex;
+            flex-direction: row;
+            position: relative;
+        }
+
+        .head {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .head img {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .top_name {
+            width: 4.7rem;
+            margin-left: .3rem;
+            /* width: .6rem; */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top_name_txt {
+            color: #222222;
+            height: .4rem;
+            margin-top: .08rem;
+            font-size: .28rem;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .top_name_txt p {
+            line-height: .4rem;
+            display: block;
+        }
+
+        .top_name_txt img {
+            width: .22rem;
+            height: .12rem;
+            display: block;
+            margin-top: .13rem;
+        }
+
+        .top_name_phone {
+            color: #999999;
+            font-size: .24rem;
+            line-height: .4rem;
+        }
+
+        .top_name_youke {
+            display: block;
+            width: .46rem;
+            height: .22rem;
+            margin-top: .05rem;
+        }
+
+        .top_right {
+            position: absolute;
+            right: 0;
+            top: .1rem;
+        }
+
+        .top_right img {
+            width: .16rem;
+            height: .24rem;
+        }
+
+        .controller {
+            /* width: calc(100% - 1.44rem);
+            padding-left: .72rem;
+            padding-right: .72rem; */
+            width: calc(100% - .55rem - .55rem);
+            padding-left: .55rem;
+            padding-right: .55rem;
+            height: 2.26rem;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-radius: .16rem;
+            margin-bottom: .2rem;
+        }
+
+        .controller_ {
+            width: 1.2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .controller_img {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .controller_img img {
+            width: .9rem;
+            height: .9rem;
+        }
+
+        .controller_p {
+            width: 100%;
+            text-align: center;
+            margin-top: .12rem;
+        }
+
+        .controller_p p {
+            display: block;
+            font-size: .28rem;
+            color: #222222;
+        }
+
+        .select {
+            width: 100%;
+            height: 1rem;
+            display: flex;
+            flex-direction: row;
+            background-color: #ffffff;
+            position: relative;
+        }
+
+        .select_logo {
+            width: .48rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: .3rem;
+        }
+
+        .select_logo img {
+            width: .48rem;
+        }
+
+        .select_txt {
+            color: #222222;
+            font-size: .28rem;
+            line-height: 1rem;
+            margin-left: .16rem;
+        }
+
+        .select_right {
+            width: .13rem;
+            height: 100%;
+            position: absolute;
+            right: .28rem;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .select_right img {
+            width: .13rem;
+            height: .24rem;
+        }
+
+        .redius_top {
+            border-radius: .16rem .16rem 0 0;
+        }
+
+        .redius_bottom {
+            border-radius: 0 0 .16rem .16rem;
+        }
+
+        .margin_top {
+            margin-top: .2rem;
+        }
+
+        .quantity {
+            width: 100%;
+            height: 3.06rem;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            border-radius: .16rem;
+            margin-top: .4rem;
+            margin-bottom: 1rem;
+        }
+
+        .quantity_titile {
+            width: 100%;
+            height: .92rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .quantity_titile_p {
+            font-size: .32rem;
+            color: #222222;
+            line-height: 1rem;
+            margin-left: .3rem;
+        }
+
+        .quantity_titile_img {
+            width: .12rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-right: .28rem;
+        }
+
+        .quantity_titile_img img {
+            width: .12rem;
+            height: .22rem;
+        }
+
+        .quantity_num {
+            width: 100%;
+            font-size: .48rem;
+            color: #222222;
+            line-height: .66rem;
+        }
+
+        .quantity_num p {
+            margin-left: .3rem;
+        }
+
+        .quantity_bottom {
+            width: calc(100% - .6rem);
+            padding-left: .3rem;
+            padding-right: .3rem;
+            height: .9rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .quantity_bottom_ {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-top: .3rem;
+        }
+
+        .quantity_bottom_txt {
+            font-size: .24rem;
+            color: #999999;
+        }
+
+        .quantity_bottom_black {
+            color: #222222;
+            font-size: .36rem;
+            line-height: .5rem;
+        }
+
+        .border_left {
+            padding-left: .2rem;
+            position: relative;
+        }
+
+        .border_left::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: .1rem;
+            width: .02rem;
+            height: .54rem;
+            background-color: #ccc;
+        }
+
+        .tellkefuDetail {
+            text-align: center;
+            margin-bottom: .1rem;
+            color: #323232;
+            border: #323232 solid 1px;
+            border-radius: 25px;
+            padding: .1rem .3rem;
+            margin: auto;
+            display: block;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="body">
+            <div @click="gotoMinePageFn" class="top">
+                <div class="head">
+                    <img style="border-radius: 50px;" :src="userinfoList.user_picture">
+                </div>
+                <div class="top_name">
+                    <div class="top_name_txt">
+                        <p>项目负责人（{{userinfoList.user_name}}）</p>
+                        <!-- <img src="../../../../public/static/property_project/img/namedown.png" alt=""> -->
+                    </div>
+                    <div class="top_name_phone">{{userinfoList.user_tel}}</div>
+                    <img class="top_name_youke" src="../../../../public/static/property_project/img/youke.png" alt="">
+
+                </div>
+                <div class="top_right">
+                    <img src="../../../../public/static/property_project/img/right.png" alt="">
+                </div>
+            </div>
+            <div class="controller">
+                <div @click="maintenanceFn('engineering')" class="controller_">
+                    <div class="controller_img">
+                        <img src="../../../../public/static/property_project/img/gongchengweixiu.png" alt="">
+                    </div>
+                    <div class="controller_p">
+                        <p>工程维修</p>
+                    </div>
+                </div>
+                <div @click="maintenanceFn('property')" class="controller_">
+                    <div class="controller_img">
+                        <img src="../../../../public/static/property_project/img/weixiurenyuan.png" alt="">
+                    </div>
+                    <div class="controller_p">
+                        <p>物业维修</p>
+                    </div>
+                </div>
+                <div @click="maintenanceFn('transaction')" class="controller_">
+                    <div class="controller_img">
+                        <img src="../../../../public/static/property_project/img/shiwuweixiu.png" alt="">
+                    </div>
+                    <div class="controller_p">
+                        <p>事务维修</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 中间点击框 -->
+            <div @click="unreceivedFn('not')" class="select redius_top">
+                <div class="select_logo">
+                    <img src="../../../../public/static/property_project/img/weijieshou.png" alt="">
+                </div>
+                <div class="select_txt">未接收</div>
+                <div class="select_right">
+                    <img src="../../../../public/static/property_project/img/right.png" alt="">
+                </div>
+            </div>
+
+            <div @click="unreceivedFn('deal')" class="select">
+                <div class="select_logo">
+                    <img src="../../../../public/static/property_project/img/chulizhong.png" alt="">
+                </div>
+                <div class="select_txt">处理中</div>
+                <div class="select_right">
+                    <img src="../../../../public/static/property_project/img/right.png" alt="">
+                </div>
+            </div>
+
+            <div @click="unreceivedFn('end')" class="select redius_bottom">
+                <div class="select_logo">
+                    <img src="../../../../public/static/property_project/img/yijieshu.png" alt="">
+                </div>
+                <div class="select_txt">已结束</div>
+                <div class="select_right">
+                    <img src="../../../../public/static/property_project/img/right.png" alt="">
+                </div>
+            </div>
+
+            <div @click="unreceivedFn('contact')" class="select redius_bottom redius_top margin_top">
+                <div class="select_logo">
+                    <img src="../../../../public/static/property_project/img/contactService.png" alt="">
+                </div>
+                <div class="select_txt">联系客服</div>
+                <div class="select_right">
+                    <img src="../../../../public/static/property_project/img/right.png" alt="">
+                </div>
+            </div>
+
+            <div class="quantity">
+                <div @click="unreceivedFn('all')" class="quantity_titile">
+                    <div class="quantity_titile_p">全部任务数（个）</div>
+                    <div class="quantity_titile_img">
+                        <img src="../../../../public/static/property_project/img/right.png" alt="">
+                    </div>
+                </div>
+                <div class="quantity_num">
+                    <p>{{total.total}}</p>
+                </div>
+                <div class="quantity_bottom">
+                    <div class="quantity_bottom_">
+                        <div class="quantity_bottom_txt">未接受（个）</div>
+                        <div class="quantity_bottom_black">{{total[0]}}</div>
+                    </div>
+                    <div class="quantity_bottom_ border_left">
+                        <div class="quantity_bottom_txt">处理中（个）</div>
+                        <div class="quantity_bottom_black">{{total[1]}}</div>
+                    </div>
+                    <div class="quantity_bottom_ border_left">
+                        <div class="quantity_bottom_txt">已完成（个）</div>
+                        <div class="quantity_bottom_black">{{total[2]}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 联系客服按钮展示的内容 -->
+        <div id="action_sheet" v-show="tellshow">
+            <div class="van-overlay" style="z-index: 2001;" @click="toCancel"></div>
+            <div class="bottom_tell van-popup van-popup--round van-popup--bottom van-popup--safe-area-inset-bottom van-action-sheet"
+                style="z-index: 2002;">
+                <div class="van-action-sheet__content" round>
+                    <div class="bottom_div_opacyuan">
+                        <a class="" href="tel: 400-6088- 879">
+                            <button type="button" class="van-action-sheet__item"
+                                style="border-bottom: #EEEEEE solid 1px;">
+                                <span class="van-action-sheet__name">呼叫：400-6088- 879</span>
+                            </button>
+                        </a>
+                        <a class="" href="tel: 185-5198-9799">
+                            <button type="button" class="van-action-sheet__item">
+                                <span class="van-action-sheet__name">呼叫：185-5198-9799</span>
+                            </button>
+                        </a>
+                    </div>
+                    <div style="height: 0.5rem; opacity: 0;"></div>
+
+                    <div class="bottom_div_opac">
+                        <a class="" href="tel:18611222771">
+                            <button type="button" class="van-action-sheet__item">
+                                <span class="van-action-sheet__name">呼叫：186-1122-2771</span>
+                            </button>
+                        </a>
+                        <a class="" href="tel: 010-5651-9799">
+                            <button type="button" class="van-action-sheet__item"
+                                style="border-bottom: #EEEEEE solid 1px;">
+                                <span class="van-action-sheet__name">呼叫：010-5651-9799</span>
+                            </button>
+                        </a>
+
+                        <button type="button" class="van-action-sheet__item" @click="toCancel">
+                            <span class="van-action-sheet__name" style="color: #999999;">取消</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    // 个人信息
+                    userinfoList: {},
+                    // 统计总数
+                    total: {},
+                    // 电话组件标志位
+                    tellshow: false
+                }
+            },
+            methods: {
+                // 电话点了取消
+                toCancel() {
+                    this.tellshow = false;
+                    // console.log('点击了取消');
+                },
+                // 调用统计总数接口
+                getTotalAPI() {
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/order/total',
+                        headers: {
+                            authorization: window.localStorage.getItem('token') || ''
+                        }
+                    }).then(res => {
+                        console.log('统计总数接口调用成功', res)
+                        this.total = res.data.result
+                    }).catch(err => {
+                        console.log('统计总数接口调用失败', err)
+                    })
+                },
+                // 上半部分点击事件
+                maintenanceFn(type) {
+                    console.log(type)
+                    window.location.href = 'http://estate.1yuaninfo.com/index/property/myself.html?type=' + type
+                },
+                // 中间点击框事件
+                unreceivedFn(str) {
+                    console.log(str)
+                    if(str === 'contact') {
+                     this.tellshow === true ? this.tellshow = false : this.tellshow = true
+                     return
+                    }
+                    window.location.href = 'http://estate.1yuaninfo.com/index/property/myself.html?str=' + str
+                },
+                // 去我的页面
+                gotoMinePageFn() {
+                    window.location.href = 'http://estate.1yuaninfo.com/index/property/mine'
+                },
+                // 获取个人信息方法
+                getUserinfoFn() {
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/getUserInfo',
+                        headers: {
+                            authorization: window.localStorage.getItem('token') || ''
+                        }
+                    }).then(res => {
+                        console.log('个人信息', res)
+                        if (res.data.status == 1002) {
+                            // token过期
+                            alert('登录已过期')
+                            window.location.href = 'http://estate.1yuaninfo.com/index/property/logins'
+                        } else if (res.data.status == 200) {
+                            // 一切正常
+                            this.userinfoList = res.data.result
+                        }
+                    }).catch(err => {
+                        console.log('个人信息进入catch', err)
+                    })
+                }
+            },
+            created() {
+                // 个人信息
+                this.getUserinfoFn()
+                // 统计总数
+                this.getTotalAPI()
+            }
+        })
+    </script>
+</body>
+
+</html>

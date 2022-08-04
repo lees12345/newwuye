@@ -1,0 +1,152 @@
+<div class="main-content">
+    <div class="breadcrumbs" id="breadcrumbs">
+        <script type="text/javascript">
+            try {
+                ace.settings.check('breadcrumbs', 'fixed')
+            } catch (e) {
+            }
+        </script>
+
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home home-icon"></i>
+                <a href="#">首页</a>
+            </li>
+
+            <li>
+                <a href="#">用户组</a>
+            </li>
+            <li class="active">用户组添加</li>
+        </ul><!-- .breadcrumb -->
+
+        <div class="nav-search" id="nav-search">
+            <form class="form-search" method="post" action="{:url('wxadmint1/admin/auth_insert')}">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input"
+                                           id="nav-search-input" autocomplete="off"/>
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+            </form>
+        </div><!-- #nav-search -->
+    </div>
+
+    <div class="page-content">
+        <div class="page-header">
+            <h1>
+                用户组菜单
+                <small>
+                    <i class="icon-double-angle-right"></i>
+                    用户组添加
+                </small>
+            </h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+
+                <form class="form-horizontal" role="form" action="{:url('wxadmint1/admin/rule_insert')}" method="post">
+                    {:token('__hash__')}
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 组名称 </label>
+
+                        <div class="col-sm-9">
+                            <input type="text" id="form-field-1" placeholder="请输入组名称" class="col-xs-10 col-sm-5"
+                                   name='title'/>
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+
+                    <table class="details col-sm-20" width="100%" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                        <div class="form-group">
+                            <tr>
+
+                                <td>
+                                    <div align="right">分配的权限：</div>
+                                </td>
+                                <td>
+                                    <input id="all" value="1" type="hidden">
+                                    <input value="全选 / 取消" class="btn" id="all_checkbox" style="width:200px;"
+                                           type="button">
+                                    * 给组分配的权限
+                                </td>
+                            </tr>
+                        </div>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <ul class="first_checkbox" style=" margin-left:10px;">
+                                    {volist name="auth1" id="auth0"}
+                                    <li><input id="box{$auth0.id}" value="0" type="hidden">
+                                        <input name="rules[]" class="checkbox{$auth0.id}" id="{$auth0.id}"
+                                               onclick="checkbox({$auth0.id})" value="{$auth0.id}" type="checkbox">
+
+                                        <label for="{$auth0.id}">{$auth0.title}<br>
+
+                                            {volist name="auth0.zi" id="auth"}
+                                            <div class="two_checkbox">
+                                                ┠─&nbsp;&nbsp; <input name="rules[]" class="checkbox{$auth0.id}"
+                                                                      id="{$auth.id}" value="{$auth.id}"
+                                                                      style="margin-left:20px;" type="checkbox">
+                                                <label for="{$auth.id}">{$auth.title} </label></div>
+                                        </label></li>
+                                    {/volist}
+                                    {/volist}
+                                </ul>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-info" type="submit">
+                                <i class="icon-ok bigger-110"></i>
+                                添加
+                            </button>
+                        </div>
+                    </div>
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+        <script src="__HSTYLE__js/jquery-1.9.1.js"></script>
+        <script type="text/javascript">
+
+            $('input[type="checkbox"]').prop('checked', true);  //默认全选权限
+            $("#all_checkbox").click(function () {
+                var all = $('#all').val();
+                if (all == 1) {
+                    $('#all').attr('value', 0);
+                    //此处使用attr第二次设置的时候会除问题，解决办法使用prop函数，jquery版本必须要1.6.1以上
+                    $('input[type="checkbox"]').prop('checked', false);
+                } else {
+                    $('#all').attr('value', 1);
+                    $('input[type="checkbox"]').prop('checked', true);
+                }
+            });
+
+
+            function checkbox(id) {
+                var box = $('#box' + id).val();
+                if (box == 1) {
+                    $('#box' + id).attr('value', 0);
+                    //此处使用attr第二次设置的时候会除问题，解决办法使用prop函数，jquery版本必须要1.6.1以上
+                    $('.checkbox' + id).prop('checked', true);
+                } else {
+                    $('#box' + id).attr('value', 1);
+                    $('.checkbox' + id).prop('checked', false);
+                }
+            }
+
+            function check_form() {
+                var title = $('#title').val();
+                if (title == '') {
+                    layer.tips('请输入组名称', '#title', {time: 10000});
+                    return false;
+                }
+                return true;
+            }
+        </script>

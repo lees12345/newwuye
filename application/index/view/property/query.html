@@ -1,0 +1,430 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>进度查询</title>
+    <script src="../../../../public/static/property_project/js/rem.js"></script>
+    <script src="../../../../public/static/property_project/js/vue.js"></script>
+    <script src="../../../../public/static/property_project/js/axios.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            background-color: #eeeeee;
+        }
+
+        #app {
+            width: 7.5rem;
+        }
+
+        .top {
+            width: 7.5rem;
+            height: 3.46rem;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .top_l {
+            width: .78rem;
+            height: 100%;
+            position: relative;
+        }
+
+        .top_l img {
+            width: .48rem;
+            height: .48rem;
+            position: absolute;
+            right: 0;
+            top: .4rem;
+        }
+
+        .top_r {
+            width: calc(100% - .78rem);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title {
+            height: .34rem;
+            line-height: .34rem;
+            color: #222222;
+            font-size: .24rem;
+            margin-top: .32rem;
+            margin-left: .16rem;
+            font-family: PingFang-SC-Medium;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+        }
+
+        .position_ {
+            height: .28rem;
+            line-height: .28rem;
+            color: #666666;
+            font-size: .2rem;
+            margin-left: .16rem;
+            font-family: PingFang-SC-Medium;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+        }
+
+        .holder_ {
+            height: .4rem;
+            line-height: .4rem;
+            font-size: .28rem;
+            color: #222222;
+            margin-left: .16rem;
+            font-family: PingFang-SC-Bold;
+            margin-top: .26rem;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+        }
+
+        .content_ {
+            width: 6.12rem;
+            line-height: .34rem;
+            font-size: .24rem;
+            color: #666666;
+            margin-left: .16rem;
+            font-family: PingFang-SC-Medium;
+            margin-top: .06rem;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+        }
+
+        .detail_ {
+            color: #3A9EFF;
+            font-size: .24rem;
+            font-family: PingFang-SC-Medium, PingFang-SC;
+            line-height: .34rem;
+            margin-left: .16rem;
+            margin-top: .38rem;
+        }
+
+        .bottom_view {
+            width: 7.5rem;
+            background-color: #ffffff;
+            margin-top: .2rem;
+            display: flex;
+            flex-direction: column;
+            padding-top: .4rem;
+        }
+
+        .bottom_title {
+            width: 7.5rem;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .bottom_content {
+            width: 7.5rem;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .bottom_r {
+            width: calc(100% - .96rem);
+            display: flex;
+            flex-direction: column;
+            margin-left: .47rem;
+            padding-left: .47rem;
+            padding-bottom: .72rem;
+            position: relative;
+        }
+
+        .bottom_radius_big {
+            width: .36rem;
+            height: .36rem;
+            border-radius: 50%;
+            background-color: #cccccc;
+            position: absolute;
+            /* left: -.16rem; */
+            left: -.18rem;
+            top: 0;
+        }
+
+        .bottom_radius_big_blue {
+            width: .36rem;
+            height: .36rem;
+            border-radius: 50%;
+            background-color: #3A9EFF;
+            position: absolute;
+            left: -.18rem;
+            top: 0;
+        }
+
+        .bottom_radius_little {
+            width: .22rem;
+            height: .22rem;
+            border-radius: 50%;
+            background-color: #cccccc;
+            position: absolute;
+            left: -.11rem;
+            top: 0rem;
+        }
+
+        .border_left {
+            border-left: .02rem solid #cccccc;
+        }
+
+        .b_title {
+            height: .4rem;
+            line-height: .4rem;
+            color: #222222;
+            font-size: .28rem;
+            font-family: PingFang-SC-Bold, PingFang-SC;
+            font-weight: bold;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+            margin-bottom: .12rem;
+        }
+
+        .b_content {
+            width: 6.24rem;
+            line-height: .34rem;
+            color: #222222;
+            font-size: .24rem;
+            font-family: PingFang-SC-Medium, PingFang-SC;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            margin-top: -.04rem;
+        }
+
+        .b_time {
+            height: .28rem;
+            margin-top: .08rem;
+            line-height: .28rem;
+            color: #999999;
+            font-family: PingFang-SC-Medium, PingFang-SC;
+            font-size: .2rem;
+        }
+
+        .bottom_content_con {
+            color: #999999;
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="top">
+            <div class="top_l">
+                <!-- 工程类icon -->
+                <img v-if="orderList.type == 1" src="../../../../public/static/property_project/img/gongchengweixiu.png" alt="">
+                <!-- 物业类icon -->
+                <img v-if="orderList.type == 2" src="../../../../public/static/property_project/img/weixiurenyuan.png" alt="">
+                <!-- 事务类icon -->
+                <img v-if="orderList.type == 3" src="../../../../public/static/property_project/img/shiwuweixiu.png" alt="">
+            </div>
+            <div class="top_r">
+                <div class="title">
+                    <p>{{`报修人：${userinfoList.user_name}（${userinfoList.user_tel}）`}}</p>
+                </div>
+                <div class="position_">
+                    <p>{{`维修地址：${orderList.area}${orderList.address}`}}</p>
+                </div>
+                <div class="holder_">
+                    <p>维修事件任务提醒</p>
+                </div>
+                <div class="content_">
+                    <p>{{orderList.order_remark}}</p>
+                </div>
+                <div @click="gotoWorkFn(orderList.id)" class="detail_">
+                    <p>查看详情>></p>
+                </div>
+            </div>
+        </div>
+        <!-- 进度列表 -->
+        <div class="bottom_view">
+            <div v-for="(item,index) in arrData" :class="item.title == true ? 'bottom_title' : 'bottom_content' ">
+                <div class="bottom_r" :class="arrData.length != index + 1 ? 'border_left':''">
+                    <div v-if="item.title == true" :class="index == 0 ? 'bottom_radius_big_blue':'bottom_radius_big'">
+                    </div>
+                    <div v-if="item.title == false" class="bottom_radius_little"></div>
+                    <div class="b_title" v-if="item.title == true">{{item.titleVal}}</div>
+                    <div class="b_content">
+                        <p>{{item.content}}</p>
+                    </div>
+                    <div class="b_time">{{item.time}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    // 订单详情列表
+                    orderList: {},
+                    // 个人信息列表
+                    userinfoList: {},
+                    // 进度查询列表
+                    arrData: []
+                    // arrData: [{
+                    //     title: true,
+                    //     titleVal: '我是标题',
+                    //     content: '我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人',
+                    //     time: '2021-11-28 18:17:27'
+                    // }, {
+                    //     title: false,
+                    //     content: '我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人',
+                    //     time: '2021-11-28 18:17:27'
+                    // }, {
+                    //     title: false,
+                    //     content: '我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人',
+                    //     time: '2021-11-28 18:17:27'
+                    // }, {
+                    //     title: true,
+                    //     titleVal: '我是标题',
+                    //     content: '我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人',
+                    //     time: '2021-11-28 18:17:27'
+                    // }, {
+                    //     title: false,
+                    //     content: '我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人',
+                    //     time: '2021-11-28 18:17:27'
+                    // }, {
+                    //     title: false,
+
+                    //     content: '我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人',
+                    //     time: '2021-11-28 18:17:27'
+                    // }, {
+                    //     title: true,
+                    //     titleVal: '我是标题',
+                    //     content: '我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人们的内心。我希望他们这样我想用艺术感动人',
+                    //     time: '2021-11-28 18:17:27'
+                    // },]
+                }
+            },
+            methods: {
+                // 跳转到任务详情页面的方法
+                gotoWorkFn(id) {
+                    // console.log(item)
+                    window.location.href = 'http://estate.1yuaninfo.com/index/property/work?id=' + id 
+                },
+                // 调用获取任务详情接口
+                getTaskDetailsAPI(id) {
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/order/info',
+                        headers: {
+                            authorization: window.localStorage.getItem('token') || ''
+                        },
+                        data: {
+                            id
+                        }
+                    }).then(res => {
+                        console.log('订单列表获取成功', res)
+                        if (res.data.status == 1002) {
+                            // token过期
+                            alert('登录已过期')
+                            window.location.href = 'http://estate.1yuaninfo.com/index/property/logins'
+                        } else if (res.data.status == 200) {
+                            console.log('正常')
+                            this.orderList = res.data.result
+                        }
+                    }).catch(err => {
+                        console.log('订单列表接口进入catch', err)
+                    })
+                },
+                // 取值函数
+                GetRequest() {
+                    var url = location.search; //获取url中"?"符后的字串
+                    var theRequest = new Object();
+                    if (url.indexOf("?") != -1) {
+                        var str = url.substr(1);
+                        var strs = str.split("&");
+                        for (var i = 0; i < strs.length; i++) {
+                            theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+                        }
+                    }
+                    return theRequest;
+                },
+                // 加载对应id的进度页面
+                loadingFollowUpFn(id) {
+                    const that = this
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/order/logList',
+                        headers: {
+                            authorization: window.localStorage.getItem('token') || ''
+                        },
+                        data: {
+                            id
+                        }
+                    }).then(res => {
+                        console.log('查询进度接口调用成功', res.data.result.list)
+                        let list = res.data.result.list
+                        list.forEach(item => {
+                            let obj = new Object
+                            if(item.title) {
+                                obj.title = true
+                            }
+                            obj.titleVal = item.title
+                            console.log('item.desc',item.desc)
+                            obj.content = item.desc
+                            obj.time = item.updatetime
+                            console.log('obj',obj)
+                            that.arrData.push(obj)
+                        })
+                        console.log('that.arrData',that.arrData)
+                    }).catch(err => {
+                        console.log('查询进度接口进入catch', err)
+                    })
+                },
+                // 获取个人信息方法
+                getUserinfoFn() {
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/getUserInfo',
+                        headers: {
+                            authorization: window.localStorage.getItem('token') || ''
+                        }
+                    }).then(res => {
+                        console.log('个人信息', res)
+                        if (res.data.status == 1002) {
+                            // token过期
+                            alert('登录已过期')
+                            window.location.href = 'http://estate.1yuaninfo.com/index/property/logins'
+                        } else if (res.data.status == 200) {
+                            // 一切正常
+                            this.userinfoList = res.data.result
+                        }
+                    }).catch(err => {
+                        console.log('个人信息进入catch', err)
+                    })
+                }
+            },
+            created() {
+                const id = this.GetRequest().id
+                this.getUserinfoFn()
+                this.getTaskDetailsAPI(id)
+                this.loadingFollowUpFn(id)
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,465 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册/登录</title>
+    <script src="../../../../public/static/property_project/js/rem.js"></script>
+    <script src="../../../../public/static/property_project/js/vue.js"></script>
+    <script src="../../../../public/static/property_project/js/axios.js"></script>
+    <script src="__WUYE__js/jquery-3.6.0.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .view {
+            position: relative;
+            width: 6.38rem;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .view_child {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .view_title {
+            padding-top: 2.5rem;
+        }
+
+        .view_title p {
+            font-size: .48rem;
+            font-weight: 500;
+        }
+
+        .view_phone {
+            border-bottom: .02rem solid #cccccc;
+            height: .76rem;
+            line-height: .76rem;
+            padding-top: .66rem;
+        }
+
+        .view_phone p {
+            font-size: .28rem;
+            color: #222222;
+        }
+
+        .view_phone input {
+            width: 4.5rem;
+            border: none;
+            font-size: .28rem;
+            outline: none;
+            letter-spacing: .02rem;
+            margin-left: .2rem;
+        }
+
+        .view_code {
+            border-bottom: .02rem solid #cccccc;
+            height: .76rem;
+            line-height: .76rem;
+            padding-top: .2rem;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .view_code input {
+            width: 4rem;
+            border: none;
+            margin-left: .1rem;
+            font-size: .28rem;
+            outline: none;
+            letter-spacing: .02rem;
+        }
+
+        .code_ {
+            height: .76rem;
+            line-height: .76rem;
+            font-size: .28rem;
+            color: #222222;
+        }
+
+        .code_times {
+            margin-right: .6rem;
+        }
+
+        input::-webkit-input-placeholder {
+            color: #cccccc;
+        }
+
+        input::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+            color: #cccccc;
+        }
+
+        input:-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+            color: #cccccc;
+        }
+
+        input:-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: #cccccc;
+        }
+
+        .view_span {
+            color: #cccccc;
+            font-size: .24rem;
+            letter-spacing: .01rem;
+            margin-top: .1rem;
+        }
+
+        .view_identity {
+            color: #222222;
+            font-size: .28rem;
+            margin-top: .4rem;
+        }
+
+        .view_checkbox {
+            height: .8rem
+        }
+
+        .view_checkbox_label {
+            color: #cccccc;
+            font-size: .28rem;
+            margin-right: .5rem;
+            line-height: .8rem;
+            position: relative;
+            width: 1.6rem;
+        }
+
+        .view_checkbox_label input {
+            margin-right: .1rem;
+        }
+
+        .radio_label {
+            position: absolute;
+            left: .4rem;
+            top: -.04rem;
+        }
+
+        .view_login {
+            width: 100%;
+            height: .9rem;
+            line-height: .9rem;
+            background: #1979ff;
+            font-size: .34rem;
+            color: #ffffff;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            border-radius: .1rem;
+            margin-top: 1rem;
+        }
+
+        .view_login:active {
+            background: skyblue;
+        }
+
+        .view_login p {
+            text-align: center;
+        }
+
+        .blueColor {
+            color: #1979FF;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="view">
+            <div class="view_child view_title">
+                <p>登录/注册</p>
+            </div>
+            <div class="view_child view_phone">
+                <p>+86</p>
+                <input v-model="mobile" type="text" placeholder="输入手机号" />
+            </div>
+            <div class="view_child view_code">
+                <input v-model="codes" type="text" placeholder="输入验证码" />
+                <div class="code_" v-if="show" @click="codeFC">{{codeValue}}</div>
+                <div class="code_ code_times" v-if="!show">{{times}}s</div>
+            </div>
+            <div class="view_child view_span">未注册的手机号登录成功后将自动注册</div>
+            <div class="view_child view_identity">选择身份</div>
+            <div class="view_child view_checkbox">
+                <div v-for="(item,index) in items" class="view_checkbox_label"
+                    :class="item.select == true ? 'blueColor':''">
+                    <input :checked="item.select" type="radio" :id="item.id" :name="item.id" :value="item.id"
+                        @click.stop="radio_choose(item,index)">
+                    <label class="radio_label" :for="item.id">{{item.label}}</label>
+                </div>
+            </div>
+            <div class="view_child view_login" @click='loginFC'>
+                <p>登录</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    appID: 'wxd9aed62de2979296',
+                    code: '',
+                    openid: '',
+                    // 单选框状态
+                    type: 1,
+                    // 返回的验证码
+                    codes: '',
+                    // 手机号
+                    mobile: '',
+                    //验证码
+                    codeValue: '获取验证码',
+                    times: 60,
+                    show: true,
+                    //单选
+                    rdioId: '',
+                    items: [{
+                        label: "普通访客",
+                        id: 1,
+                        select: false,
+                    }, {
+                        label: "我是商户",
+                        id: 2,
+                        select: false,
+
+                    }, {
+                        label: "公司员工",
+                        id: 3,
+                        select: false,
+
+                    }]
+                }
+            },
+            mounted() {},
+            methods: {
+                wxshare() {
+                    let lineLink = location.href; //url不能写死
+                    console.log(lineLink)
+                    axios({
+                            method: 'POST',
+                            url: 'http://zztong.1yuaninfo.com/index/chat/share',
+                            data: {
+                                url: $.base64.encode(lineLink),
+                                name: this.name
+                            }
+                        })
+                        .then((res) => {
+                            //成功的回调
+                            // console.log(res)
+                            let shareData = res.data
+                            var imgUrl =
+                                'http://zztong.1yuaninfo.com/Underthegeneral/img/share_img.png'; // 分享后展示的一张图片
+                            // var descContent = ''; // 分享后的描述信息
+                            let shareTitle = document.title; // 分享后的标题
+                            wx.config({
+                                debug: false, // 为true时，就是调试模式，会弹出一些信息，正确、错误都会弹。
+                                appId: shareData.appid, // 必填，公众号的唯一标识
+                                timestamp: shareData.timestamp.toString(), // 必填，生成签名的时间戳
+                                nonceStr: shareData.noncestr, // 必填，生成签名的随机串
+                                signature: shareData.jsapi_token, // 必填，签名，
+                                // 必填，把要使用的方法名放到这个数组中。
+                                jsApiList: ['onMenuShareTimeline',
+                                    'onMenuShareAppMessage'
+                                ] //新版本updateAppMessageShareData&updateTimelineShareData目前无效
+                            })
+                            wx.ready(() => {
+                                var AppMessageShareData = {
+                                    title: shareTitle, // 分享到朋友标题
+                                    desc: "", // 分享描述
+                                    link: lineLink, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                                    imgUrl: imgUrl, // 分享图标
+                                    success: function () {
+                                        // 用户确认分享后执行的回调函数
+                                        // alert('分享给朋友')
+                                    },
+                                    cancel: function () {
+                                        // 用户取消分享后执行的回调函数
+                                        // alert('分享给朋友失败')
+                                    }
+                                };
+                                var TimelineShareData = {
+                                    title: shareTitle, // 分享到朋友标题
+                                    desc: "", // 分享描述
+                                    link: lineLink, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                                    imgUrl: imgUrl, // 分享图标
+                                    success: function () {
+                                        // 用户确认分享后执行的回调函数
+                                        //alert('分享给朋友')
+                                    },
+                                    cancel: function () {
+                                        // 用户取消分享后执行的回调函数
+                                        //alert('分享给朋友失败')
+                                    }
+                                };
+                                wx.onMenuShareAppMessage(AppMessageShareData); //分享到朋友
+                                wx.onMenuShareTimeline(TimelineShareData); //分享到朋友圈
+                            })
+                        })
+                        .catch((error) => {
+                            //失败的回调
+                            console.log(error.response)
+                        });
+                },
+                GetRequest() {
+                    var url = location.search; //获取url中"?"符后的字串
+                    var theRequest = new Object();
+                    if (url.indexOf("?") != -1) {
+                        var str = url.substr(1);
+                        var strs = str.split("&");
+                        for (var i = 0; i < strs.length; i++) {
+                            theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+                        }
+                    }
+                    return theRequest;
+                },
+                getUrl() {
+                    let redirectUri = encodeURIComponent(window.location.href);
+                    let strUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + this.appID +
+                        "&redirect_uri=" + redirectUri +
+                        "&response_type=code&scope=snsapi_base&state=STATE&connect_redirect=1#wechat_redirect";
+
+                    return strUrl;
+                },
+                urlResolve() {
+                    let url = location.search; //获取url中"?"符后的字符串
+                    let theRequest = new Object(); //声明一个对象
+                    if (url.indexOf("?") != -1) {
+                        let str = url.substr(1);
+                        let strs = str.split("&");
+                        for (let i = 0; i < strs.length; i++) {
+                            theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+                        }
+                    }
+                    return theRequest;
+                },
+                // 登录
+                loginFC() {
+                    console.log('登录')
+                    console.log('this.openid', this.openid)
+                    let formData = {
+                        user_tel: this.mobile,
+                        codes: this.codes,
+                        openid: this.openid,
+                        type: this.type
+                    }
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/Login/index',
+                        data: formData
+                    }).then((res) => {
+                        console.log('登录', res)
+                        if (res.data.status == 0) {
+                            alert(res.data.message)
+                        } else if (res.data.status == 200) {
+                            // 登陆成功存token,跳转页面
+                            alert(res.data.message)
+                            window.localStorage.setItem('token',res.data.result)
+                        window.location.href = 'http://estate.1yuaninfo.com/index/property/index.html'
+                        }
+                    }).catch((err) => {
+                        console.log('登陆进入catch', err)
+                    })
+                },
+                //单选 点击
+                radio_choose(item, index) {
+                    console.log(item.id)
+                    this.type = item.id
+                    for (var i = 0; i < this.items.length; i++) {
+                        this.items[i].select = false
+                    }
+                    this.items[index].select = true
+                },
+                //获取验证码
+                codeFC() {
+                    this.getCode();
+                },
+                // 获取验证码方法
+                getCode() {
+                    axios({
+                        method: 'GET',
+                        url: 'http://estate.1yuaninfo.com/Login/send',
+                        params: {
+                            user_tel: this.mobile
+                        }
+                    }).then((res) => {
+                        if (res.data.status == 0) {
+                            console.log('进入')
+                            alert(res.data.message)
+                            // 代表手机号已注册
+                        } else if (res.data.status == 200) {
+                            alert(res.data.message)
+                            this.show = false
+                            console.log('验证码', res)
+                            this.timer = setInterval(() => {
+                                if (this.times > 0) {
+                                    this.times--
+                                } else {
+                                    clearInterval(this.timer)
+                                    this.show = true
+                                }
+                            }, 1000)
+                        }
+                    }).catch((err) => {
+                        console.log('获取验证码进入catch', err)
+                    })
+                },
+                // 自动登录方法
+                autoLoginFn() {
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/Login/register',
+                        data: {
+                            code: this.code
+                        }
+                    }).then((res) => {
+                        console.log('自动登录成功', res)
+                        if(res.data.status == 200 ){
+                        alert('登陆成功')
+                        window.localStorage.setItem('token',res.data.result)
+                        window.location.href = 'http://estate.1yuaninfo.com/index/property/index.html'
+                        } else if(res.data.status == -1 ) {
+                            console.log('进入了-1')
+                            // alert('请先绑定手机号')
+                            this.openid = res.data.message
+                            return
+                        } else {
+                            console.log('进入了没关注公众号')
+                            // 没关注公众号 给一个 openid值
+                        alert(res.data.message)
+                        this.openid = res.data.message
+                        }
+
+                    }).catch((err) => {
+                        console.log('自动登录err', err)
+                    })
+                }
+            },
+            created() {
+                console.log(this.code)
+                this.code = this.urlResolve().code
+                if (this.code == null || this.code == '') {
+                    console.log(111211111)
+                    window.location.href = this.getUrl()
+                } else {
+                    this.autoLoginFn()
+                }
+            },
+            mounted() {
+                console.log('this.code', this.code)
+                console.log('this.openid', this.openid)
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/public/static/action/css/discount.css" />
+    <script type="text/javascript" src="__CSS__js/jquery-1.11.2.min.js"></script>
+    <title></title>
+</head>
+<body>
+<div>
+    <div class="discount_div">
+        <img src="/public/static/action/dis_img/luodiye.png">
+         <img src="/public/static/action/dis_img/lijicanyu.png" class="goon_part" onclick="dianji({$id},{$user_id})"/>
+    </div>
+   
+</div>
+<script>
+    function dianji(id,user_id){
+        $.ajax({
+        type: "POST",
+        url: "/index/news/actioning_button.html",
+        data: {id:id,user_id:user_id},
+        dataType: "json",
+        success: function(data){
+            alert('感谢您的参与 ，客服人员将尽快与您联系。');
+        }
+    }); // $.ajax{()};
+    }
+</script>
+</body>
+</html>

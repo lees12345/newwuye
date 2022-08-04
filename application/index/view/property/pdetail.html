@@ -1,0 +1,210 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>天信诚物业</title>
+  <link rel="stylesheet" href="__WUYE__CSS/oa_style.css?v-1.0.0" />
+  <link rel="stylesheet" href="__WUYE__CSS/swiper-bundle.min.css">
+  <link rel="stylesheet" href="http://zztong.admin.gszx77.com/public/static/index/allpublic/css/dragon.css?v=20210303">
+  <script src="__WUYE__js/swiper-bundle.min.js"></script>
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script src="__WUYE__js/rem.js"></script>
+  <!--   <script type="text/javascript">
+           var nu =  $("body").height();
+            alert(nu);
+        </script> -->
+  <style type="text/css">
+    /*iphoneX适配*/
+    @media screen and (min-height: 2436px) {
+      body {
+        color: #f00;
+      }
+
+      .details_of_position {
+        position: absolute;
+        top: 20%;
+        left: 2.5%;
+        right: 2.5%;
+      }
+    }
+
+    .swiper-container {
+      width: 100%;
+      /* height: 150px; */
+    }
+
+    .swiper-slide {
+      width: 100%;
+      /* height: 150px; */
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="height: 100%;">
+    <!-- <h1><img src="__INDEX__img/details_of_bgimg.png" width="100%"></h1> -->
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="__WUYE__img/BOSS.png" width="100%"></div>
+        <div class="swiper-slide"><img src="__WUYE__img/merchants.png" width="100%"></div>
+        <div class="swiper-slide"><img src="__WUYE__img/enterprise.png" width="100%"></div>
+        <div class="swiper-slide"><img src="__WUYE__img/tourists.png" width="100%"></div>
+        <div class="swiper-slide"><img src="__WUYE__img/BOSS.png" width="100%"></div>
+        <div class="swiper-slide"><img src="__WUYE__img/BOSS.png" width="100%"></div>
+      </div>
+      <!-- 如果需要分页器 -->
+      <div class="swiper-pagination"></div>
+    </div>
+    <div class="entry_all_box details_of_position">
+      <p class="details_of_title">{$moring.title}<span class="details_of_title_span"> {$moring.time}</span></p>
+      <div class="details_of_world"> {$moring.new_content} </div>
+    </div>
+  </div>
+  
+  <div style="height: 100%;">
+  <div class="detail_bottom " style="margin-bottom: 1rem;">
+    <div class="detail_bot_wirte detail_spical">
+      <p style="margin-top: .1rem;"></p>
+      <p style="text-align: center;">为人民服务</p>
+      <p style="text-align: center;">联系电话：</p>
+      <p class="detail_spical_two">
+        张&nbsp;&nbsp;&nbsp;三&nbsp;&nbsp;13681366022<span>王啦啦&nbsp;&nbsp;13240770889</span><br />
+        刘江江&nbsp;&nbsp;010-8888888<span>牛宝宝&nbsp;&nbsp;13910770558</span>
+        <br />
+      </p>
+    </div>
+  </div>
+</div>
+  <script src="__WUYE__js/jquery-3.6.0.js"></script><!-- //引入 -->
+  <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script type="text/javascript">
+    var mySwiper = new Swiper('.swiper-container', {
+      // 轮播图的方向，也可以是vertical方向
+      direction: 'horizontal',
+      //播放速度
+      loop: true,
+      // 自动播放时间
+      // autoplay: 1000,
+      // 播放的速度
+      speed: 1000,
+      autoplay: {
+        disableOnInteraction: false,
+        delay: 3000,
+      },
+      // 如果需要分页器，即下面的小圆点
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      // 这样，即使我们滑动之后， 定时器也不会被清除
+      autoplayDisableOnInteraction: false,
+    });
+    window.onload = function () {
+      var imglis = [];
+      var imgObj = $(".details_of_world img"); //img对象  注意路径必须为绝对路径
+      function imginfo() {
+        for (var i = 0; i < imgObj.length; i++) {
+          imgObj.eq(i).click(function () {
+            var name =
+              /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+            if (/^(http|https):\/\/[\S]+$/.test($(this).attr('src')) !== true) {
+              console.log($(this).attr('src'))
+              console.log('不带');
+              // imglis = [('http://digioa.gszx77.com/'+$(this).attr('src'))]
+              imglis = [('http://estate.1yuaninfo.com/' + $(this).attr('src'))]
+
+            } else {
+              console.log($(this).attr('src'))
+              console.log('带');
+              imglis = [($(this).attr('src'))]
+            }
+            var Imgurl = $(this).attr('src');
+            WeixinJSBridge.invoke("imagePreview", {
+              "urls": imglis,
+              "current": imglis
+            });
+          });
+
+        }
+      }
+
+      imginfo();
+    }
+  </script>
+  <script>
+    var url = location.href.split('#')[0];
+    // url = encodeURIComponent(url);
+    console.log(url);
+    wx.config({
+      debug: false,
+      appId: "wx664aff5227ae84a7",
+      timestamp: "1539227222",
+      nonceStr: "Zz928106762digioa",
+      signature: "",
+      jsApiList: [
+        // 所有要调用的 API 都要加到这个列表中
+        'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ'
+      ]
+    });
+//    wx.ready(function () {
+//      // 在这里调用 API
+//      var
+//        title = '标题', // 分享标题
+//        link = '链接内容', // 分享链接
+//        desc = '分享内容描述', //分享描述
+//        imgUrl = '图片url'; // 分享图标
+//
+//      //朋友圈
+//      wx.onMenuShareTimeline({
+//        title: '勿忘初心一方得始终', // 分享标题
+//        link: url, // 分享链接
+//        imgUrl: 'http://digioa.gszx77.com/public/static/index/img/share_img.png', // 分享图标
+//        success: function () {
+//          // 用户确认分享后执行的回调函数
+//          alert('分享成功');
+//        },
+//        cancel: function () {
+//          // 用户取消分享后执行的回调函数
+//        }
+//      });
+//      //发送给好友
+//      wx.onMenuShareAppMessage({
+//        title: '勿忘初心一方得始终', // 分享标题
+//        desc: '', // 分享描述
+//        link: url, // 分享链接
+//        imgUrl: 'http://digioa.gszx77.com/public/static/index/img/share_img.png', // 分享图标
+//        type: '', // 分享类型,music、video或link，不填默认为link
+//        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+//        success: function () {
+//          // 用户确认分享后执行的回调函数
+//        },
+//        cancel: function () {
+//          // 用户取消分享后执行的回调函数
+//        }
+//      });
+//      //分享到QQ
+//      wx.onMenuShareQQ({
+//        title: '勿忘初心一方得始终', // 分享标题
+//        desc: '', // 分享描述
+//        link: url, // 分享链接
+//        imgUrl: 'http://digioa.gszx77.com/public/static/index/img/share_img.png', // 分享图标
+//        success: function () {
+//          // 用户确认分享后执行的回调函数
+//        },
+//        cancel: function () {
+//          // 用户取消分享后执行的回调函数
+//        }
+//      });
+//
+//    });
+  </script>
+</body>
+
+</html>

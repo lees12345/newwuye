@@ -1,0 +1,793 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>服务通知详情</title>
+		<!-- <link rel="stylesheet" type="text/css" href="__STYLE__css/all.css"> -->
+		<link rel="stylesheet"  href="/public/static/home/css/dragon.css" >
+		<link rel="stylesheet" href="/public/static/platform/css/vouchars.css" />
+		<script type="text/javascript" src="__CSS__js/jquery-1.11.2.min.js"></script>
+		<link rel="stylesheet" href="__ZHUCE__css/publicStyle.css" />
+		<link rel="stylesheet" href="__ZHUCE__css/spell_luck.css" />
+		<link rel="stylesheet" href="__ZHUCE__css/huachuang.css?v=20201012.4" />
+		<!-- <link rel="stylesheet" href="__ZHUCE__css/layer.css" /> -->
+		<link rel="stylesheet" href="__ZHUCE__layer_mobile/need/layui.css" />
+		<script type="text/javascript" src="__ZHUCE__js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="__ZHUCE__js/rem.js"></script>
+		<!-- <script type="text/javascript" src="__ZHUCE__js/layer.js"></script> -->
+		<script type="text/javascript" src="__ZHUCE__js/flutter-hearts-zmt.js"></script>
+
+		<script type="text/javascript" src="__ZHUCE__layer_mobile/layer.js"></script>
+		<style type="text/css">
+			body,html{
+				margin: 0;
+			    padding: 0!important;
+			    min-height: 100%;
+			    background-color: #ffffff;
+			}
+			canvas {
+				display: block;
+				position: absolute;
+				bottom: 5rem;
+				right: 0;
+				z-index: 20;
+				cursor: pointer;
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			}
+			.journal-reward {
+				/* position: absolute;
+				bottom: 70px;
+				right: 20px;
+				height: 80px;
+				width: 80px;
+				display: block;
+				z-index: 21; */
+			}
+			/* .dianzan {
+				width: 750px;
+				height: 1334px;
+				margin-left: auto;
+				margin-right: auto;
+				background: url(img/bg.jpg) no-repeat;
+				background-size: 100% 100%;
+			} */
+			/* 双十一活动动图 */
+			.doubleImg{
+				position: fixed;
+				right: 0;
+				bottom: 1rem ;
+				width: 2rem;
+				/*display: none;*/
+				z-index: 100;
+			}
+			.doubleImg img{
+				width: 100%;
+			}
+			.doubleImgLeft{
+				position: fixed;
+				left: -.3rem;
+				top: .5rem ;
+				width: 2rem;
+				/*display: none;*/
+				z-index: 100;
+			}
+			.doubleImgLeft img{
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+	<!----{$is_normal}---是否需要-1显示弹框1不显示         {$user_id}用户id        {$data.s_id}股票id-->
+	<!-- 体验机会弹框提醒 -->
+		<div class="boot_box">
+			<div class="bg_color"></div>
+			<div class="content">
+				<span class="close_btn"><img src="__STYLE__img/guanbi.png" /></span>
+				<div class="content_img">
+					<h1 class="content_h1"><img src="__STYLE__img/cuyao.png"></h1>
+					<img src="__STYLE__img/anniu.png" class="content_btn"/>
+				</div>
+
+			</div>
+		</div>
+		<!-- 需要之后 -->
+		<div class="boot_box_sure">
+			<div class="bg_color"></div>
+			<div class="content">
+					<span class="close_btnt"><img src="__STYLE__img/guanbi.png" /></span>
+				<div class="content_img">
+					<h1 class="content_h1"><img src="__STYLE__img/tijaiochenggong.png"></h1>
+				</div>
+
+			</div>
+		</div>
+		<input type="hidden" value="{$is_normal}" class="is_normal">
+		<input type="hidden" value="{$user_id}" class="user_id">
+		{notempty name= '$click_type'}
+			<input type="hidden" value="{$click_type}" class="click_type">
+			{else/}
+			<input type="hidden" value="1" class="click_type">
+		{/notempty}
+		<input type="hidden" value="{$data.s_id}" class="s_id">
+		<h1><img src="__STYLE__img/details_of_bgimg4.png" width="100%"></h1>
+		<div class=" details_of_position">
+			<div class="entry_all_box">
+				<p class="details_of_title">{$data.mt_name}
+					<span class="details_of_title_span">{$data.s_addtime|date='Y-m-d H:i:s',###} </span>
+				</p>
+				<div class="details_of_world con-height">
+					{$data.s_content}
+				</div>
+				<h1 class="zhankai_icon">
+					<img src="/public/static/home/img/zhankai.png" width="100%" class="zhankai">
+					<input type="button" name="" value="查看全文" class="zhankai_btn">
+				</h1>
+			</div>
+			<!-- 体验中 -->
+			<div class="detail_bottom">
+				<p class="detail_bot_titzy">注意事项</p>
+				<div class="detail_spical_two detail_bot_wirtered">
+					<p style="color: #F02D2D">1.推送时间</p>
+					<p style="color: #F02D2D">2.推送价格</p>
+					<p style="color: #F02D2D">3.参与仓位</p>
+					<p style="color: #F02D2D">唯有参与，才有赚钱的机会</p>
+					<P style="color: #F02D2D">小而稳定的收益，累计起来绝对惊人</P>
+				</div>
+			</div>
+			<!-- 超时 -->
+			<div class="detail_chao">
+				<p>该信息超过当天交易日查阅时段，已超时，请密切关注实时推送信息。</p>
+			</div>
+			<div class="detail_bottom">
+				<p class="detail_bot_tit">投顾团队</p>
+				<p class="detail_bot_wirte detail_spical_two">
+					<img src="/public/static/home/img/team_img.png" width="100%">
+				</p>
+			</div>
+			<div class="detail_bottom " style="margin-bottom: 3rem;">
+				<p class="detail_bot_tit">特别声明</p>
+				<div class="detail_bot_wirte detail_spical_two">
+					<p>《证券期货投资者适当性管理办法》于2017年7月1日起正式实施，通过微信平台制作的本资料仅面向投资咨询机构专业投资者用户，请勿对本资料进行任何形式的转发。若您非本投资咨询机构的专业投资者，为保证服务质量、控制投资风险，请勿订阅、接受或使用本平台中的任何信息。</p>
+					<p>因本公众号难以设置访问权限，若给您造成不便，烦请谅解！感谢您给予的理解和配合。</p>
+
+					<p>本公众号受投资咨询机构许可依法设立、运营的官方公众号。本公众号仅面向受委托投资咨询机构客户，仅供在新媒体背景下的研究信息、观点的及时沟通，因本公众号受限于访问权限的设置，本平台不因其他订阅人收到本公众号推送信息而视其为客户。</p>
+					<P>本公众号所载的资料均来自市场公开信息，结合行业热点、股市题材及技术分析后解读。请注意，本资料仅代表发布当日的判断，本公众号不承担更新推送信息或另行通知义务，后续更新信息请以平台发布信息为准。本订阅号推送资料涉及的投资评级、目标价格等投资观点，均基于特定的假设、特定的评级体系、相对的市场基准指数得出的中长期价值判断，并非对证券或金融工具的具体买卖时点、买卖价格等的操作建议。订阅者若使用本公众号所载资料，可能会因缺乏对完整报告的了解或缺乏相关的解读而对资料中的关键假设、评级、目标价等内容产生理解上的歧义而导致投资损失。订阅者如使用本公众号推送资料，请事先寻求专业投资顾问的指导及后续的解读服务。本公众号所载的资料、工具、意见、信息及推测仅提供给投资咨询机构客户作参考之用，不构成任何投资、法律、会计或税务的最终操作建议，本平台不就本公众号推送的内容对最终操作建议做出任何担保。任何订阅人不应凭借本公众号推送信息进行具体操作，应自主作出投资决策并自行承担所有投资风险。在任何情况下，本平台不对任何人因使用本公众号推送信息所引起的任何损失承担任何责任。 本公众号版权归受委托投资咨询机构所有，任何人或机构不得以任何方式修改、转载或者复制本公众号推送信息。如因违法、侵权使用给本平台造成任何直接或间接的损失，平台保留追求一切法律责任的权利。</P>
+					<p style="text-align: center;padding-top: .5rem;">重要声明 </p>
+					<p>（本平台信息内容为容维证券投顾团队依据市场公开信息，结合行业热点、股市题材及技术分析等得出的分析结论，仅供参考，据此操作风险自担）</p>
+				</div>
+			</div>
+		</div>
+		<!-- 新人福利 -->
+		<!-- <div class="main2">
+			<div class="container">
+				<div class="num num1">
+					<div class="num-con num-con1">
+						<div class="num-img"></div>
+						<div class="num-img"></div>
+					</div>
+				</div>
+				<div class="num num2">
+					<div class="num-con num-con2">
+						<div class="num-img"></div>
+						<div class="num-img"></div>
+					</div>
+				</div>
+				<div class="num num3">
+					<div class="num-con num-con3">
+						<div class="num-img"></div>
+						<div class="num-img"></div>
+					</div>
+				</div>
+				<input type="button" value="拼手气" class="pin_submit">
+				<p class="tishi">7天之内购买服务可抵现金使用
+				<br />
+				<span>请截图并联系客服</span></p>
+				<span class="close_right"><img src="__ZHUCE__fuli/guanbi.png"></span>
+			</div>
+
+		</div> -->
+		<!-- 左上角按钮 -->
+		<!-- <div class="discount_icon">
+			<h1 class="discount_icon_img">
+				<a href="http://tin.1yuaninfo.com/index/news/active.html"><img src="__STYLE__zhibo/huiju618.gif" class="discount_icon_tu"></a>
+				<img src="__STYLE__celebration/img/year_btn.gif" class="discount_icon_tu">
+				<span><img src="__STYLE__zhibo/close_icon_1.png"></span>
+			</h1>
+		</div> -->
+		<!-- 618聚惠海报 -->
+		<input type="hidden" value="" class="live_url">
+		<!-- 左上角点击展示海报 -->
+		<div class="discount_img">
+			<img src="__STYLE__celebration/img/activity_haibao.png">
+			<h1 class="close_btn_zhibo"><img src="__STYLE__zhibo/close_btn.png"></h1>
+		</div>
+		<!-- 诊股弹窗 -->
+		<div class="zhen_zong_div">
+			<div class="zhen_div">
+				<h1 class="zhen_head_img"><img src="__STYLE__zhibo/zhen_banner.png"></h1>
+				<div class="zhen_world">
+					<div>股票代码：<label><input type="text" placeholder="请输入股票代码" class="share_code" ></label></div>
+					<div>股票名称：<label><input type="text" placeholder="请输入股票名称"
+					class="share_name" ></label></div>
+					<div>数量&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<label><input type="text" placeholder="请输入股票数量" class="share_number" >股</label></div>
+					<div>成本&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<label><input type="text" placeholder="请输入股票成本" class="share_base" >元</label></div>
+					<div>仓位&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<label><input type="text" placeholder="请输入股票仓位" class="share_storing" >%</label></div>
+					<div>手机号码：<label><input type="text" placeholder="请输入您的手机号码" class="share_tel" ></label></div>
+					<input type="button" value="提交" class="zhen_submit" />
+				</div>
+				<h1 class="close_btn_zhen"><img src="__STYLE__zhibo/close_btn.png"></h1>
+			</div>
+		</div>
+		<!-- 咨询弹窗 -->
+		<div class="zixun_zong_div">
+			<div class="zixun_div">
+				<h1 class="zixun_head_img"><img src="__STYLE__zhibo/kefu_banner.png"></h1>
+				<div class="zixun_world">
+					<h1 class="lin-btn"><img src="__STYLE__zhibo/zixun_line.png"></h1>
+					<h1><a href="tel:010-56519888"><img src="__STYLE__zhibo/zixun_phone.png"></a></h1>
+				</div>
+				<div class="zixun_world_ma">
+					<h1><img src="__STYLE__zhibo/wechat_ma.png"></h1>
+						<p>扫一扫/长按添加客服人员微信</p>
+				</div>
+				<h1 class="close_btn_zixun"><img src="__STYLE__zhibo/close_btn.png"></h1>
+			</div>
+		</div>
+		<!-- 查看次数记录 -->
+		<div class="num_zong_div">
+			<div class="numsee_div">
+				<p class="num_zong_title">这是您第 <b>{$count}</b>次体验</p>
+				<h1 class="close_btn_num"><img src="__STYLE__zhibo/close_btn.png"></h1>
+			</div>
+			<div class="num_zong_bg">
+				<div style="width: 100%;"></div>
+			</div>
+		</div>
+		<!-- 去注册记录 -->
+		<div class="register_zong_div">
+			<div class="numsee_div">
+				<p class="num_zong_title">注册后即可继续体验！</p>
+				<h1 class="sure_btn_num">确 定</h1>
+			</div>
+			<div class="num_zong_bg">
+				<div style="width: 100%;"></div>
+			</div>
+		</div>
+		<!-- 右下角按钮 -->
+		<div class="side_btn">
+			<!-- <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxbb0d257a6c052e86&redirect_uri=http%3A%2F%2Fday.1yuaninfo.com%2Findex%2Fclasses%2Ftwice.html&response_type=code&scope=snsapi_base&state=123#wechat_redirect"> -->
+				<h1 class="zhi_btn">
+					<img src="__STYLE__zhibo/zhibo_icon.png">
+					<span>视频</span>
+				</h1>
+			<!-- </a> -->
+			<h1 class="like_btn">
+				<div class="dianzan">
+					<img src="__STYLE__zhibo/like_icon_01.png" class="journal-reward" />
+				</div>
+				<!-- <img src="../../img/like_icon_01.png"> -->
+				<span>赞</span>
+			</h1>
+			<h1 class="zhen_btn">
+				<img src="__STYLE__zhibo/zhen_icon.png">
+				<span>诊股</span>
+			</h1>
+			<h1 class="kefu_btn">
+				<img src="__STYLE__zhibo/kefu_icon.png">
+				<span>咨询</span>
+			</h1>
+			<h1 class="num_btn">
+				<img src="__STYLE__zhibo/jilu_icon.png">
+				<span>记录</span>
+			</h1>
+		</div>
+		 <!--底部-->
+		<!-- <div class="aboutus_footer" style="font-size:15px;padding-top: 1rem">
+    		<p>积少成多、聚沙成塔，<br />
+            小而稳定的收益累积起来也很惊人！</p>
+		    <h6 style="margin:5% auto;font-size:15px;color:#000; font-weight:normal;">
+		    </h6>
+		</div> -->
+		<!-- 右下角红包悬浮 -->
+		<h1 class="posi_red"><img src="__ZHUCE__fuli/xuanfuanniu.gif"></h1>
+		<!-- 2020双十一活动右下角悬浮 -->
+		<!-- <h1 class="doubleImg" onclick="window.location.href='http://tin.1yuaninfo.com/index/double11/index.html?platform='">
+			<img src="__STYLE__doubleEleven/img/double1.gif">
+		</h1> -->
+		<!-- 2020双十一活动左上角悬浮 -->
+		<!-- <h1 class="doubleImgLeft" onclick="window.location.href='http://day.1yuaninfo.com/index/double11/index.html?platform=jscd'">
+			<img src="__STYLE__doubleEleven/img/doublegif2.gif">
+		</h1> -->
+		<!-- 领取红包按钮 -->
+		<!-- <div class="ling_red">
+			<img src="__ZHUCE__fuli/lingred.gif" class="lingqu">
+			<span class="close_lingqu"><img src="__ZHUCE__fuli/guanbi.png"></span>
+		</div> -->
+		<!-- 领取之后7天之内 -->
+		<div class="ling_data">
+			<h1 class="ling_data_h1"></h1>
+			<div class="ling_posi">
+				{notempty name="active"}
+				<img src="__ZHUCE__fuli/weishiyongquan.png">
+				<span class="wei_money">{$active.action_money}</span>
+				<span class="wei_data">{$time_day}</span>
+				<span class="close_right"><img src="__ZHUCE__fuli/guanbi.png"></span>
+				{/notempty}
+			</div>
+
+		</div>
+		<!-- 体验结束 -->
+		<div class="experi_end">
+			<div class="experi_content">
+				<h1 class="experi_h1">体验结束！</h1>
+				<p class="experi_title">很抱歉！您的体验次数已结束，我们的服务是盘中实时推送，不是马后炮，先体验，满意后再合作是我们的服务宗旨，您还需要继续体验吗？</p>
+				<input type="button" name="" value="需要" class="experi_need">
+				<span class="close_experi"><img src="__ZHUCE__fuli/guanbi.png"></span>
+			</div>
+		</div>
+		<!-- 尚未注册 -->
+		<div class="experi_regi">
+			<div class="experi_content">
+				<h1 class="experi_h1">尚未注册！</h1>
+				<p class="experi_title">很抱歉！您的体验次数已结束，我们的服务是盘中实时推送，不是马后炮，先体验，满意后再合作是我们的服务宗旨，您还需要继续体验吗？</p>
+				<input type="button" name="" value="注册查看全文" class="experi_regigo">
+				<span class="close_regi"><img src="__ZHUCE__fuli/guanbi.png"></span>
+			</div>
+		</div>
+		<input type="hidden" value="" class="registerUrl">
+	</body>
+	<script>
+		$(document).ready(function(){
+			var news_id  = $(".s_id").val();//消息id
+			var user_id   = $(".user_id ").val();//用户id
+			var news_type  = "1";//1股票2通知类消息3跟踪
+			var live_url = $(".live_url").val();//视频链接地址
+			// 618聚惠 左上角
+			$(".discount_icon").click(function(){
+				$(".side_btn").hide();
+				$(".discount_icon").hide();
+				$(".discount_img").show();
+
+				// window.location.href= "618.html";
+			});
+			$(".close_btn_zhibo").click(function(){
+				$(".side_btn").show();
+				$(".discount_icon").show();
+				$(".discount_img").hide();
+
+				// window.location.href= "618.html";
+			});
+			$(".zhi_btn").click(function(){
+				var click_type = '1';//视频
+				$.ajax({
+					url:'http://tin.1yuaninfo.com/index/news/click',//地址
+					dataType:'json',//数据类型
+					type:'POST',//类型
+					timeout:2000,//超时
+					data:{
+						news_id,
+						news_type,
+						news_type,
+						click_type,
+						user_id
+					},
+					//请求成功
+					success:function(data){
+						console.log(data);
+						if(live_url == ''){
+							// 直播
+						  // layer.open({
+						  //   content: '直播功能暂未开启'
+						  //   ,skin: 'msg'
+						  //   ,time: 2 //2秒后自动关闭
+						  // });
+						   window.location.href='https://wx.vzan.com/live/livedetail-2042461238?v=1592384904000';
+						}else{
+							window.location.href=live_url;
+						}
+
+					},
+					//失败/超时
+					error:function(error){
+						console.log(error);
+					}
+				})
+
+			});
+			// 点赞
+			$(".like_btn").one('click',function(){
+			// $(".like_btn").click(function(){
+				var click_type = '2';//点赞
+				$.ajax({
+					url:'http://tin.1yuaninfo.com/index/news/click',//地址
+					dataType:'json',//数据类型
+					type:'POST',//类型
+					timeout:2000,//超时
+					data:{
+						news_id,
+						news_type,
+						news_type,
+						click_type,
+						user_id
+					},
+					//请求成功
+					success:function(data){
+						console.log(data);
+						$(".dianzan").find("img").attr("src","__STYLE__zhibo/like_icon_02.png")
+						//点赞提示
+						// layer.open({
+						// 	content: '您的点赞是对我们最大的支持'
+						// 	,skin: 'msg'
+						// 	,time: 2 //2秒后自动关闭
+						// });
+					},
+					//失败/超时
+					error:function(error){
+						console.log(error);
+					}
+				})
+
+			});
+			$(".zhen_btn").click(function(){
+				//诊股
+				$(".discount_icon").hide();
+				$(".zhen_zong_div").show();
+				$(".side_btn").hide();
+				$(".close_btn_zhen").click(function(){
+					$(".zhen_zong_div").hide();
+					$(".side_btn").show();
+					$(".discount_icon").show();
+				})
+			});
+			$(".kefu_btn").click(function(){
+				//咨询
+				var click_type = '4';//咨询
+				$.ajax({
+					url:'http://tin.1yuaninfo.com/index/news/click',//地址
+					dataType:'json',//数据类型
+					type:'POST',//类型
+					timeout:2000,//超时
+					data:{
+						news_id,
+						news_type,
+						news_type,
+						click_type,
+						user_id
+					},
+					//请求成功
+					success:function(data){
+						console.log(data);
+						$(".zixun_zong_div").show();
+						$(".side_btn").hide();
+						$(".close_btn_zixun").click(function(){
+							$(".zixun_world").show();
+							$(".zixun_world_ma").hide();
+							$(".zixun_zong_div").hide();
+							$(".side_btn").show();
+
+						})
+					},
+					//失败/超时
+					error:function(error){
+						console.log(error);
+					}
+				})
+
+			});
+			var  registerUrl = $(".registerUrl").val() ;
+			
+			if( registerUrl != ''){
+				// 未注册 达到4次
+				console.log(registerUrl);
+				$(".boot_box").hide();
+				$(".register_zong_div").show();
+				$(".details_of_position").css("filter",'blur(5px)');
+
+			}else{
+				var is_normal = $(".is_normal").val();
+				console.log(is_normal)
+				if(is_normal == 1){
+					$(".boot_box").hide();
+					$(".num_zong_div").show()
+					$(".details_of_position").css("filter",'blur(5px)')
+					
+				}else{
+					// 没有次数了
+					$(".boot_box").show();
+				}
+			}
+
+			$(".num_btn").click(function(){
+				window.location.href='http://tin.1yuaninfo.com/index/service/index?user_id='+user_id;
+				// 历史记录
+
+			});
+			$(".close_btn_num").click(function(){
+				$(".num_zong_div").hide();
+				$(".details_of_position").css("filter",'blur(0px)')
+
+			})
+			$(".sure_btn_num").click(function(){
+				window.location.href='http://tin.1yuaninfo.com/index/register/index/url/'+registerUrl+'.html';
+				
+			})
+			$(".lin-btn").click(function(){
+				$(".zixun_world").hide();
+				$(".zixun_world_ma").show()
+			})
+			$(".zhen_submit").one('click',function(){
+			// $(".zhen_submit").click(function(){
+				var click_type = '3';//诊股
+				var share_code  = $(".share_code").val();
+				var share_name   = $(".share_name").val();
+				var share_number   = $(".share_number").val();
+				var share_base   = $(".share_base").val();
+				var share_storing   = $(".share_storing").val();
+				var share_tel   = $(".share_tel").val();
+				if (share_code == "" || share_name == "" || share_number == "" ||share_base == "" || share_storing == ""|| share_tel == "" ) {
+					alert("您有未输入选项！")
+				}else if( !(/^1[3456789]\d{9}$/.test(share_tel))){
+					alert("请填写正确的手机号码！");
+				}else if(!(/^[0-9]*$/.test(share_number))){
+					alert("请填写正确的数量！");
+				}else{
+					$.ajax({
+						url:'http://tin.1yuaninfo.com/index/news/click',//地址
+						dataType:'json',//数据类型
+						type:'POST',//类型
+						timeout:2000,//超时
+						data:{
+							news_id,
+							news_type,
+							news_type,
+							click_type,
+							user_id,
+							share_code,
+							share_name,
+							share_number,
+							share_base,
+							share_storing,
+							share_tel
+						},
+						//请求成功
+						success:function(data){
+							console.log(data);
+							$(".zhen_zong_div").hide();
+							//提示
+							layer.open({
+								content: '提交成功'
+								,skin: 'msg'
+								,time: 2 //2秒后自动关闭
+							});
+							$(".side_btn").show();
+						},
+						//失败/超时
+						error:function(error){
+							console.log(error);
+						}
+					})
+				}
+			})
+			var click_type  = $(".click_type").val();
+			if (click_type == "2") {
+				// $(".detail_chao").show();
+				// setInterval(function(){
+				// 	$(".detail_chao").hide();
+				// },3000)
+
+			}
+			$(".zhankai_icon").click(function(){
+				if ($(".zhankai_icon").find("img").attr("src")=="/public/static/home/img/zhankai.png"){
+					$(".details_of_world").removeClass("con-height");
+		            $(".zhankai_icon").find("img").attr("src","/public/static/home/img/shouqi.png");
+		            $(".zhankai_btn").hide();
+		        }else {
+		            $(".zhankai_icon").find("img").attr("src","/public/static/home/img/zhankai.png")
+		            $(".details_of_world").addClass("con-height");
+		            $(".zhankai_btn").show();
+		        }
+			})
+			$(".close_experi").click(function(){
+				$(".experi_end").hide();
+			})
+			$(".close_experi").click(function(){
+				$(".experi_end").hide();
+			})
+			// $(".heart").on("click", function() {
+			// 	$(this).toggleClass("is-active");
+			// });
+		})
+
+	</script>
+	<script type="text/javascript">
+			
+			// {$user_id}用户id        {$data.s_id}股票id
+			var user_id = $(".user_id").val();
+			var s_id = $(".s_id").val();
+			// <!-- 体验机会弹框提醒 -->
+			// 关闭按钮
+			$(".close_btn").click(function(){
+				$(".boot_box").hide();
+			});
+			$(".close_btnt").click(function(){
+				$(".boot_box_sure").hide();
+			});
+			// 点击需要按钮
+			$(".content_btn").click(function(){
+				$(".boot_box").hide();
+				$.ajax({
+		            url:"apply_to.html",
+		            method: "get",
+		            data: {
+		            	user_id:user_id,
+		            	s_id:s_id
+		            },
+		            success: function (data) {
+		                console.log(data);
+		                $(".boot_box_sure").show();//成功
+		            },
+		            error: function (error) {
+		                console.log(error)
+		            }
+			    });
+			});
+
+			$(function(){
+				pushHistory();
+				window.addEventListener("popstate", function(e) {
+				WeixinJSBridge.call('closeWindow');//根据自己的需求实现自己的功能
+				}, false);
+				function pushHistory() {
+				var state = {
+				title: "title",
+				url: "#"
+				};
+				window.history.pushState(state, "title", "#");
+				}
+			});
+
+			var is_one_active = {$is_draw};
+			var is_show = {$is_show};
+			$('.posi_red').click(function(){
+			    scroll('0px', 0);
+			});
+			// 关闭优惠券弹框
+       		$(document).ready(function(){
+       		    if(is_one_active == 1){
+                    $(".ling_red").show();//代金券弹框显示
+				}else{
+                    $(".ling_red").hide();//代金券弹框隐藏
+				}
+				if (is_show == 1) {
+					$(".posi_red").show();//右下角小按钮
+				}else if(is_show == 0){
+					$(".ling_red").hide();//代金券弹框隐藏
+					$(".posi_red").hide();//右下角小按钮
+				}
+	       		$(function(){
+	       			$(".vourcher_ul").click(function(){
+	       				$(".ling_data").show();//显示新人福利
+	       			})
+	       		})
+	       		// 右下角新人福利
+				$(".posi_red").click(function(){
+					$(".ling_data").show();
+				})
+				// 点击领取红包
+				$(".lingqu").click(function(){
+					$(".main2").show();
+					$(".ling_red").hide();
+				})
+				$(".close_lingqu").click(function(){
+					$(".posi_red").show();
+				})
+				// 关闭按钮
+				$(".close_right").click(function(){
+					$(".main2").hide();
+					$(".ling_data").hide();
+					$(".posi_red").show();
+				})
+       		})
+
+			$(".pin_submit").click(function () {
+				if(!flag){
+					flag=true;
+					reset();
+					letGo();
+					setTimeout(function () {
+						flag=false;
+						$(".pin_submit").hide();
+						$(".tishi").show();
+						if(TextNum1 == 0){
+							var money = 100;
+						}else if(TextNum1 == 1){
+							var money = 200;
+						}else if(TextNum1 == 2){
+							var money = 300;
+						}else if(TextNum1 == 3){
+							var money = 500;
+						}
+						console.log(money);
+						$.ajax({
+							url:'http://tin.1yuaninfo.com/index/personal/addActive.html',//地址
+							dataType:'json',//数据类型
+							type:'post',//类型
+							data:{
+								action_money:money
+							},
+							//请求成功
+							success:function(msg){
+								console.log(msg);
+								if(msg.error_code == 0){
+									alert("领取成功！")
+									$(".posi_red").show();//右下角按钮显示
+								}else if(msg.error_code == 20002 ){
+									alert("获取用户信息失败，请重新加载页面。");
+
+								}else if(msg.error_code == 20003){
+									alert("您还未注册！")
+								}
+							},
+							error:function(error){
+								console.log(error);
+
+							}
+						})
+					},4000);
+					index++;
+				}
+			});
+
+			var flag=false;
+			var index=0;
+			var TextNum1
+			var TextNum2
+			var TextNum3
+		// 80 10 5 5
+		// 1--540 2--470 3--400 5--260 0--605
+			function letGo(){
+				TextNum1=Math.floor((Math.random()*100)+1);
+				// TextNum1=parseInt(Math.random()*4)//随机数
+				console.log(TextNum1)
+				if(TextNum1<80){
+					TextNum1 =0;
+				}else if(TextNum1<100){
+					TextNum1 =1;
+
+				}
+				// else if(TextNum1<95){
+				// 	TextNum1 =2;
+				//
+				// }else if(TextNum1<100){
+				// 	TextNum1 =3;
+				//
+				// }
+				console.log(TextNum1)
+				TextNum2=parseInt(Math.random()*1)
+				TextNum3=parseInt(Math.random()*1)
+				// debugger
+				var num1=[-540,-470,-400,-270][TextNum1];//在这里随机
+				var num2=[-605][TextNum2];
+				var num3=[-605][TextNum3];
+
+				$(".num-con1").animate({"top":-600},1000,"linear", function () {
+				$(this).css("top",0).animate({"top":num1},1000,"linear");
+				});
+				$(".num-con2").animate({"top":-600},1000,"linear", function () {
+				$(this).css("top",0).animate({"top":num2},1800,"linear");
+				});
+				$(".num-con3").animate({"top":-600},1000,"linear", function () {
+				$(this).css("top",0).animate({"top":num3},1300,"linear");
+				});
+
+			}
+
+			function reset(){
+				$(".num-con1,.num-con2,.num-con3").css({"top":-605});
+			}
+
+		</script>
+</html>

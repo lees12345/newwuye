@@ -1,0 +1,129 @@
+
+
+<div class="main-content">
+    <div class="breadcrumbs" id="breadcrumbs">
+        <script type="text/javascript">
+            try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+        </script>
+
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home home-icon"></i>
+                <a href="#">首页</a>
+            </li>
+
+            <li>
+                <a href="#">权限</a>
+            </li>
+            <li class="active">权限列表</li>
+        </ul><!-- .breadcrumb -->
+
+        <div class="nav-search" id="nav-search">
+            <form class="form-search" method="post" action="{:url('wxadmint1/admin/auth_insert')}">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+
+            </form>
+        </div><!-- #nav-search -->
+    </div>
+
+    <div class="page-content">
+        <div class="page-header">
+            <h1>
+                权限菜单
+                <small>
+                    <i class="icon-double-angle-right"></i>
+                    权限列表
+                </small>
+            </h1>
+        </div><!-- /.page-header -->
+        <div class="row">
+            <div class="col-xs-12">
+
+                <div class="table-responsive">
+                    <div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid"><div class="row"><div class="col-sm-6"><div id="sample-table-2_length" class="dataTables_length"></div></div><div class="col-sm-6">
+                        <form action="" method="get">
+                            <div class="dataTables_filter" id="sample-table-2_filter"><label>搜索: <input type="text" aria-controls="sample-table-2" placeholder="名称/标题"></label><input class="btn btn-purple btn-sm" type="submit" value="搜索"></div>
+                        </form>
+                    </div></div><table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
+                        <thead>
+                        <tr role="row"><th class="center sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="
+
+
+
+
+														" style="width: 64px;">
+                            <label>
+                                <input type="checkbox" class="ace">
+                                <span class="lbl"></span>
+                            </label>
+                        </th><th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending" style="width: 180px;">ID</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 125px;">账号</th><th class="hidden-480 sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Clicks: activate to sort column ascending" style="width: 135px;">昵称</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="
+
+															Update
+														: activate to sort column ascending" style="width: 199px;">
+                            <i class="icon-time bigger-110 hidden-480"></i>
+                            头像
+                        </th>
+                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="
+
+															Update
+														: activate to sort column ascending" style="width: 199px;">
+                                <i class="icon-time bigger-110 hidden-480"></i>
+                                绑定微信
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody role="alert" aria-live="polite" aria-relevant="all">
+                        {volist name="list" id="list" }
+                        <tr class="odd">
+
+
+                            <td class="center  sorting_1">
+                                <label>
+                                    <input type="checkbox" class="ace">
+                                    <span class="lbl"></span>
+                                </label>
+                            </td>
+
+                            <td class="">
+                                <a href="#">{$list.kf_id}</a>
+                            </td>
+                            <td class=" "> {$list.kf_account}</td>
+                            <td class=" ">{$list.kf_nick}</td>
+                            <td>{$list.kf_headimgurl}</td> </td>
+
+
+
+                            <td class=" ">
+                                <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+
+
+
+
+                                </div>
+
+
+                            </td>
+                        </tr>
+
+                        {/volist}
+                        </tbody>
+
+
+                    </table><div class="row"><div class="col-sm-6"><div class="dataTables_info" id="sample-table-2_info"></div></div><div class="col-sm-6"><div class="dataTables_paginate paging_bootstrap">
+                        <!-- <ul class="pagination"><li class="prev disabled"><a href="#"><i class="icon-double-angle-left"></i></a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li class="next"><a href="#"><i class="icon-double-angle-right"></i></a></li></ul> -->
+                        {notempty name="page"}
+                        {$page}
+                        {/notempty}
+                    </div></div></div></div>
+                </div>
+            </div>
+        </div>
+
+
+    </div><!-- /.page-content -->
+</div><!-- /.main-content -->
+

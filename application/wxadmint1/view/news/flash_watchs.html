@@ -1,0 +1,118 @@
+
+<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">首页</a>
+							</li>
+
+							<li>
+								<a href="#">快讯管理</a>
+							</li>
+							<li class="active">客户列表</li>
+						</ul><!-- .breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- #nav-search -->
+					</div>
+
+					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								快讯
+								<small>
+									<i class="icon-double-angle-right"></i>
+								客户列表
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<div class="row">
+									<div class="col-xs-12">
+												<!-- 搜索框 -->
+												<form class="form-search" action="{:url('wxadmint1/news/flash_watchs')}">
+												
+												<input type="hidden" name="kx_id" value="{$kxid}">
+												
+												  <input type="hidden" name="v" value="1">
+													<span class="input-icon">
+															<input type="text" placeholder="请输入开发人员" class="nav-search-input" id="nav-search-input" autocomplete="off" name='user_devel'/>
+														<input type="text" placeholder="请输入服务人员" class="nav-search-input" id="nav-search-input" autocomplete="off" name='search'/>
+
+														<input type="hidden"  class="nav-search-input" id="nav-search-input" autocomplete="off" name='v' value="1"/>
+														<i class="icon-search nav-search-icon"></i>
+													</span>
+													<input type="submit" value='搜索' class="small_sou" style="border:0;padding:4px 10px;background:#4f99c6;color:#fff;">
+												</form><br/>
+												
+										<div class="table-responsive">
+										
+											<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+
+												<thead>
+													<tr>
+														<th>快讯id</th>
+														<th>客户名字</th>
+														<th>客户电话</th>
+														<th>查看时间</th>
+														<th>服务</th>
+														<th>开发</th>
+														<th>备注</th>
+
+													</tr>
+												</thead>
+										{volist name="list" id="list"}
+												<tbody>
+													<tr>
+														<td>{$list.kx_id}</td>
+														<td>{$list.user_name}</td>
+														<td>{if condition="$adminid.group_id eq 39"}
+												{$list.user_tel}
+											{elseif condition="$adminid.group_id eq 41" /}
+												{$list.user_tel}
+											{else /}
+												{$list.tel}
+											{/if}</td>
+														
+														<td>
+															{$list.click_time|date="Y-m-d H:i:s",###}
+														</td>
+														<td>{$list.user_server_people}</td>
+														<td>{$list.user_develop_people}</td>
+
+														<td>{$list.user_remark}</td>
+													</tr>
+												</tbody>
+										{/volist}
+											</table>
+											{neq name="page" value=""}
+                                         
+                                            {$page}
+
+                                          {/neq}
+										</div><!-- /.table-responsive -->
+									</div><!-- /span -->
+								</div><!-- /row -->
+
+						
+								
+
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->

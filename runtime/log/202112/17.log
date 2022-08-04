@@ -1,0 +1,12 @@
+---------------------------------------------------------------
+[ 2021-12-17T19:11:06+08:00 ] 123.120.205.247 GET only.1yuaninfo.com/index/register/index.html
+[运行时间：0.014779s] [吞吐率：67.66req/s] [内存消耗：1,933.09kb] [文件加载：47]
+[ error ] [8]未定义数组索引: code[/home/wwwroot/only.1yuaninfo.com/application/index/controller/Register.php:27]
+---------------------------------------------------------------
+[ 2021-12-17T19:11:37+08:00 ] 123.120.205.247 GET only.1yuaninfo.com/index/register/index.html
+[运行时间：0.014967s] [吞吐率：66.81req/s] [内存消耗：1,933.26kb] [文件加载：47]
+[ error ] [8]未定义数组索引: code[/home/wwwroot/only.1yuaninfo.com/application/index/controller/Register.php:27]
+---------------------------------------------------------------
+[ 2021-12-17T20:22:27+08:00 ] 61.151.178.217 GET only.1yuaninfo.com/index/register/index.html
+[运行时间：0.015779s] [吞吐率：63.38req/s] [内存消耗：1,929.48kb] [文件加载：47]
+[ error ] [8]未定义数组索引: code[/home/wwwroot/only.1yuaninfo.com/application/index/controller/Register.php:27]

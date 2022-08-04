@@ -1,0 +1,136 @@
+
+
+		<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">首页</a>
+							</li>
+
+							<li>
+								<a href="#">管理员</a>
+							</li>
+							<li class="active">管理员列表</li>
+						</ul><!-- .breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search" method="post" action="{:url('wxadmint1/admin/auth_insert')}">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+
+							</form>
+						</div><!-- #nav-search -->
+					</div>
+
+					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								管理员菜单
+								<small>
+									<i class="icon-double-angle-right"></i>
+									管理员列表
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+						
+					<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<form class="form-horizontal" role="form" method="post" action="{:url('wxadmint1/admin/admin_upd')}">
+								<input type="hidden" name="passwords" value="{$res.admin_password}">
+								<input type="hidden" name="admin_id" value="{$res.admin_id}">
+								<input type="hidden" name="tid" value="{$zz.group_id}">
+
+								<div class="form-group">
+									
+												{:token('__hash__')}	
+														
+															<label class="col-sm-3 control-label no-padding-right" for="form-field-select-1">请选择组类</label>
+
+															<div class="col-sm-5">
+
+																<select required class="form-control" id="form-field-select-1" name="id">
+																	<option value="">请选择</option>
+																	{volist id="tt" name="tt"}
+																	<option  {if condition="$zz.group_id eq $tt.id"} selected {/if} value="{$tt.id}">{$tt.title}</option>
+																	{/volist}
+																	
+																</select>
+															</div>		
+													
+												</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户名 </label>
+
+										<div class="col-sm-9">
+											<input type="text" required id="form-field-1" name="admin_name" placeholder="管理员用户名" class="col-xs-10 col-sm-5" value="{$res.admin_name}">
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 原密码 </label>
+
+										<div class="col-sm-9">
+											<input type="password" required id="form-field-2" placeholder="输入密码" class="col-xs-10 col-sm-5" name="admin_ypassword">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">*6-16位密码</span>
+											</span>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 重置密码 </label>
+
+										<div class="col-sm-9">
+											<input type="password" required id="form-field-2" placeholder="输入密码" class="col-xs-10 col-sm-5" name="admin_password">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">*6-16位密码</span>
+											</span>
+										</div>
+									</div>
+
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												提交
+											</button>
+
+											&nbsp; &nbsp; &nbsp;
+											<button class="btn" type="reset">
+												<i class="icon-undo bigger-110"></i>
+												重置
+											</button>
+										</div>
+									</div>
+
+								
+
+									
+									
+
+									
+
+									
+									
+								</form>
+
+							
+								
+
+
+								
+							</div><!-- /.col -->
+						</div>
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+

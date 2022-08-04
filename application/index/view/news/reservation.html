@@ -1,0 +1,75 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>中证通体验平台</title>
+    <link rel="stylesheet" type="text/css" href="__STYLE__css/all.css">
+    <link rel="stylesheet" href="/public/static/platform/css/vouchars.css" />
+    <script type="text/javascript" src="__CSS__js/jquery-1.11.2.min.js"></script>
+    <style type="text/css">
+        body,html{
+            margin: 0;
+            padding: 0!important;
+            min-height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<div class="body_box_two">
+    <h1><img src="__STYLE__img/details_of_bgimg.jpg" width="100%"></h1>
+    <div class="entry_all_box details_of_position">
+        <p class="details_of_title">预约成功<span class="details_of_title_span">服务时间：{$time|date='Y-m-d H:i:s',###} </span></p>
+        <div class="details_of_world">
+            <p>
+            <span style="font-family: 微软雅黑, Microsoft YaHei;">{notempty name="number"}这是您第{$number}次预约《中证通》体验服务！{/notempty}<br/>
+                您本次预约的是《跨周金股》体验服务。该服务偏激进型，为帮助您进一步了解、认知本服务特色，以便我们之间更好的交流和学习，请您务必知晓以下服务须知：<br/><br/>
+                <!-- 收官股 -->
+                <!-- 推送时间：14:30左右 <br />
+                持股时间：1~15个交易日<br/>
+                追求目标：正向波动10%左右<br/>
+                参与资金：5成仓最佳<br/><br/> -->
+                <!-- 跨周金股 -->
+                推送时间：14:30左右 <br />
+                持股时间：1~5个交易日<br/>
+                追求目标：正向波动5%以上<br/>
+                参与资金：3成仓<br/><br/>
+
+                预约对象：所有《中证通》体验平台的体验客户，办理签约本次免费赠送。<br/><br/>
+                投资者朋友应当充分了解本产品和服务的特征、风险等情况，根据自身能力审慎决策，自主作出投资决策并独立承担投资风险，我们不以任何形式向您作出投资不受损失或者取得最低收益的承诺。</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<!--底部-->
+<div class="aboutus_footer" style="font-size:15px;padding-top: 1rem">
+    <p>积少成多、聚沙成塔，<br />
+    小而稳定的收益累积起来绝对惊人！</p>
+    <h6 style="margin:5% auto;font-size:15px;color:#000; font-weight:normal;">
+        <!-- <p style="color:#1d5ba6;">服务专线：
+            <a href="tel:010-56519898" style="font-size:15px;font-weight:normal;text-decoration: none;color:#1d5ba6;">010-56519898</a></p>
+        <p style="color:#cc0000">投诉建议：
+            <a href="tel:010-87777911" style="font-size:15px;font-weight:normal;text-decoration: none;color:#cc0000;">010-87777911 </a></p> -->
+    </h6>
+</div>
+    <script type="text/javascript">
+            $(document).ready(function(){
+                $(".guding_div").click(function(){
+                    window.scrollTo(0,0); 
+                    $(".effective_div").show();
+                    $(".guding_div").hide();
+                })
+                $(".effective_div").click(function(){
+                    $(this).hide();
+                    $(".guding_div").show();
+                })
+            })
+        </script>
+
+</body>
+</html>

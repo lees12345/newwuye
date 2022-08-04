@@ -1,0 +1,315 @@
+{__NOLAYOUT__}
+<!-- __STYLE__ -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <link rel="stylesheet" href="__STYLE__css/publicStyle.css"/>
+        <link rel="stylesheet" href="__STYLE__css/leading_strategy.css"  />
+        <script src="__STYLE__js/rem.js"></script>
+        <script src="__STYLE__js/jquery-1.11.3.js"></script>
+        <script src="__STYLE__js/leading_strategy.js"></script>
+         <script src="__STYLE__js/vconsole.min.js"></script>
+        <!-- 页面调试 -->
+        <script>
+        // var vConsole = new VConsole();// 初始化
+        </script>
+        <script>
+
+            // var myDate = new Date();
+            // gotime = myDate.toLocaleString()
+            // console.log(gotime);//获取进入时间
+            var give_count ="";
+            var url2 = window.location.href;//获取整个url
+            console.log(url2);
+            url2 = encodeURI(url2)
+            var temp2 = url2.split('?')[1];
+            var pram2 = new URLSearchParams('?'+temp2);
+            // console.log(pram2.get('class_id'));
+            var class_id = pram2.get('class_id');
+            var newtime = pram2.get('newtime');
+            console.log(newtime);//点击时间
+            // 获取停留时间
+            var second=0; 
+            var minute=0; 
+            var hour=0; 
+            window.setTimeout("interval();",1000); 
+            var arr = [];
+            function interval() 
+            { 
+                second++; 
+                if(second==60) 
+            { 
+                second=0;minute+=1; 
+            } 
+                if(minute==60) 
+                { 
+                    minute=0;hour+=1; 
+                } 
+                var staytime = hour+"时"+minute+"分"+second+"秒";
+                arr.push(staytime);
+                arr = arr;
+                window.setTimeout("interval();",1000); 
+            }
+           
+            
+            $(document).ready(function(){
+                //鼠标相对于用户屏幕的水平位置 - 窗口左上角相对于屏幕左上角的水平位置 = 鼠标在当前窗口上的水平位置
+                var n = window.event.screenX - window.screenLeft;
+                //鼠标在当前窗口内时，n<m，b为false；鼠标在当前窗口外时，n>m，b为true。20这个值是指关闭按钮的宽度
+                var b = n > document.documentElement.scrollWidth-20;
+                //鼠标在客户区内时，window.event.clientY>0；鼠标在客户区外时，window.event.clientY<0
+                $(function(){
+                    // 监听微信返回
+                    window.addEventListener("popstate", function(e) {
+                        // alert('正在返回，等下会关闭微信窗口');
+                        var staytime = arr.pop();
+                        console.log(staytime);//获取停留时间
+                        var myDate = new Date();
+                        closetime = myDate.toLocaleString()
+                        console.log(closetime);//获取关闭时间
+                        // 课程状态记录接口
+                        // var class_id = 2;
+                        $.ajax({
+                            type:"GET",
+                            url: "http://tin.1yuaninfo.com/index/classes/click",
+                            data:{
+                                class_id:class_id,
+                                click_time:newtime,
+                                click_browses_time:staytime,
+                                click_close_time:closetime
+                            },
+                            dataType:'json',//数据类型
+                            success: function (res) {
+                                console.log(res);
+                                
+                            },
+                            error:function(error){
+                                console.log(error);
+                            }
+                        })
+                        // WeixinJSBridge.call('closeWindow');
+                    
+                    }, false);
+                })
+            
+
+
+                //格式化日期
+                Date.prototype.Format = function (fmt) {
+                    var o = {
+                            "M+": this.getMonth() + 1, // 月份
+                            "d+": this.getDate(), // 日
+                            "h+": this.getHours(), // 小时
+                            "m+": this.getMinutes(), // 分
+                            "s+": this.getSeconds(), // 秒
+                            "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+                            "S": this.getMilliseconds() // 毫秒
+                    };
+                    if (/(y+)/.test(fmt))
+                        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + ""));
+                    for (var k in o)
+                        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                    return fmt;
+                }  
+                $.ajax({
+                    type:"GET",
+                    url: "http://tin.1yuaninfo.com/index/classes/detail",
+                    dataType:'json',
+                    data: {
+                        class_id
+                    },
+                    success: function (msg) {
+                        console.log(msg);//列表详情返回值
+                        var first = msg.result;
+                       if(first.class_video_type == 2){
+                        // 2视频
+                        var pinglun = '<img src="__STYLE__img/close_icon_1.png">'+first.comment_count+'条评论';
+                        $(".video_pinglun_close").html(pinglun);
+                        $("title").append(first.class_type == 1?'早盘解读':'收盘总结');
+                        var time = first.class_addtime;
+                        var dateTime = new Date( time * 1000).Format('yy-MM-dd hh:mm:ss');
+                        give_count = first.give_count;
+                        var html = '<video id="video" controls autoplay="autoplay" muted height="210px" poster="http://tin.1yuaninfo.com/public/uploads/'+first.class_picture+'"><source src="'+first.class_url+'" type="video/mp4" /><source src="'+first.class_url+'" type="video/ogg">您的浏览器不支持 video 标签.</video><div class="video_intro"><p class="video_intro_tit">'+first.class_title+'<span><img src="__STYLE__img/huo_icon_1.png" /><img src="__STYLE__img/xin_icon_1.png" /><img src="__STYLE__img/ding_icon_1.png" /></span></p><p class="video_intro_time">'+dateTime+'<span class="video_zan"><img src="__STYLE__img/dianzan_icon_1.png">'+first.give_count+'点赞</span> <span class="video_lun"><img src="__STYLE__img/pinglun_icon_1.png">'+first.comment_count+'评论</span></p></div>'
+                        $(".video_first").html(html);  
+                       }else{
+                        // 3腾讯
+                        var pinglun = '<img src="__STYLE__img/close_icon_1.png">'+first.comment_count+'条评论';
+                        $(".video_pinglun_close").html(pinglun);
+                        $("title").append(first.class_type == 1?'早盘解读':'收盘总结');
+                        var time = first.class_addtime;
+                        var dateTime = new Date( time * 1000).Format('yy-MM-dd hh:mm:ss');
+                        give_count = first.give_count;
+                        var html = '<iframe frameborder="0" src="'+first.class_url+'" allowFullScreen="true" height="210px" width="100%" ></iframe><div class="video_intro"><p class="video_intro_tit">'+first.class_title+'<span><img src="__STYLE__img/huo_icon_1.png" /><img src="__STYLE__img/xin_icon_1.png" /><img src="__STYLE__img/ding_icon_1.png" /></span></p><p class="video_intro_time">'+dateTime+'<span class="video_zan"><img src="__STYLE__img/dianzan_icon_1.png">'+first.give_count+'点赞</span> <span class="video_lun"><img src="__STYLE__img/pinglun_icon_1.png">'+first.comment_count+'评论</span></p></div>'
+                        $(".video_first").html(html); 
+                       }
+
+                        
+                        
+                       
+                        // 公共资源
+                        // 点击评论事件
+                        $(".video_lun").click(function(){
+                            $(".video_pinglun").slideDown(600);
+                            $("body").addClass('overflow-x-hidden');
+                            $.ajax({
+                                type:"GET",
+                                url: "http://tin.1yuaninfo.com/index/classes/detail",
+                                data:{
+                                    class_id
+                                },
+                                dataType:'json',//数据类型
+                                success: function (res) {
+                                    console.log(res);
+                                    console.log(res.result.comment_list);
+                                    var comments = res.result.comment_list;
+                                    $(".video_pldiv_dl").empty();
+                                    for(var i=0;i<comments.length;i++){
+                                        // console.log(comments[i]);
+                                        var time = comments[i].comment_time;
+                                        var dateTime = new Date( time * 1000).Format('yy-MM-dd hh:mm:ss');
+                                        if (comments[i].reply_detail == null) {
+                                            // 没有回复内容
+                                            var html = '<dl class="question_content"><dt><img src="'+comments[i].user_picture+'"></dt><dd class="content_name">'+comments[i].nickname+'</dd><dd>'+comments[i].comment_detail+'</dd><dd class="question_content_time">'+dateTime+'</dd></dl>';
+                                        $(".video_pldiv_dl").append(html)
+                                        }else{
+
+                                            var html = '<dl class="question_content"><dt><img src="'+comments[i].user_picture+'"></dt><dd class="content_name">'+comments[i].nickname+'</dd><dd>'+comments[i].comment_detail+'</dd><dd class="question_content_time">'+dateTime+'</dd></dl><dl class="reply_content"><dt><img src="__STYLE__img/tou_icon_1.png">'+comments[i].reply_detail+'</dt></dl>';
+                                            $(".video_pldiv_dl").append(html)
+                                        } 
+                                    }
+                                    $(".video_button").click(function(){
+                                        // 点击提交评论
+                                        var comment_detail = $(".video_submit").val();
+                                        if(comment_detail == ""){
+                                            alert('评论不能为空！');
+                                            return false;
+                                        }else{
+                                            $.ajax({
+                                                type:"GET",
+                                                url: "http://tin.1yuaninfo.com/index/classes/comment",
+                                                data:{
+                                                    class_id,
+                                                    comment_detail
+                                                },
+                                                dataType:'json',//数据类型
+                                                success: function (res) {
+                                                    // console.log("评论入库");
+                                                    // console.log(res);
+                                                    alert("提交成功！");
+                                                    $(".video_submit").val("");
+                                                },
+                                                error:function(error){
+                                                    console.log(error);
+                                                }
+                                            })
+                                        }
+                                        
+                                    })
+                                },
+                                error:function(error){
+                                    console.log(error);
+                                }
+                            })
+                        })
+                        // 点击评论关闭按钮
+                        $(".video_pinglun_close").click(function(){
+                            $(".video_pinglun").slideUp(500);
+                            $("body").removeClass('overflow-x-hidden');
+                        });
+                        // 点赞入库接口
+                        $(".video_zan").click(function(){
+                            // var class_id = 2;
+                            $.ajax({
+                                type:"GET",
+                                url: "http://tin.1yuaninfo.com/index/classes/give",
+                                url: "http://tin.1yuaninfo.com/index/classes/give",
+                                data:{
+                                    class_id
+                                },
+                                dataType:'json',//数据类型
+                                success: function (res) {
+                                    console.log(res);
+                                    alert(res.msg);
+                                    // 点完赞之后
+                                    if(res.msg == "ok"){
+                                        var zan = first.give_count +1 ;
+                                        var html = '<img src="__STYLE__img/dianzan_icon_2.png">'+zan+'点赞';
+                                    }else{
+                                        var html = '<img src="__STYLE__img/dianzan_icon_1.png">'+first.give_count+'点赞';
+                                    }
+                                    $(".video_zan").html(html);
+                                },
+                                error:function(error){
+                                    console.log(error);
+                                }
+                            })
+                        })
+                    },
+                    error:function(error){
+                        console.log(error);
+                    }
+                })
+            })
+        </script>
+        <title></title>
+    </head>
+    <body>
+        <!-- <input type="button" name="传值" id="chuan" value="传值"> -->
+        <div class="video_first">
+           <!--  <video id="video" controls autoplay="autoplay" muted height="210px" poster="__STYLE__img/home_icon_1.png">
+                <source src="http://cdn.gszx77.com/20200217a.mp4" type="video/mp4" />
+                 <source src="http://cdn.gszx77.com/20200217a.mp4" type="video/ogg">
+                您的浏览器不支持 video 标签。
+            </video>
+            <div class="video_intro">
+                <p class="video_intro_tit">2020年2月19日盘前策略
+                    <span><img src="__STYLE__img/huo_icon_1.png" /><img src="__STYLE__img/xin_icon_1.png" /><img src="__STYLE__img/ding_icon_1.png" /></span>
+                </p>
+                <p class="video_intro_time">2020-02-19 08:35 5点赞 3评论</p>
+            </div> -->
+        </div>
+        <!-- 评论区 -->
+        <!-- .video_zan -->
+        <div class="video_pinglun" style="display: none;">
+            <p class="video_pinglun_close"><img src="__STYLE__img/close_icon_1.png"> 3条评论</p>
+            <div class="video_pldiv">
+                <div class="video_pldiv_dl">
+                   <!--  <dl class="question_content">
+                        <dt><img src="__STYLE__img/tou_icon_1.png"></dt>
+                        <dd class="content_name">某某</dd>
+                        <dd>我提问的问题你能解答了</dd>
+                        <dd class="question_content_time">2018-08-09 02:02:01</dd>
+                    </dl>
+                    <dl class="reply_content">
+                        <dt><img src="__STYLE__img/tou_icon_1.png">老师:我来帮您解答问题呀</dt>
+                    </dl> -->
+                </div>  
+            </div>
+            <input type="text" placeholder="添加你的评论…" class="video_submit"/>
+            <input type="button" value="提交" class="video_button"/>
+            
+        </div>
+    </body>
+    <script>
+        //监听播放时间
+        // var video = document.getElementById('video');
+        // //使用事件监听方式捕捉事件
+        // video.addEventListener("timeupdate",function(){
+        //     var timeDisplay;
+        //     //用秒数来显示当前播放进度
+        //     timeDisplay = Math.floor(video.currentTime);
+        //     console.log(Math.floor(video.currentTime))//打印播放时间
+        //     //当视频播放到 4s的时候做处理
+        //     if(timeDisplay == 4){
+        //             //处理代码
+        //     }
+        // },false);
+        // // var video1 = document.getElementById('video1');
+        // // var videoSrc= '__STYLE__img/banner.png';
+        // // video1.setAttribute('poster',videoSrc);
+        // //计算页面停留时间 
+
+    </script>
+</html>

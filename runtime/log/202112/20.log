@@ -1,0 +1,4 @@
+---------------------------------------------------------------
+[ 2021-12-20T11:33:33+08:00 ] 43.245.196.107 GET only.1yuaninfo.com/index/news/detail?user_id=
+[运行时间：0.022813s] [吞吐率：43.83req/s] [内存消耗：2,936.98kb] [文件加载：55]
+[ error ] [8]未定义数组索引: openid[/home/wwwroot/only.1yuaninfo.com/application/index/controller/News.php:33]

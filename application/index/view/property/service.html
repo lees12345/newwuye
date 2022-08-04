@@ -1,0 +1,743 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服务</title>
+    <link rel="stylesheet" type="text/css"
+        href="../../../../public/static/property_project/address/css/fonts/iconfont.css">
+    <link rel="stylesheet" href="../../../../public/static/property_project/CSS/vant.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="../../../../public/static/property_project/address/css/area-select.css"> -->
+    <script src="../../../../public/static/property_project/js/rem.js"></script>
+    <script src="../../../../public/static/property_project/js/vue.js"></script>
+    <script src="../../../../public/static/property_project/js/axios.js"></script>
+    <!-- <script src="../../../../public/static/property_project/address/area-select.js"></script> -->
+    <!-- <script src="../../../../public/static/property_project/address/data.js"></script> -->
+    <script src="../../../../public/static/property_project/js/vant.js"></script>
+    <script src="../../../../public/static/property_project/address/vantAddress.js"></script>
+    <!-- <script src="./vantAddress.js"></script> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            background: #eeeeee;
+        }
+
+        #app {
+            width: 7.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        input::-webkit-input-placeholder {
+            color: #cccccc;
+        }
+
+        input::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+            color: #cccccc;
+        }
+
+        input:-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+            color: #cccccc;
+        }
+
+        input:-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: #cccccc;
+        }
+
+        textarea::-webkit-input-placeholder {
+            color: #cccccc;
+        }
+
+        textarea::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+            color: #cccccc;
+        }
+
+        textarea:-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+            color: #cccccc;
+        }
+
+        textarea:-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: #cccccc;
+        }
+
+        .view {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            background-color: #ffffff;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            padding-left: .2rem;
+        }
+
+        .none {
+            display: none
+        }
+
+        .border-a {
+            position: relative;
+            padding-left: .2rem;
+            border: none;
+        }
+
+        .border-a:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            background: #efefef;
+            width: 100%;
+            height: 1px;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+        }
+
+        .select {
+            height: 1rem;
+            line-height: .1rem;
+            border-bottom: .02rem solid #eeeeee;
+            font-size: .28rem;
+        }
+
+        .select_left {
+            width: 1.6rem;
+            height: 1rem;
+            padding-left: .3rem;
+            line-height: 1rem;
+            text-align: left;
+            color: #222;
+            font-size: .28rem;
+            position: relative;
+        }
+
+        .select_blue {
+            padding-left: .5rem;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .select_blue_ {
+            width: .06rem;
+            height: .24rem;
+            position: absolute;
+            left: .3rem;
+            top: .03rem;
+        }
+
+        .select_blue_ img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            width: .2rem;
+            height: .2rem;
+            position: absolute;
+            right: .2rem;
+            top: 50%;
+            margin-top: -.1rem;
+        }
+
+        .select_center {
+            width: 4.5rem;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: left;
+            font-size: .28rem;
+            color: #cccccc;
+        }
+
+        .select_center_input {
+            width: 4.5rem;
+            height: 1rem;
+            line-height: 1rem;
+            text-align: left;
+            color: #222;
+            font-size: .28rem;
+            border: none;
+            outline: none;
+        }
+
+        .select_right {
+            width: .5rem;
+            margin-left: .2rem;
+            height: 1rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .select_right_ {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .select_right img {
+            width: .15rem;
+            height: .2rem;
+        }
+
+        .view_margin_top {
+            margin-bottom: .20rem;
+        }
+
+        .view_photo {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .view_photo_txt {
+            width: 100%;
+            background-color: #ffffff;
+        }
+
+        .view_photo_txt textarea {
+            width: 6.8rem;
+            height: 1.3rem;
+            padding: .3rem;
+            font-size: .28rem;
+            color: #222222;
+            border: none;
+            outline: none;
+            resize: none;
+        }
+
+        .view_photo_camera {
+            width: 100%;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .view_photo_camera__ {
+            width: 100%;
+            height: 1.22rem;
+            margin-left: .3rem;
+        }
+
+        .view_photo_camera__ img {
+            width: 1.22rem;
+            height: 1.22rem;
+        }
+
+        .view_photo_camera_border_ {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .view_photo_camera_border img {
+            width: .6rem;
+        }
+
+        .view_photo_txt_length {
+            width: 100%;
+            height: .64rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: right;
+            background-color: #ffffff;
+            margin-bottom: .20rem;
+            position: relative;
+        }
+
+        .view_photo_txt_length p {
+            font-size: .24rem;
+            color: #999999;
+            position: absolute;
+            right: 0.3rem;
+        }
+
+        .view_txt {
+            width: 100%;
+            font-size: .2rem;
+            color: #999999;
+            margin-top: .16rem;
+            margin-bottom: .8rem;
+        }
+
+        .view_txt p {
+            margin-left: .3rem;
+        }
+
+        .view_btn {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .view_btn_ {
+            width: 7.2rem;
+            height: .9rem;
+            background-color: #1979ff;
+            font-size: .34rem;
+            color: #ffffff;
+            line-height: .9rem;
+            border-radius: .1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .van-dropdown-menu__title::after {
+            display: none;
+        }
+
+        .service {
+            position: relative;
+        }
+
+        .service>.text {
+            font-size: .28rem;
+            position: absolute;
+            left: .3rem;
+            line-height: 1rem;
+            z-index: 999;
+        }
+
+        .service>.pic {
+            position: absolute;
+            right: .55rem;
+            bottom: .15rem;
+            z-index: 999;
+        }
+
+        .selectedText {
+            position: absolute;
+            left: 1.72rem;
+            color: #ccc;
+        }
+
+        .van-cell::after {
+            display: none;
+        }
+
+        .eventDescription {
+            width: 100%;
+            height: 4.58rem;
+            position: relative;
+        }
+
+        .eventDescription>.view_photo_camera {
+            position: absolute;
+            left: 0;
+            bottom: .64rem;
+        }
+
+        .van-field--min-height .van-field__control {
+            min-height: 3.76rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="service">
+            <div class="text">服务类型</div>
+            <div class="pic">
+                <img style="width: .15rem;height: .2rem;" src="../../../../public/static/property_project/img/right.png"
+                    alt="">
+            </div>
+            <van-dropdown-menu>
+                <van-dropdown-item @closed="closeServiceFn" @open="openServiceFn" v-model="value1" :options="option1"
+                    title-class="selectedText">
+                </van-dropdown-item>
+            </van-dropdown-menu>
+        </div>
+        <!-- 乌格写的 -->
+        <!-- <div class="view select view_margin_top">
+            <div class="select_left">维修部门</div>
+            <div class="select_center">请选择</div>
+            <div class="select_right">
+                <div class="select_right_">
+                    <img src="../../../../public/static/property_project/img/right.png" alt="">
+                </div>
+            </div>
+        </div> -->
+        <!-- 事件描述区域 -->
+        <div style="margin:.2rem 0;">
+            <div class="view select">
+                <div class="select_left select_blue">事件描述
+                    <div class="select_blue_">
+                        <img src="../../../../public/static/property_project/img/blue.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <!-- 事件描述文件域部分 -->
+            <div class="eventDescription">
+                <van-field v-model="message" rows="2" type="textarea" maxlength="100" placeholder="请输入事件描述"
+                    show-word-limit>
+                </van-field>
+                <div class="view_photo_camera">
+                    <div class="view_photo_camera__">
+                        <!-- 点击后显示的图片 -->
+                        <van-uploader v-model="fileList" :after-read="afterRead" multiple :max-count="4">
+                            <template #default>
+                                <img src="../../../../public/static/property_project/img/upload.png" alt="">
+                            </template>
+                        </van-uploader>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 乌格写的 -->
+        <!-- <div class="view_photo">
+            <div class="view_photo_txt">
+                <textarea placeholder="请输入事件描述"></textarea>
+            </div>
+            <div class="view_photo_camera">
+        <div class="view_photo_camera__">
+                    <img src="../../../../public/static/property_project/img/upload.png" alt="">
+                </div>
+        </div>
+            <div class="view_photo_txt_length">
+                <p>0/100</p>
+            </div>
+        </div> -->
+        <div class="view select">
+            <div class="select_left">报修人</div>
+            <input v-model="theRepairMan" class="select_center_input" placeholder="请输入" />
+        </div>
+        <div class="view select">
+            <div class="select_left">所在地区</div>
+            <input v-model="home" class="select_center_input" placeholder="请输入所在地区" />
+        </div>
+        <div @click="maintenanceAddressFn" class="view select">
+            <div class="select_left">维修地址<img src="../../../../public/static/property_project/img/star.png" class="star"
+                    alt=""></div>
+            <div class="select_center">{{selectedArea.length == 0 ? '请选择' : selectedArea}}</div>
+            <div class="select_right">
+                <div class="select_right_">
+                    <img src="../../../../public/static/property_project/img/right.png" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- 地址组件 -->
+        <van-area v-show="isAddressComponentShow" ref="vanArea" @confirm="areaConfirmFn" @cancel="areaCancelFn"
+            :area-list="addressList" :columns-placeholder="['请选择', '请选择', '请选择']"></van-area>
+
+        <div @click="timeClickHandleFn" class="view select">
+            <div class="select_left">预约时间</div>
+            <div class="select_center">{{finalTimeData === '' ? '请选择预约时间' : finalTimeData}}</div>
+            <div class="select_right">
+                <div class="select_right_">
+                    <img src="../../../../public/static/property_project/img/right.png" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- 选择时间组件 -->
+        <van-datetime-picker v-show="isTimerComponentShow" ref="timer" @cancel="timeCancelFn" @confirm="timeConfirmFn"
+            v-model="timerData.currentDate" type="datehour" :min-date="timerData.minDate" :max-date="timerData.maxDate">
+        </van-datetime-picker>
+        <div class="view select">
+            <div class="select_left">联系人</div>
+            <input v-model="contact" class="select_center_input" placeholder="请输入联系人" />
+        </div>
+        <div class="view select">
+            <div class="select_left">手机号</div>
+            <input v-model="mobilePhone" class="select_center_input" placeholder="请输入手机号" />
+        </div>
+        <div class="view select">
+            <div class="select_left">电话</div>
+            <input v-model="user_phone" class="select_center_input" placeholder="请输入电话" />
+        </div>
+        <div class="view_txt">
+            <p>手机和电话至少填写一项</p>
+        </div>
+        <div @click="submitWarrantyAPI" class="view_btn">
+            <div class="view_btn_">提交</div>
+        </div>
+        <!-- 地址选择组件
+        <area-select :data="areaList" :status="areaSelect" @areashow="maskStatus" :class="{'none':!areaSelect}" :area='areaStatus' @update:area="val => areaStatus = val"></area-select> -->
+    </div>
+    <script>
+        // console.log(areaList)
+        Vue.use(vant.DropdownMenu);
+        Vue.use(vant.DropdownItem);
+        Vue.use(vant.Field);
+        Vue.use(vant.Uploader);
+        Vue.use(vant.DatetimePicker);
+        new Vue({
+            el: "#app",
+            data: {
+                // 表单数据：手机号
+                mobilePhone: '',
+                // 表单数据：报修人
+                theRepairMan: '',
+                // 表单数据：图片数据
+                fileList: [],
+                // 表单数据：留言内容
+                message: '',
+                // 表单数据：联系人
+                contact: '',
+                // 表单数据：电话
+                user_phone: '',
+                // 表单数据：所在地区
+                home: '',
+                // 最终得到的时间数据
+                finalTimeData: '',
+                // 点击确定时收集到的时间数组
+                selectedTime: [],
+                // 时间组件中选中的事件数据
+                timerData: {
+                    minDate: new Date(2020, 01, 01),
+                    maxDate: new Date(2025, 10, 01),
+                    currentDate: new Date()
+                },
+                // 是否显示预约时间组件标志位
+                isTimerComponentShow: false,
+                // 是否显示维修地址组件标志位
+                isAddressComponentShow: false,
+                // 点击确定时收集到的地址数组
+                selectedArea: [],
+                // 引入的所有地址列表
+                addressList: {},
+                // 顶部下拉框展示标志位
+                titleShow: true,
+                // 服务类型
+                value1: {$id},
+                // 服务类型
+                option1: [{
+                        text: '请选择',
+                        value: 0
+                    },
+                    {
+                        text: '物业维修',
+                        value: 1
+                    },
+                    {
+                        text: '工程维修',
+                        value: 2
+                    },
+                    {
+                        text: '事务维修',
+                        value: 3
+                    }
+                ],
+                userinfoList: {} // 个人信息
+            },
+            methods: {
+                // 提交报修接口方法
+                submitWarrantyAPI() {
+                    console.log(this.home)
+                    if (this.value1 == 0) {
+                        return alert('请选择服务类型')
+                    }
+                    if (this.message.trim() == '') {
+                        return alert('请输入事件描述')
+                    }
+                    if (this.contact.trim() == '') {
+                        return alert('联系人不能为空')
+                    }
+                    if (this.home.trim() == '') {
+                        return alert('所在地区不能为空')
+                    }
+                    if (this.selectedArea.length < 1) {
+                        return alert('地址不能为空')
+                    }
+                    if (this.finalTimeData == '') {
+                        return alert('预约时间不能为空')
+                    }
+                    if (this.theRepairMan.trim() == '') {
+                        return alert('报修人选项不能为空')
+                    }
+                    if (this.mobilePhone.trim() == '' && this.user_phone.trim() == '') {
+                        return alert('手机和电话至少填写一项')
+                    }
+                    if (this.mobilePhone.trim() == '' && this.user_phone.trim() == '') {
+                        return alert('手机和电话至少填写一项')
+                    }
+                    if (!(/^1[3456789]\d{9}$/.test(this.mobilePhone)) && this.user_phone.trim() == '') {
+                        alert("手机号码有误，请重填");
+                        return false;
+                    }
+                    if (!/^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/.test(this.user_phone.trim()) && this
+                        .mobilePhone.trim() == '') {
+                        alert('电话号码有误，请重填');
+                        return false;
+                    }
+                    let obj = {}
+                    obj.type = this.value1
+                    obj.order_remark = this.message
+                    obj.user_name = this.theRepairMan
+                    obj.contact = this.contact
+                    obj.area = this.home
+                    obj.address = this.selectedArea
+                    obj.user_tel = this.mobilePhone
+                    obj.phone = this.user_phone
+                    obj.end_order_time = this.finalTimeData
+                    obj.image = this.changeImageFn
+                    console.log(obj)
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/order/add',
+                        headers: {
+                            authorization: window.localStorage.getItem('token') || ''
+                        },
+                        data: obj
+                    }).then(res => {
+                        console.log('提交成功', res)
+                        alert('您已提交成功')
+                    }).catch(err => {
+                        console.log('提交报修接口进入catch', err)
+                    })
+                },
+                // 年月日转换方法
+                formatDate(val) {
+                    var date = new Date(val)
+                    var year = date.getFullYear();
+                    var month = date.getMonth() + 1;
+                    var day = date.getDate();
+                    var hour = date.getHours();
+                    return year + '-' + this.formatTen(month) + '-' + this.formatTen(day) + " " + this
+                        .formatTen(hour)
+                },
+                // 给月日时前面加0的方法
+                formatTen(num) {
+                    return num > 9 ? (num + "") : ('0' + num);
+                },
+                // 点击了预约时间的方法
+                timeClickHandleFn() {
+                    this.isTimerComponentShow ? this.isTimerComponentShow = false : this.isTimerComponentShow =
+                        true
+                },
+                // 选择时间组件点击取消方法
+                timeCancelFn() {
+                    this.isTimerComponentShow = false
+                },
+                // 选择时间组件点击确定方法
+                timeConfirmFn(value) {
+                    // console.log(value)
+                    // console.log(this.formatDate(value))
+                    this.finalTimeData = this.formatDate(value)
+                    this.isTimerComponentShow = false
+                },
+                // 点击了维修地址栏方法
+                maintenanceAddressFn() {
+                    this.isAddressComponentShow ? this.isAddressComponentShow = false : this
+                        .isAddressComponentShow = true
+                },
+                // 地址栏点击确定方法
+                areaConfirmFn(arr) {
+                    console.log(arr)
+                    for (let i = 0; i < arr.length; i++) {
+                        if (arr[i].name === undefined || !arr[i].name) return false
+                    }
+                    const newArr = arr.map(item => item.name)
+                    const newNewArr = newArr.join('-')
+                    this.selectedArea = newNewArr
+                    this.isAddressComponentShow = false
+                },
+                // 地址栏点击取消方法
+                areaCancelFn() {
+                    this.$refs.vanArea.reset()
+                    this.isAddressComponentShow = false
+                },
+                // 服务类型下拉框打开时触发的方法
+                openServiceFn() {
+                    this.titleShow = false
+                },
+                // 服务类型下拉框关闭时触发的方法
+                closeServiceFn() {
+                    this.titleShow = true
+                },
+                // uploader上传图片方法
+                afterRead(file) {
+                    console.log(file)
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/uploadPic',
+                        headers: {
+                            authorization: window.localStorage.getItem('token') || ''
+                        },
+                        data: {
+                            file: file.content
+                        }
+                    }).then(res => {
+                        console.log('成功',res)
+                    }).catch(err => {
+                        console.log('失败',err)
+                    })
+                },
+                // 获取个人信息方法
+                getUserinfoFn() {
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/getUserInfo',
+                        headers: {
+                            authorization: window.localStorage.getItem('token') || ''
+                        }
+                    }).then(res => {
+                        console.log('个人信息', res)
+                        if (res.data.status == 1002) {
+                            // token过期
+                            alert('登录已过期')
+                            window.location.href = 'http://estate.1yuaninfo.com/index/property/logins'
+                        } else if (res.data.status == 200) {
+                            // 一切正常
+                            this.userinfoList = res.data.result
+                        }
+                    }).catch(err => {
+                        console.log('个人信息进入catch', err)
+                    })
+                },
+                // 验证姓名正则
+                checkChinese(str) {
+                    var reg = /[^\u4e00-\u9fa5]/;
+                    if (reg.test(str)) return false;
+                    return true;
+                }
+            },
+            computed: {
+                // 验证姓名正则
+                checkChineseName(v) {
+                    if (v == '') return alert('不能为空');
+                    if (v.length < 2) {
+                        return alert('请输入正确的姓名');
+                    }
+                    var name = v.replace(/·/g, '');
+                    name = name.replace(/•/g, '');
+                    console.log('这是啥', name)
+                    if (this.checkChinese(name)) return '输入正确';
+                    else return '不正确';
+                },
+                // 返回图片的url数组
+                changeImageFn() {
+                    return this.fileList.map((item, index) => item.content)
+                }
+            },
+            created() {
+                this.getUserinfoFn()
+            },
+            mounted() {
+                // 拿到JS文件中的地址变量
+                this.addressList = areaList
+                // console.log(this.addressList)
+            }
+        })
+    </script>
+</body>
+
+</html>

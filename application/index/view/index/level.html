@@ -1,0 +1,24 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,	minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="__STYLE__css/wenjian/appointment.css" type="text/css"  rel="stylesheet"/>
+    <script src="__STYLE__js/jquery-2.1.1.min.js"></script>
+    <!-- <script src="__STYLE__js/wenjian/appointment.js"></script> -->
+    <title>报名结束</title>
+</head>
+<body>
+<div class="success">
+    <h1><img src="__STYLE__img/wenjian/images_apply_2.png"></h1>
+    <p>本期报名已结束！</p>
+    <input type="button" value="关闭" class="succ_close"/>
+</div>
+<script type="text/javascript">
+$(".succ_close").click(function(){
+    WeixinJSBridge.call('closeWindow');
+})
+</script>
+</body>
+</html>

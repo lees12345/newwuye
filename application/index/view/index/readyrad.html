@@ -1,0 +1,71 @@
+<!--
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,	minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="__STYLE__css/jijin/appointment.css" type="text/css"  rel="stylesheet"/>
+    <script src="__STYLE__js/jquery-2.1.1.min.js"></script>
+    <script src="__STYLE__js/jijin/appointment.js"></script>
+    <title>报名成功</title>
+</head>
+<body>
+<div class="success">
+    <h1><img src="__STYLE__img/jijin/images_apply_1.png"></h1>
+    <p class="succ_title">您已报名<span>第{$learn}期</span>体验服务！</p>
+    <p class="succ_p">我们将通过<span>《掘金股》</span>微信服务平台<br />在盘前<span>09:25-09:28</span>统一发布<br />请注意查阅！</p>
+    <input type="button" value="返回" class="succ_close"/>
+</div>
+<script type="text/javascript">
+$(".succ_close").click(function(){
+    WeixinJSBridge.call('closeWindow');
+})
+</script>
+</body>
+</html>
+-->
+{__NOLAYOUT__}
+<!--<html>
+<head>
+    <meta charset="utf-8">
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width,	minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="__STYLE__css/jijin/short_appoin.css" rel="stylesheet" />
+    <title>日新月溢</title>
+</head>
+<body>
+<h2 class="success_img"><img src="__STYLE__img/jijin/img_apply_1.png"></h2>
+</body>
+</html>-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="0">
+
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width,	minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="__STYLE__css/jijin/short_appoin.css" rel="stylesheet" />
+    <script src="__STYLE__js/jquery-2.1.1.min.js"></script>
+    <!-- 链接js2.1 -->
+    <title>中证通体验平台</title>
+</head>
+<body>
+<h2 class="success_img">
+    <img src="__STYLE__img/jijin/duihao.png">
+    <br />
+    您已报名成功！
+</h2>
+<p class="success_p">我们将通过<span class="color_span">《积少成多》</span>微信服务平台<br />
+    在<span class="color_span">14:20左右</span>推送服务信息<br/>
+    请注意查收!</p>
+<input type="button" class="success_close" value="关闭">
+<script>
+    $(".success_close").click(function(){
+        WeixinJSBridge.call('closeWindow');
+    })
+</script>
+</body>
+</html>
+

@@ -1,0 +1,66 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta charset="utf-8"><meta name="viewport" content="width=device-width,	minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<!--<link href="/public/static/home/css/short_term.css" rel="stylesheet" />-->
+	<link rel="stylesheet"  href="/public/static/home/css/dragon.css" >
+	<title>中证通体验平台</title>
+	<!--<link rel="stylesheet" href="dragon.css">-->
+</head>
+<body>
+<div>
+	<h1><img src="/public/static/home/img/bg_1.png" width="100%"></h1>
+	{volist name='data' id='data'}
+	<div class=" details_of_position">
+
+		<div class="entry_all_box">
+			<p class="details_of_title">{$data.mt_name}
+				<br /><span class="details_of_title_span">{$data.add_time|date='Y-m-d H:i:s',###}</span>
+			</p>
+			<div class="details_of_world">{$data.news_content}
+				{notempty name="data.news_paper"}
+
+				<a href="morning_paper.html?file=http://{$data.news_paper}" style="text-decoration:underline;"><span style="font-size: 16px">↓↓↓<br/>{$data.news_paper_title}</span></a>
+				{/notempty} </div>
+		</div>
+
+
+{if condition="$data.gu_status eq 1"}
+		<div class="detail_bottom">
+			<p class="detail_bot_tit">投顾团队</p>
+			<p class="detail_bot_wirte detail_spical_two">
+				苏海鲲&nbsp;&nbsp;A0210614010001<span>张修杰&nbsp;&nbsp;A0210615110003</span><br />
+				葛&nbsp;&nbsp;&nbsp;&nbsp;华&nbsp;&nbsp;A0210617060008<span>王尚志&nbsp;&nbsp;A0210617110002</span><br />
+				张星星&nbsp;&nbsp;A0210617110003<span>同建军&nbsp;&nbsp;A0210617110001</span><br />
+				徐志翔&nbsp;&nbsp;A0210616110001<span>孙慧凤&nbsp;&nbsp;A0210613050002</span><br />
+				殷美瑜&nbsp;&nbsp;A0210613100001<span>孙精财&nbsp;&nbsp;A0210615020001</span><br />
+				雷银凤&nbsp;&nbsp;A0210617060005<span>荣军辉&nbsp;&nbsp;A0210617060002</span><br />
+				张志宽&nbsp;&nbsp;A0210617060003<span>李培杰&nbsp;&nbsp;A0210617120001</span><br />
+				王德智&nbsp;&nbsp;A0210611110001<span>张宇哲&nbsp;&nbsp;A0210611020001</span><br />
+				张明明&nbsp;&nbsp;A0210616110004<span>刘&nbsp;&nbsp;&nbsp;&nbsp;淳&nbsp;&nbsp;A0210612070001</span><br />
+				王丽丽  A0210614050001<span>王佳娜&nbsp;&nbsp;A0210611010003</span><br />
+				马建军&nbsp;&nbsp;A0210619050005<br />
+			</p>
+		</div>
+		<div class="detail_bottom " style="margin-bottom: 3rem;">
+			<p class="detail_bot_tit">特别声明</p>
+			<div class="detail_bot_wirte detail_spical">
+<p>《证券期货投资者适当性管理办法》于2017年7月1日起正式实施，通过微信平台制作的本资料仅面向投资咨询机构专业投资者用户，请勿对本资料进行任何形式的转发。若您非本投资咨询机构的专业投资者，为保证服务质量、控制投资风险，请勿订阅、接受或使用本平台中的任何信息。</p>
+<p>因本公众号难以设置访问权限，若给您造成不便，烦请谅解！感谢您给予的理解和配合。</p>
+<p style="text-align: center;">重要声明 </p>
+<p>本公众号受投资咨询机构许可依法设立、运营的官方公众号。本公众号仅面向受委托投资咨询机构客户，仅供在新媒体背景下的研究信息、观点的及时沟通，因本公众号受限于访问权限的设置，本平台不因其他订阅人收到本公众号推送信息而视其为客户。</p> 
+<P>本公众号所载的资料均来自市场公开信息，结合行业热点、股市题材及技术分析后解读。请注意，本资料仅代表发布当日的判断，本公众号不承担更新推送信息或另行通知义务，后续更新信息请以平台发布信息为准。本订阅号推送资料涉及的投资评级、目标价格等投资观点，均基于特定的假设、特定的评级体系、相对的市场基准指数得出的中长期价值判断，并非对证券或金融工具的具体买卖时点、买卖价格等的操作建议。订阅者若使用本公众号所载资料，可能会因缺乏对完整报告的了解或缺乏相关的解读而对资料中的关键假设、评级、目标价等内容产生理解上的歧义而导致投资损失。订阅者如使用本公众号推送资料，请事先寻求专业投资顾问的指导及后续的解读服务。本公众号所载的资料、工具、意见、信息及推测仅提供给投资咨询机构客户作参考之用，不构成任何投资、法律、会计或税务的最终操作建议，本平台不就本公众号推送的内容对最终操作建议做出任何担保。任何订阅人不应凭借本公众号推送信息进行具体操作，应自主作出投资决策并自行承担所有投资风险。在任何情况下，本平台不对任何人因使用本公众号推送信息所引起的任何损失承担任何责任。 本公众号版权归受委托投资咨询机构所有，任何人或机构不得以任何方式修改、转载或者复制本公众号推送信息。如因违法、侵权使用给本平台造成任何直接或间接的损失，平台保留追求一切法律责任的权利。</P>
+<p>（本平台信息内容为容维证券投顾团队依据市场公开信息，结合行业热点、股市题材及技术分析等得出的分析结论，仅供参考，据此操作风险自担）</p>
+</div>
+		</div>
+{/if}
+
+	</div>
+	{/volist}
+
+</div>
+</body>
+</html>
+

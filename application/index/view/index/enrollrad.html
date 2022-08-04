@@ -1,0 +1,146 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width,	minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="__STYLE__css/jijin/short_appoin.css" rel="stylesheet" />
+    <script src="__STYLE__js/jquery-2.1.1.min.js"></script>
+    <script src="__STYLE__js/jss.js"></script>
+    <title>中证通体验平台</title>
+    <script src="jss.js"></script>
+</head>
+<body>
+<h1 class="login_h1"><img src="__STYLE__img/jijin/bg_apply_information_02.png"></h1>
+
+<form id="listcontent" onsubmit="return false" action="##" method="post">
+<div class="position_div">
+     <label class="label"><img src="__STYLE__img/jijin/xingming.png"></imgh><input type="text"  class="infor" placeholder="请输入您的姓名" id='user_name' name='user_name'></label>
+    <label class="label"><img src="__STYLE__img/jijin/icon_shouji.png"></imgh><input type="text"  class="infor" placeholder="请输入您的手机号" id='user_tel' name='user_tel'></label>
+    <div class="posi_tell">
+        <label class="label_left"><img src="__STYLE__img/jijin/icon_sousuo.png"><input type="text" class="yanzheng" placeholder="填写验证码"  name="yanzhengma" id="yzm" url="{:url('index/index/ajax')}"></label>
+        <label class="label_right"><input type="button" class="huoqu"value="获取验证码" id="btnSendCode" onclick="sendMessage();"></label>
+    </div>
+
+
+
+    <div class="sub_img"/>
+        <input type="button" value="提交" class="submit"  onclick="login()">
+        <img src="__STYLE__img/jijin/btn_submit.png" class="subimg_11" />
+    </div>
+    <!-- <input type="button" value="提交" class="submit" onclick="login()"/> -->
+
+
+</div>
+</form>
+
+
+<!-- 未关注平台 -->
+<div class="all_div" id="all_div">
+    <div class="posi_div">
+        <h1><img src="__STYLE__img/jijin/pop_up_bg_2.png"></h1>
+        <div class="posi_div_write">
+            <h2><img src="__STYLE__img/jijin/icon_2.png"></h2>
+            <h4>已报名,<br />但您尚未关注平台！</h4>
+            <p class="posi_title">本服务将通过《积少成多》平台<br />在开盘09:30统一发布</p>
+            <p class="posi_huang">请长按识别下方二维码关注平台<br />即可获得免费体验</p>
+            <h3><img src="__STYLE__img/jijin/imh_erweim.png"></h3>
+            <h4 class="close"><img src="__STYLE__img/jijin/btn_determine.png"></h4>
+        </div>
+
+    </div>
+</div>
+<!-- 已关注 不用-->
+<div class="all_div_two" id="all_div_two">
+ 
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    
+         $(function(){
+            pushHistory();
+            window.addEventListener("popstate", function(e) {
+              //关闭当前浏览器
+               WeixinJSBridge.call('closeWindow');
+            }, false);
+            function pushHistory() {
+                var state = {
+                    title: "title",
+                    url: "#"
+                };
+                window.history.pushState(state, "title", "#");
+            }
+        });
+   
+    function login() {
+        var user_tel = $("#user_tel").val();
+        var yanzhengma = $(".yanzheng").val();
+        //alert(learn);
+        if(user_tel == '' || yanzhengma == '')
+        {
+            alert('请输入手机号或验证码！');
+            return false;
+        }
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            url: "insert.html" ,//url
+            data: $('#listcontent').serialize(),
+            success: function (result) {
+                var html ="";
+                 if(typeof(result.code) != "undefined")
+                {
+                    alert(result.msg);
+                    return false;
+                }
+                // alert(result);
+                if(result == 99999)
+                {
+                    //提示关注弹框
+                    $(".all_div,.close_two").show();
+                    $(".close,.close_two").click(function(){
+                        $(".all_div").hide();
+                        window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc013297214b78bc8&redirect_uri=http%3A%2F%2Ftin.1yuaninfo.com%2Findex%2Findex%2Fok.html&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirects';
+                    })
+
+                }else if(result == 88888)
+                {
+                    alert('请重新预约');
+                }else if(result == 100000)
+                {
+                    //预约成功
+                    alert('您已预约成功，请勿重复操作！');
+                }else
+                {
+
+                    // 已成功预约 显示成功弹框 预约位置是result
+                    html +="  <div class='posi_div'><h1><img src='/public/static/index/img/jijin/pop_up_bg_1.png'></h1><div class='posi_div_write_two'><p class='posi_div_title'><img src='/public/static/index/img/jijin/icon_1.png'><br />恭喜您!</p><p class='posi_title'>第<span>"+result+"</span>位领取本次服务</p><p class='posi_title_two'>请注意在《积少成多》<br />服务平台查收推送消息</p><h4 class='close_two'><img src='/public/static/index/img/jijin/btn_determine.png'></h4></div></div>";
+                    $(".all_div_two").html(html);
+                    $(".all_div_two").show();
+                    // 获取要显示的div对象
+                    $(".close,.close_two").click(function(){
+                        $(".all_div_two").hide();
+                        window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc013297214b78bc8&redirect_uri=http%3A%2F%2Ftin.1yuaninfo.com%2Findex%2Findex%2Fok.html&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
+                    })
+                }
+
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+    }
+    $("input").blur(function () {
+  window.scrollTo(0, 0);
+});
+
+
+</script>
+
+
+
+
+
+
+

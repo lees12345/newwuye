@@ -1,0 +1,126 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" href="__STYLE__css/all.css" />
+     <!--   <script type="text/javascript" src="__STYLE__js/jquery-2.1.1.min.js" ></script>-->
+        <title>产品专区</title>
+<script type="text/javascript">
+$(function () {     
+    $(".speal_sub").click(function () {
+        $("#wht").fadeIn();
+    })
+    $(".close").click(function () {
+        $("#wht").fadeOut();
+    })
+    $('.wxnumber').click(function () {
+        tajs_click(0);
+    });
+})
+</script>
+         <script type="text/javascript">
+    //调用微信JS api 支付
+    function jsApiCall()
+    {
+        WeixinJSBridge.invoke(
+            'getBrandWCPayRequest',
+            <?php echo $jsApiParameters; ?>,
+            function(res){
+                WeixinJSBridge.log(res.err_msg);
+                // alert(res.err_code+res.err_desc+res.err_msg);
+                 if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                 alert('支付成功')
+                 WeixinJSBridge.call('closeWindow');
+                }else{
+                    alert('支付失败')
+                    WeixinJSBridge.call('closeWindow');
+                } 
+            }
+        );
+    }
+
+    function callpay()
+    {
+        if (typeof WeixinJSBridge == "undefined"){
+            if( document.addEventListener ){
+                document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+            }else if (document.attachEvent){
+                document.attachEvent('WeixinJSBridgeReady', jsApiCall); 
+                document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+            }
+        }else{
+            jsApiCall();
+        }
+    }
+    </script>
+            <style>
+            *{padding:0;margin:0;}
+            h1 img{width:100%}
+            .write{width:70%;color:#5d5c5c;line-height:35px;
+            margin:40px auto;
+            box-shadow:-3px 0px 1px #F3F3F3,   /*左边阴影*/ 
+                        0px -3px 1px #F3F3F3,  /*上边阴影*/ 
+                        3px 0px 1px #F3F3F3,  /*右边阴影*/ 
+                        0px 3px 5px #F3F3F3;/*下边阴影*/
+            border-radius:8px;
+            padding:40px 20px;
+            font-size:16px;
+            background: #fff;
+                       }
+            .special{text-align: center;font-weight:bold;font-size:20px}
+            .world{text-indent: 2em;padding-top:20px;}
+            .money{cursor: pointer;-webkit-appearance: none;background:#FA4844;width:80%;padding:10px 0;border-radius:5px;display: block;margin:20%  auto;color:#fff;border:0;font-size:16px;}  
+            .box_two{ position: absolute;
+            top:10%;
+            }   
+        </style>
+        </head>
+    
+    <body>
+        <div class="speal">
+            <h2 class="speal_tit">天添B计划</h2>
+            <p class="star_img">热销度<img src="__STYLE__img/chanpin_icon_xingxing_1.png"></p>
+            <p class="speal_three"><span>按次服务</span><span>短线激进</span><span>智能锁定</span></p>
+        </div>
+        <div class="speal_two">
+            <h2 class="speal_detail">服务详情</h2>
+            <div class="speal_div">
+                <p>产品价格：1990元/月</p>
+                <p>服务期限：按月(30)天</p>
+                <p>持股周期：1——10个交易日</p>
+                <p>追求目标：2%以上</p>
+                <p>风险位：-5%</p>
+                <p>历史成功率：70%（过往业绩不代表未来表现）</p>
+                <p>服务风格：快进快出，属短线激进型</p>
+                <p>服务内容：推荐次数不低于当月交易天数</p>
+            </div>
+        </div>
+       <input type="button" class="money" value="立即支付" onclick="callpay()">
+        
+      
+        <div id="wht">
+        <div class="wht">
+            <div class="whtbg"></div>
+            <div class="whtc">
+                <img src="img/tanchuang_icon_×.png" alt="" class="close">
+                <div class="whtcc">
+                     <p class="ps">
+                        欢迎使用北京股商
+                        <span style="display: block;">微信支付平台付款</span>
+                     </p>
+                     
+                    <div class="whtc1">
+                        <span><code class="wxnumber"><img src="__STYLE__img/tou.jpg"></code></span>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+</html>
+    

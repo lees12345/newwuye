@@ -1,0 +1,343 @@
+{__NOLAYOUT__}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title></title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">		
+		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+		<!--在iPhone 手机上禁止了把数字转化为拨号链接-->
+	    <meta content="telephone=no" name="format-detection" />
+	    <!--删除默认的苹果工具栏和菜单栏-->
+	    <meta content="yes" name="apple-mobile-web-app-capable">
+	    <!-- 网站开启对web app程序的支持，在web app应用下状态条（屏幕顶部条）的颜色，默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明）-->
+   		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="/public/static/money/css/demo.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="/public/static/money/css/sweet-alert.css">
+		<style type="text/css">
+			body {
+				margin: 0;
+				padding: 0;
+				position: relative;
+				background-position: center;
+				width: 100%;
+				height: 100%;
+				overflow-y: hidden;
+				background:url(/public/static/money/images/bj.png) no-repeat top left ;
+				background-size:  100%;
+			}
+			a{
+				text-decoration: none;
+			}
+			.couten {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				overflow-y: hidden;
+			}
+			.couten li {
+				position: absolute;
+				animation: all 3s linear;
+				top:-100px;
+				-webkit-tap-highlight-color:  rgba(0, 0, 0, 0);
+			}
+			.couten li a{
+				display: block;
+			}
+			.mo {
+				position: absolute;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, .2);
+				z-index: 100;
+				display: none;
+			}
+			.mo .sen {
+				width: 70%;
+				height: 150px;
+				border-radius: 5px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+			}
+			.mo .sen img {
+			    width: 60%;
+			    height: 127px;
+			    position: absolute;
+			    top: 0px;
+			    left: 0;
+			    right: 0;
+			    bottom: 212px;
+			    margin: auto;
+			    vertical-align: top;
+			}
+			.mo .sen h3 {
+			    width: 50%;
+			    height: 30px;
+			    position: absolute;
+			    top: -35px;
+			    left: 0;
+			    right: 0;
+			    bottom: 0;
+			    margin: auto;
+			    text-align: center;
+			    color: red;
+			    font-size: 140%;
+			    font-weight: bold;
+			    z-index: 999;
+			}
+			
+			.mo .sen a {
+			    width: 26%;
+			    height: 50px;
+			    background-color: rgb(174, 222, 244);
+			    box-shadow: rgba(174, 222, 244, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.0470588) 0px 0px 0px 1px inset;
+			    position: absolute;
+			    top: 100px;
+			    left: 0;
+			    right: 0;
+			    bottom: 0;
+			    margin: auto;
+			    color: #fff;
+			    border-radius: 5px;
+			    text-align: center;
+			    line-height: 50px;
+			    text-decoration: none;
+			}
+			.backward{
+				width: 100%;
+				/*background:#ccc;
+				opacity: 0.5;*/
+				position: absolute;
+				top: 0;
+				background: url(/public/static/money/images/bg_2.png) no-repeat top left ;
+				background-size: 100%;
+				
+			}
+			.backward span{
+				display: inline-block;
+				width: 100px;
+				height: 100px;
+				color: #FFFFFF;
+				font-weight: bold;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				text-align: center;
+				line-height: 100px;
+				font-size: 1000%;
+				
+
+			}
+			.stop_img{
+				display: none;
+				width: 100%;
+				position: absolute;
+				top: 0;
+				z-index: 100;
+				overflow: hidden;
+			}
+			.stop_img img{
+					width:100%;
+			}
+			span.money_all{
+				float: right;
+				padding: 6px 10px;
+				background: #ffffff;
+				border-top-left-radius: 20px;
+				border-bottom-left-radius: 20px;
+				font-size: 14px;
+				color: #CF0707;
+				margin-top: 3rem;
+			}
+			.countdown_time{
+				float: left;
+				background: #CF0707;
+				border-radius: 25px;
+				color:#ffffff;
+				padding:4px 10px;
+				font-size: 14px;
+				margin-left: 1rem;
+			}
+		</style>
+		<script type="text/javascript" src="/public/static/money/js/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				// 倒计时
+			var times =  {$time}; // 60秒
+			var countTime = 0;
+			var id = id;
+			countTime = setInterval(function() {
+				times = --times < 0 ? 0 : times;
+				var ms = Math.floor(times).toString();
+
+				if(ms.length <= 1) {
+					ms = "0" + ms;
+				}
+				// var hm = Math.floor(times % 100).toString();
+				// if(hm.length <= 1) {
+				// 	hm = "0" + hm;
+				// }
+				if(times == 0) {
+					// 时间停止
+					clearInterval(countTime);
+					$('.couten').remove();
+				    $(".stop_img").show();
+				  
+				    
+				}
+				// 获取分钟、毫秒数
+				$(".countdown_time").html(ms);
+			}, 1000);
+				var timer = 0;
+				// console.log(timer);
+				var win = (parseInt($(".couten").css("width"))) - 60;
+				$(".mo").css("height", $(document).height());
+				$(".couten").css("height", $(document).height());
+				$(".backward").css("height", $(document).height());
+				$("li").css({});
+				// 点击确认的时候关闭模态层
+				// $(".sen a").click(function(){
+				//   $(".mo").css("display", "none")
+				// });
+				
+				var del = function(){
+					nums++;
+					// console.info(nums);
+					// console.log($(".li" + nums).css("left"));
+					$(".li" + nums).remove();
+					setTimeout(del,200)
+				}
+				
+				var add = function() {
+					var hb = parseInt(Math.random() * (3 - 1) + 1);
+					var Wh = parseInt(Math.random() * (70 - 30) + 20);
+					var Left = parseInt(Math.random() * (win - 0) + 0);
+					var rot = (parseInt(Math.random() * (45 - (-45)) - 45)) + "deg";
+					//				console.log(rot)
+					num++;
+					$(".couten").append("<li class='li" + num + "' ><a href='javascript:;'><img src='/public/static/money/images/hb_" + hb + ".png'></a></li>");
+					$(".li" + num).css({
+						"left": Left,
+					});
+					$(".li" + num + " a img").css({
+						"width": Wh,
+						"transform": "rotate(" + rot + ")",
+						"-webkit-transform": "rotate(" + rot + ")",
+						"-ms-transform": "rotate(" + rot + ")", /* Internet Explorer */
+						"-moz-transform": "rotate(" + rot + ")", /* Firefox */
+						"-webkit-transform": "rotate(" + rot + ")",/* Safari 和 Chrome */
+						"-o-transform": "rotate(" + rot + ")" /* Opera */
+					});	
+					$(".li" + num).animate({'top':$(window).height()+20},5000,function(){
+						//删掉已经显示的红包
+						this.remove()
+					});
+					//点击红包的时候弹出模态层
+					$(".li" + num).click(function(event){
+					 
+						console.log(this);
+						var click_num = $(this);//获取被点击的对象
+
+
+						//继续ajax请求 获取数据
+						clearTimeout(timer)
+						timer = setTimeout(function(){
+							$.post("money.html",{token:'tokensadmin'}, function(data) {
+								//三种情况 
+								//第1种 当前活动已经关闭 
+								console.log(data);
+								if(data.code == 500)
+								{
+									alert(data.msg)
+									return false
+								}else if(data.code == 404){
+									//未中奖
+									$(click_num).append("<p style='background:#fff;padding:3px 6px; border-radius:10px;text-align:center;overflow:hidden'><img src='/public/static/money/images/cry.png' style='width:80%;text-align:center;'/></p>");
+									// $(".sen h3").text(data.msg) 
+
+								}else if(data.code == 200)
+								{
+									$(click_num).append("<a href='javascript:;' style='background-color:#ffffff;color:#E62601;padding:3px 6px;'>"+data.money+ "</a>")
+									// $(".sen h3").text('获得红包'+data.num+'元')
+
+									//总共获得数量为 data.no_money
+									$(".money_all").text('总计:'+data.no_money+'元');
+								
+								}else{
+									alert('未知错误，请联系开发人员')
+									return false
+								}
+								//第2种 未抽中
+								//第三种 抽中 返回当前用户的总钱数
+								//并修改里面的数据，显示出来 
+								$(".mo").css("display", "block")
+								setTimeout(function(){
+									click_num.remove()
+								},300)
+	
+							});			
+
+					},100);
+					});
+					setTimeout(add,200)
+				}	
+				
+				//增加红包
+				var num = 0;
+				setTimeout(add,3000);
+				
+				//倒数计时
+				var backward = function(){
+					numz--;
+					if(numz>0){
+						$(".backward span").html(numz);
+					}else{
+						$(".backward").remove();
+					}
+					setTimeout(backward,1000)
+							
+				}
+				
+				var numz = 4;
+				backward();
+			
+			})
+			
+		</script>
+
+	</head>
+	<body>
+		<ul class="couten">
+			<span class="countdown_time"></span>
+			<span class="money_all">总计: 元</span>
+			<!--<li>
+				<a href="#"><img src="images/hb_1.png"></a>
+			</li>-->
+		</ul>
+		<!-- <div class="mo">
+			<div class="sen">
+				<img src="/public/static/money/images/gx.png">
+				<h3>获得红包3元</h3>
+				<h4></h4>
+				<a href="#">确定</a>
+			</div>
+		</div> -->
+		<div class="backward">
+			<span></span>
+		</div>	
+		<div class="stop_img">
+			<img src="/public/static/money/images/stop_img.jpg">
+		</div>
+		<!-- 三秒倒计时 -->
+	
+	</body>
+</html>

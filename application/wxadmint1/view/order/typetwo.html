@@ -1,0 +1,323 @@
+
+<div class="main-content">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<script type="text/javascript">
+            try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+		</script>
+
+		<ul class="breadcrumb">
+			<li>
+				<i class="icon-home home-icon"></i>
+				<a href="#">首页</a>
+			</li>
+
+			<li>
+				<a href="#">维修管理</a>
+			</li>
+			<li class="active">申请列表</li>
+		</ul><!-- .breadcrumb -->
+
+		<div class="nav-search" id="nav-search">
+			<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+			</form>
+		</div><!-- #nav-search -->
+	</div>
+
+	<div class="page-content">
+		<div class="page-header">
+			<h1>
+                申请列表
+			</h1>
+		</div><!-- /.page-header -->
+
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- PAGE CONTENT BEGINS -->
+
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="table-responsive">
+							<!-- 搜索框 -->
+							<form class="form-search" action="{:url('wxadmint1/order/typetwo')}">
+								<input type="hidden" name="v" value="1">
+								<span class="input-icon">
+									<input type="text" placeholder="请输入订单号" class="nav-search-input" id="nav-search-input" autocomplete="off" name='order_no'/>
+									<input type="text" placeholder="请输入用户手机号" class="nav-search-input" id="nav-search-input" autocomplete="off" name='user_tel'/>
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+                <!-- onclick="laydates()" -->
+								预约时间范围：<input type="text" name='start_date' id='dates'  >----<input type="text" name='end_date' id='date'  onclick="laydate()">
+
+								<span class="input-icon">
+                                    <select name="order_status">
+                                        <option value="">请选择维修进度
+                                        <option value="0">未接收
+                                        <option value="1">处理中
+                                        <option value="2">已完成
+                                    </select>
+                                </span>
+
+
+                                <input type="submit" value='搜索' class="small_sou" style="border:0;padding:4px 10px;background:#4f99c6;color:#fff;">
+							</form>
+							<!--<br/>-->
+							<!--<a href="{:url('wxadmint1/Order/show')}"><input type="button" value='用户基本信息' class="btn btn-info" style="border:0;padding:4px 10px;background:#4f99c6;color:#fff;"></a>-->
+							<br/>
+							<span>订单总数：{$count}</span>
+
+							<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+								<thead>
+								<tr>
+									<th>订单id</th>
+									<th>订单号</th>
+									<th>手机</th>
+									<th>服务类型</th>
+									<th>服务进度</th>
+									<th>生成订单时间</th>
+									<th>维修预约时间</th>
+                                    <th>维修接收时间</th>
+                                    <th>维修完成时间</th>
+									<th>描述</th>
+									<th>描述图片</th>
+									<th>报修人</th>
+									<th>联系人</th>
+									<th>地区</th>
+									<th>联系地址</th>
+									<th>电话</th>
+									<th>接收人</th>
+									<th></th>
+								</tr>
+								{volist name="data" id="data"}
+								<tbody>
+								<tr>
+									<td>{$data.id}</td>
+                                    <td>{$data.order_no}</td>
+                                    <td>{$data.user_tel}</td>
+									<td>{$data.type}</td>
+									<td  {if condition="$data['order_status'] eq '未接收'"}style="color: red"{/if}>{$data.order_status}</td>
+									<td>{$data.add_time}</td>
+									<td>{$data.end_order_time}</td>
+									<td>{$data.start_time}</td>
+									<td>{$data.end_time}</td>
+									<td>{$data.order_remark}</td>
+									<td>
+										{volist name="data.remark_image" id="li"}
+										<img src="{$li}" alt="" class="goal_img" width="20" height="30">&nbsp;
+										{/volist}
+									</td>
+									<td>{$data.user_name}</td>
+									<td>{$data.contact}</td>
+									<td>{$data.area}</td>
+									<td>{$data.address}</td>
+									<td>{$data.phone}</td>
+									<td>{$data.receive}</td>
+									<td>
+
+                                        <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                            <a href="{:url('wxadmint1/order/detail')}?order_id={$data.id}">
+                                                <button class="btn btn-xs btn-info">
+                                                    <i class="icon-edit bigger-120">查看进度</i>
+                                                </button>
+                                            </a>
+											<a href="{:url('wxadmint1/order/upd')}?order_id={$data.id}">
+												<button class="btn btn-xs btn-info">
+													<i class="icon-edit bigger-120">类型矫正</i>
+												</button>
+											</a>
+
+                                            <a onclick="if(!confirm('您确定要删除所选用户的所有信息吗')){return false;}"
+                                               href="{:url('wxadmint1/order/del')}?order_id={$data.id}">
+                                                <button class="btn btn-xs btn-danger">
+                                                    <i class="icon-trash bigger-120">删除</i>
+                                                </button>
+                                            </a>
+
+                                        </div>
+									</td>
+								</tr>
+								</tbody>
+								{/volist}
+								</thead>
+								<!--  -->
+							</table>
+							<!--  -->
+							{neq name="page" value=""}
+							{$page}
+							{/neq}
+						</div><!-- /.table-responsive -->
+					</div><!-- /span -->
+				</div><!-- /row -->
+				<style>
+					.wrap {
+						position: fixed;
+						top: 0;
+						left: 0;
+						background: rgba(0, 0, 0, 0.7);
+						z-index: 2;
+						width: 100%;
+						height: 100%;
+						display: none;
+					}
+				</style>
+				<div id="outerdiv" class="wrap">
+					<div id="innerdiv" style="position:absolute;">
+						<img id="bigimg" style="border:5px solid #fff;" src=""/>
+					</div>
+				</div>
+				<script>
+					$(".goal_img").click(function(){
+						var _this = $(this); //将当前的pimg元素作为_this传入函数
+						imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
+					});
+
+
+					function imgShow(outerdiv, innerdiv, bigimg, _this){
+						var src = _this.attr("src");//获取当前点击的pimg元素中的src属性
+						$(bigimg).attr("src", src);//设置#bigimg元素的src属性
+						/*获取当前点击图片的真实大小，并显示弹出层及大图*/
+						$("<img/>").attr("src", src).load(function(){
+							var windowW = $(window).width();//获取当前窗口宽度
+							var windowH = $(window).height();//获取当前窗口高度
+							var realWidth = this.width;//获取图片真实宽度
+							var realHeight = this.height;//获取图片真实高度
+							var imgWidth, imgHeight;
+							var scale = 0.8;//缩放尺寸，当图片真实宽度和高度大于窗口宽度和高度时进行缩放
+							if(realHeight>windowH*scale){  //判断图片高度
+								imgHeight = windowH*scale; //如大于窗口高度，图片高度进行缩放
+								imgWidth = imgHeight/realHeight*realWidth;//等比例缩放宽度
+								if(imgWidth>windowW*scale){ //如宽度扔大于窗口宽度
+									imgWidth = windowW*scale; //再对宽度进行缩放
+								}
+							}else if(realWidth>windowW*scale){ //如图片高度合适，判断图片宽度
+								imgWidth = windowW*scale; //如大于窗口宽度，图片宽度进行缩放
+								imgHeight = imgWidth/realWidth*realHeight; //等比例缩放高度
+							} else { //如果图片真实高度和宽度都符合要求，高宽不变
+								imgWidth = realWidth;
+								imgHeight = realHeight;
+							}
+							$(bigimg).css("width",imgWidth);//以最终的宽度对图片缩放
+							var w = (windowW-imgWidth)/2;//计算图片与窗口左边距
+							var h = (windowH-imgHeight)/2;//计算图片与窗口上边距
+							$(innerdiv).css({"top":h, "left":w});//设置#innerdiv的top和left属性
+							$(outerdiv).fadeIn("fast");//淡入显示#outerdiv及.goal_img
+						});
+						$(outerdiv).click(function(){ //再次点击淡出消失弹出层
+							$(this).fadeOut("fast");
+						});
+					}
+
+
+
+				</script>
+				<script>
+
+                    function checked(ts,$user_id,$user_name)
+                    {
+                        var user_id = $user_id;
+                        var user_name=$user_name;
+//alert(ts);
+//alert(user_id);
+                        $.mbox({
+                            area: [ "450px", "auto" ], //弹框大小
+                            border: [ 0, .5, "#666" ],
+                            dialog: {
+                                msg: "<p>用户姓名："+user_name+"</p>添加天数：<input type='text' id='num' style='width:50px;border:0;border-bottom:#f2f2f2 solid 1px'>",
+                                btns: 2,   //1: 只有一个按钮   2：两个按钮  3：没有按钮 提示框
+                                type: 2,   //1:对钩   2：问号  3：叹号
+                                btn: [ "确定", "取消"],  //自定义按钮
+                                yes: function() {
+                                    var num =$('#num').val();
+                                    var regu = /^[1-9]\d*$/;
+                                    if(num.length!='')
+                                    {
+                                        if(!regu.test(num))
+                                        {
+                                            alert('申请天数不合法');
+                                        }else
+                                        {
+                                            //alert(num);
+                                            $.ajax({
+                                                type:'post',
+                                                data:{'user_id':user_id,'apply_days':num},
+                                                url:"{:url('wxadmint1/apply/numsure')}",
+                                                success:function(msg)
+                                                {
+                                                    //alert(msg);
+                                                    if(msg=='1')
+                                                    {
+                                                        alert('申请尚未审核，暂无法申请');
+                                                    }else if(msg=='2')
+                                                    {
+                                                        alert('您的申请已提交');
+                                                    }else if(msg=='3')
+                                                    {
+                                                        alert('申请提交失败');
+                                                    }
+                                                }
+                                            });
+                                        }
+
+                                    }else
+                                    {
+                                        alert('申请次数不能为空');
+                                    }
+
+
+
+
+                                },
+                                no: function() { //点击右侧按钮：失败
+                                    return false;
+                                }
+                            }
+                        });
+
+
+                    }
+
+                    /*$("#upd").on('click',function(){
+
+                        });*/
+				</script>
+				<!-- <script src="__HSTYLE__/js/jquery.min.js"></script> -->
+				<!-- <script src="__HSTYLE__data_files/laydate.js"></script> -->
+        <script src="__HSTYLE__laydate/laydate.js"></script>
+				<link type="text/css" rel="stylesheet" href="__HSTYLE__data_files/laydate.css">
+				<link type="text/css" rel="stylesheet" href="__HSTYLE__data_files/laydate1.css" id="LayDateSkin">
+				<!-- 日期插件 -->
+				<script>
+          laydate.render({
+            elem: '#dates', //指定元素
+            type:'datetime'
+          });
+          laydate.render({
+            elem: '#date', //指定元素
+            type:'datetime'
+          });
+          // ;!function(){
+          //     laydate({
+          //         elem: '#demo',
+          //         type:'time'
+          //     })
+          // }();
+				</script>
+
+				<script>
+          // ;!function(){
+          //     laydate({
+          //         elem: '#dates',
+          //         type:'time'
+          //     })
+          // }();
+				</script>
+
+
+
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.page-content -->
+</div><!-- /.main-content -->

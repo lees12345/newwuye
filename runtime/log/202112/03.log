@@ -1,0 +1,80 @@
+---------------------------------------------------------------
+[ 2021-12-03T13:27:45+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=711708f7f4bdcfd10a44109de1a4bece231e2232&timestamp=1638509265&nonce=329663032&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.331717s] [吞吐率：3.01req/s] [内存消耗：3,233.43kb] [文件加载：67]
+[ error ] [2]base64_encode() expects parameter 1 to be string, array given[/home/wwwroot/only.1yuaninfo.com/application/index/lib/conceon/Conceon.php:49]
+---------------------------------------------------------------
+[ 2021-12-03T13:27:46+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=711708f7f4bdcfd10a44109de1a4bece231e2232&timestamp=1638509265&nonce=329663032&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.270111s] [吞吐率：3.70req/s] [内存消耗：3,233.44kb] [文件加载：67]
+[ error ] [2]base64_encode() expects parameter 1 to be string, array given[/home/wwwroot/only.1yuaninfo.com/application/index/lib/conceon/Conceon.php:49]
+---------------------------------------------------------------
+[ 2021-12-03T13:27:46+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=711708f7f4bdcfd10a44109de1a4bece231e2232&timestamp=1638509265&nonce=329663032&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.323581s] [吞吐率：3.09req/s] [内存消耗：3,233.44kb] [文件加载：67]
+[ error ] [2]base64_encode() expects parameter 1 to be string, array given[/home/wwwroot/only.1yuaninfo.com/application/index/lib/conceon/Conceon.php:49]
+---------------------------------------------------------------
+[ 2021-12-03T13:35:40+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=d08fb468133f0f596556c2446bb8ee9a1473d763&timestamp=1638509740&nonce=757000134&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.325908s] [吞吐率：3.07req/s] [内存消耗：3,251.62kb] [文件加载：67]
+[ error ] [0]致命错误: Class 'app\wxadmint1\model\BaseModel' not found[/home/wwwroot/only.1yuaninfo.com/application/wxadmint1/model/WelcomeQueue.php:9]
+---------------------------------------------------------------
+[ 2021-12-03T13:35:40+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=d08fb468133f0f596556c2446bb8ee9a1473d763&timestamp=1638509740&nonce=757000134&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.294052s] [吞吐率：3.40req/s] [内存消耗：3,251.62kb] [文件加载：67]
+[ error ] [0]致命错误: Class 'app\wxadmint1\model\BaseModel' not found[/home/wwwroot/only.1yuaninfo.com/application/wxadmint1/model/WelcomeQueue.php:9]
+---------------------------------------------------------------
+[ 2021-12-03T13:35:41+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=d08fb468133f0f596556c2446bb8ee9a1473d763&timestamp=1638509740&nonce=757000134&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.261746s] [吞吐率：3.82req/s] [内存消耗：3,251.62kb] [文件加载：67]
+[ error ] [0]致命错误: Class 'app\wxadmint1\model\BaseModel' not found[/home/wwwroot/only.1yuaninfo.com/application/wxadmint1/model/WelcomeQueue.php:9]
+---------------------------------------------------------------
+[ 2021-12-03T13:46:11+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=9ac12905bec3409f3c8cbcb730b73d9ecef7cd22&timestamp=1638510370&nonce=726856867&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.330584s] [吞吐率：3.02req/s] [内存消耗：3,174.35kb] [文件加载：62]
+[ error ] [0]致命错误: Class 'app\wxadmint1\model\BaseModel' not found[/home/wwwroot/only.1yuaninfo.com/application/wxadmint1/model/WelcomeQueue.php:9]
+---------------------------------------------------------------
+[ 2021-12-03T13:46:11+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=9ac12905bec3409f3c8cbcb730b73d9ecef7cd22&timestamp=1638510370&nonce=726856867&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.306198s] [吞吐率：3.27req/s] [内存消耗：3,174.35kb] [文件加载：62]
+[ error ] [0]致命错误: Class 'app\wxadmint1\model\BaseModel' not found[/home/wwwroot/only.1yuaninfo.com/application/wxadmint1/model/WelcomeQueue.php:9]
+---------------------------------------------------------------
+[ 2021-12-03T13:46:12+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=9ac12905bec3409f3c8cbcb730b73d9ecef7cd22&timestamp=1638510370&nonce=726856867&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.281765s] [吞吐率：3.55req/s] [内存消耗：3,174.35kb] [文件加载：62]
+[ error ] [0]致命错误: Class 'app\wxadmint1\model\BaseModel' not found[/home/wwwroot/only.1yuaninfo.com/application/wxadmint1/model/WelcomeQueue.php:9]
+---------------------------------------------------------------
+[ 2021-12-03T14:00:09+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=6a6ef6827869998b12f84de54bdc2fe91709f7af&timestamp=1638511208&nonce=1247082748&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.315826s] [吞吐率：3.17req/s] [内存消耗：3,269.98kb] [文件加载：70]
+[ error ] [10501]SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'data' at row 1[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:453]
+---------------------------------------------------------------
+[ 2021-12-03T14:00:09+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=6a6ef6827869998b12f84de54bdc2fe91709f7af&timestamp=1638511208&nonce=1247082748&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.302655s] [吞吐率：3.30req/s] [内存消耗：3,269.98kb] [文件加载：70]
+[ error ] [10501]SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'data' at row 1[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:453]
+---------------------------------------------------------------
+[ 2021-12-03T14:00:10+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=6a6ef6827869998b12f84de54bdc2fe91709f7af&timestamp=1638511208&nonce=1247082748&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.313950s] [吞吐率：3.19req/s] [内存消耗：3,269.98kb] [文件加载：70]
+[ error ] [10501]SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'data' at row 1[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:453]
+---------------------------------------------------------------
+[ 2021-12-03T14:06:43+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=3fb54e2df7e53404a30cedc9bdbf4f1871d7c455&timestamp=1638511602&nonce=436975098&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.313467s] [吞吐率：3.19req/s] [内存消耗：3,269.96kb] [文件加载：70]
+[ error ] [10501]SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'data' at row 1[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:453]
+---------------------------------------------------------------
+[ 2021-12-03T14:06:43+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=3fb54e2df7e53404a30cedc9bdbf4f1871d7c455&timestamp=1638511602&nonce=436975098&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.330521s] [吞吐率：3.03req/s] [内存消耗：3,269.96kb] [文件加载：70]
+[ error ] [10501]SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'data' at row 1[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:453]
+---------------------------------------------------------------
+[ 2021-12-03T14:06:44+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=3fb54e2df7e53404a30cedc9bdbf4f1871d7c455&timestamp=1638511602&nonce=436975098&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.321385s] [吞吐率：3.11req/s] [内存消耗：3,269.96kb] [文件加载：70]
+[ error ] [10501]SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'data' at row 1[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:453]
+---------------------------------------------------------------
+[ 2021-12-03T14:10:52+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=37f9f4f8c14892c3b2767c3bbf5059341280ae4e&timestamp=1638511852&nonce=1131936105&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.312495s] [吞吐率：3.20req/s] [内存消耗：3,268.13kb] [文件加载：70]
+[ error ] [10501]SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'data' at row 1[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:453]
+---------------------------------------------------------------
+[ 2021-12-03T14:10:53+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=37f9f4f8c14892c3b2767c3bbf5059341280ae4e&timestamp=1638511852&nonce=1131936105&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.282814s] [吞吐率：3.54req/s] [内存消耗：3,268.13kb] [文件加载：70]
+[ error ] [10501]SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'data' at row 1[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:453]
+---------------------------------------------------------------
+[ 2021-12-03T14:10:53+08:00 ] 81.69.103.205 POST only.1yuaninfo.com/wxadmint1/Wx/wx?name=only&signature=37f9f4f8c14892c3b2767c3bbf5059341280ae4e&timestamp=1638511852&nonce=1131936105&openid=oGH2z5uW_Z6ZjnWMGNSFWhocC7ag
+[运行时间：0.324888s] [吞吐率：3.08req/s] [内存消耗：3,268.13kb] [文件加载：70]
+[ error ] [10501]SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'data' at row 1[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:453]
+---------------------------------------------------------------
+[ 2021-12-03T15:54:11+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/Welcome/send.html
+[运行时间：0.021662s] [吞吐率：46.16req/s] [内存消耗：2,728.59kb] [文件加载：52]
+[ error ] [0]variable type error： boolean[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/Response.php:316]
+---------------------------------------------------------------
+[ 2021-12-03T15:54:15+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/index/Welcome/send.html
+[运行时间：0.022474s] [吞吐率：44.50req/s] [内存消耗：2,728.59kb] [文件加载：52]
+[ error ] [0]variable type error： boolean[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/Response.php:316]

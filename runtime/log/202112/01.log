@@ -1,0 +1,12 @@
+---------------------------------------------------------------
+[ 2021-12-01T08:46:18+08:00 ] 101.91.62.89 GET only.1yuaninfo.com/index/personal/index.html
+[运行时间：0.015222s] [吞吐率：65.69req/s] [内存消耗：1,945.14kb] [文件加载：47]
+[ error ] [8]未定义数组索引: code[/home/wwwroot/only.1yuaninfo.com/application/index/controller/Personal.php:39]
+---------------------------------------------------------------
+[ 2021-12-01T10:15:49+08:00 ] 101.37.90.236 POST only.1yuaninfo.com/index/yun/GetYunData.html
+[运行时间：0.028544s] [吞吐率：35.03req/s] [内存消耗：2,778.36kb] [文件加载：58]
+[ error ] [10501]SQLSTATE[01000]: Warning: 1265 Data truncated for column 'tui_time' at row 1[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Connection.php:453]
+---------------------------------------------------------------
+[ 2021-12-01T10:23:02+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/wxadmint1/users/index.html?page=2
+[运行时间：0.624376s] [吞吐率：1.60req/s] [内存消耗：4,080.77kb] [文件加载：76]
+[ error ] [8]A non well formed numeric value encountered[/home/wwwroot/only.1yuaninfo.com/runtime/temp/18841efb437c1910761d8cae8e3f62a4.php:1207]

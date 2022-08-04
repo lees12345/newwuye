@@ -1,0 +1,66 @@
+<!--
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,	minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="__STYLE__css/jijin/appointment.css" type="text/css"  rel="stylesheet"/>
+    <script src="__STYLE__js/jquery-2.1.1.min.js"></script>
+    &lt;!&ndash; <script src="__STYLE__js/jijin/appointment.js"></script> &ndash;&gt;
+    <title>报名结束</title>
+</head>
+<body>
+<div class="success">
+    <h1><img src="__STYLE__img/jijin/images_apply_2.png"></h1>
+    <p>本期报名已结束！</p>
+    <input type="button" value="关闭" class="succ_close"/>
+</div>
+<script type="text/javascript">
+$(".succ_close").click(function(){
+    WeixinJSBridge.call('closeWindow');
+})
+</script>
+</body>
+</html>
+-->
+{__NOLAYOUT__}
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width,	minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="__STYLE__css/jijin/short_appoin.css" rel="stylesheet" />
+    <title>日新月溢</title>
+</head>
+<body>
+<h2 class="success_img"><img src="__STYLE__img/jijin/img_apply_2.png"></h2>
+</body>
+</html>
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width,	minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="__STYLE__css/jijin/short_appoin.css" rel="stylesheet" />
+    <script src="__STYLE__js/jquery-2.1.1.min.js"></script>
+    <!-- 链接js2.1 -->
+    <title>中证通体验平台</title>
+</head>
+<body>
+<h2 class="success_img">
+    <img src="__STYLE__img/jijin/tanhao.png">
+    <br />
+    抱歉，您来晚了<br />
+    本期报名已结束！
+</h2>
+<input type="button" class="success_close_two" value="关闭">
+<script>
+    $(".success_close_two").click(function(){
+        WeixinJSBridge.call('closeWindow');
+    })
+</script>
+</body>
+</html>

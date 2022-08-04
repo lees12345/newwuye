@@ -1,0 +1,33 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,	minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="__STYLE__css/wenjian/appointment.css" type="text/css"  rel="stylesheet"/>
+    <script src="__STYLE__js/jquery-2.1.1.min.js"></script>
+    <script src="__STYLE__css/wenjian/js/ninety_day.js"></script>
+    <title>报名成功</title>
+    <style>
+        body{
+            background: #F7F7F7;
+        }
+    </style>
+</head>
+<body>
+<div class="succ_head">
+    <h1><img src="__STYLE__img/wenjian/images_prompt_2.png"></h1>
+    <p class="succ_head_tlt">报名成功!</p>
+    <div class="succ_div">
+        <p>第<span>&nbsp;{$sort}&nbsp;</span>位领取本期服务</p>
+        <p>这是您第<span>&nbsp;{$count}&nbsp;</span>次领取本服务</p>
+    </div>
+</div>
+<p class="succ_bg"><img src="__STYLE__img/wenjian/images_character.png" /></p>
+</body>
+<script type="text/javascript">
+$(".succ_bg").click(function(){
+    WeixinJSBridge.call('closeWindow');
+})
+</script>
+</html>

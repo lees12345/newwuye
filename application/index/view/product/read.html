@@ -1,0 +1,37 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>详情</title>
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="__STYLE__css/TTDefaultCSS.css">
+    </head>
+    <body style="max-width: 660px; margin: 0px auto; background-color: rgb(255, 255, 255);">
+    <!--此处可以改背景色,背景图片,logo图片-->
+        
+    <!--header 部分样式须严格遵守-->
+    <header tt-ignored-node="1">
+      <h1>{$res.tu_title}</h1>
+      <div class="subtitle">
+        <a id="source" href="#"></a>
+        <time>{$res.tu_time|date='Y-m-d H:i:s',###}</time>
+        <a id="toggle_img" onclick="TouTiao.showImage(); return false" href="#" style="display: none;">显示图片</a>
+      </div>
+    </header>
+
+    <!--正文内容请放在article标签中, 此标签内所有链接都会被过滤-->
+    <article tt-ignored-node="1">
+        <p class="imgs_c"><img title="" alt="" alt_src="" src=""></p> 
+       {$res.tu_content}
+        <p></p>
+    </article>
+
+<!--此处须引用头条JS-->
+
+
+</div>   
+</div>
+</div></body>
+</html>

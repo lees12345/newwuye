@@ -1,0 +1,16 @@
+---------------------------------------------------------------
+[ 2021-12-06T15:41:00+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/wxadmint1/users/index.html?v=1&user_develop_people=&user_activate_people=&user_first_people=&search=&user_remark=&wx_nickname=&type_id=&user_status=&type_time=&is_agree=&is_extend=2&start_date=&end_date=
+[运行时间：0.035940s] [吞吐率：27.82req/s] [内存消耗：3,634.85kb] [文件加载：66]
+[ error ] [8]未定义数组下标: 1[/home/wwwroot/only.1yuaninfo.com/thinkphp/library/think/db/Builder.php:323]
+---------------------------------------------------------------
+[ 2021-12-06T15:57:28+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/wxadmint1/news/recods.html?news_id=2285&type=1
+[运行时间：0.036869s] [吞吐率：27.12req/s] [内存消耗：3,448.39kb] [文件加载：67]
+[ error ] [8]未定义数组下标: 10[/home/wwwroot/only.1yuaninfo.com/application/wxadmint1/model/UserNewsClick.php:17]
+---------------------------------------------------------------
+[ 2021-12-06T15:58:21+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/wxadmint1/news/recods.html?news_id=2285&type=1
+[运行时间：0.038105s] [吞吐率：26.24req/s] [内存消耗：3,448.59kb] [文件加载：67]
+[ error ] [8]未定义数组下标: 10[/home/wwwroot/only.1yuaninfo.com/application/wxadmint1/model/UserNewsClick.php:17]
+---------------------------------------------------------------
+[ 2021-12-06T15:58:21+08:00 ] 124.65.171.250 GET only.1yuaninfo.com/wxadmint1/news/recods.html?news_id=2285&type=1
+[运行时间：0.038072s] [吞吐率：26.27req/s] [内存消耗：3,448.59kb] [文件加载：67]
+[ error ] [8]未定义数组下标: 10[/home/wwwroot/only.1yuaninfo.com/application/wxadmint1/model/UserNewsClick.php:17]

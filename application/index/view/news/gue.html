@@ -1,0 +1,139 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="text/javascript" src="__STYLE__js/jquery-2.1.1.min.js" ></script>
+    <title>有奖问答</title>
+   
+    <style type="text/css">
+    	*{padding:0;margin:0;}
+    	body{height:100%}
+    	.big_box h3{margin:20px 0;text-align:center}
+    	.big_box{width:90%;margin:auto;}
+    	.answer label{display:block;padding:8px 0;font-size:18px;}
+		
+    	.answer{margin:20px 0;}
+    	.say{line-height:30px;color:#353535;font-size:18px;}
+    	#btnSubmit{background:#F9554B;width:100%;margin:30px auto;-webkit-appearance: none;cursor: pointer;display:block;border:none;color:#fff;font-size:16px;border-radius: 8px;padding:8px 0;}
+    	
+    	#alert_box{position: fixed;width: 100%;height: 100%;top: 0;left: 0;z-index: 2;display:none}
+			.mask{max-width: 640px;margin: 0 auto;position: relative;height: 100%;}
+			.mask_bg{background: rgba(0,0,0,.7);position: absolute;width: 100%;height: 100%;z-index: 1;top: 0;left: 0;}
+			.alert_world{ position: absolute;
+						z-index: 2;
+						top: 30%;
+						width: 90%;
+						left: 5%;
+						background:#fff;border-radius:6px;overflow:hidden;}
+    		.alert_world ul{width:75%;margin:40px auto 5%;overflow:hidden;display:block;}
+			@media only screen and (min-width: 414px) and (max-width: 736px){
+			}
+			.alert_world p{margin:auto;width:80%;}
+			
+			.close{text-decoration: none;float:right;font-size:22px;color:#777777;padding:5px 10px 5px 5px;}
+			.tan{color:#010101;padding-top:40px;}
+			.login{background:#F9554B;width:80%;margin:30px auto;-webkit-appearance: none;cursor: pointer;display:block;border:none;color:#fff;font-size:16px;border-radius: 8px;padding:8px 0;}
+    </style>
+</head>
+<body>
+	<div class="big_box">
+	<input name="openid" value="{$openid}" type="hidden">
+	<input name="guid" value="{$gue.gu_id}" type="hidden">
+
+		<h3>【股市常识问答】</h3>
+		<p class="say">奖励说明：有奖问答，回答正确即可获得日新月溢价值399元体验机会1次，一起学习，一起进步！</p>
+		<div class="answer">
+			<p style="padding-bottom:10px;font-weight:bold;font-size:18px;">{$gue.gu_title}</p>
+			{volist name="gue.gu_details" id="details" key="k"}
+			<label>
+				<input type="radio" value="{$k -1}" name="list"><span style="padding-left:10px;">{$details}<span>
+			</label>
+			{/volist}
+			
+			<p><input type="button" value="提交" id="btnSubmit"></p>
+			
+		</div>
+		
+	</div>
+
+	<div id="alert_box">
+		<div class="mask">
+			<div class="mask_bg"></div>
+			<div class="alert_world" data-box="buy">
+				<div>
+					<a href="javascript:void(0)" class="close">×</a>
+				</div>
+				<p class="tan">抱歉！您尚未成为我们的注册用户，请先注册再参与有奖问答，否则没法为您充值！谢谢！</p>
+				<input type="button" value="注册" class="login" onclick="window.location.href='{:url('index/register/index')}'">
+			</div>
+		</div>
+	</div>
+<script>
+	
+</script>
+<script type="text/javascript">
+	
+</script>
+	<script>
+          $(function(){
+          $("#btnSubmit").click(function(){
+             var list= $('input:radio[name="list"]:checked').val();
+             if(list==null){
+                 alert("请选中一个!");
+                 return false;
+             }
+             else{
+                 var value = $('input[name="list"]:checked').val()
+		// alert(value)
+		var openid = $('input[name="openid"]').val()
+		var guid = $('input[name="guid"]').val()
+
+		$.ajax({
+			url: "toJudge.html",
+			type: "POST",
+			dataType: "json",
+			data: {answer:value,openid:openid,guid:guid},
+			success: function(data){
+				
+                if(data == -1){
+                    alert("您已作答，请勿重复提交！")
+                }else if(data == 1){
+                    //跳转到答对的页面
+                    location.href = "/index/news/trues"
+                 
+                    // alert("正确")
+                }else if(data == 2){
+						$("#alert_box").fadeIn();
+					$(".close").click(function(){
+						$("#alert_box").fadeOut();
+					})
+                    //
+                }else if(data == 3){
+                    //跳转到错误的页面
+                    location.href = "/index/news/wrongs?gueid=" + guid
+                    
+                
+                    
+                }else if(data == 6){
+                    alert("您是内部员工！")
+                }else{
+                    alert("服务器正忙，请稍后重试！")
+                }
+                    
+				
+			},
+			error: function(error){
+				alert('服务器正忙，请稍后重试！')
+			}
+		});
+             }           
+         });
+      });
+
+         
+    </script>
+</body>
+</html>

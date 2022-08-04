@@ -1,0 +1,191 @@
+
+<div class="main-content">
+    <div class="breadcrumbs" id="breadcrumbs">
+        <script type="text/javascript">
+            try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+        </script>
+
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home home-icon"></i>
+                <a href="#">首页</a>
+            </li>
+
+            <li>
+                <a href="#">预约管理</a>
+            </li>
+            <li class="active">预约列表</li>
+        </ul><!-- .breadcrumb -->
+
+        <div class="nav-search" id="nav-search">
+            <form class="form-search">
+				<span class="input-icon">
+					<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+					<i class="icon-search nav-search-icon"></i>
+				</span>
+            </form>
+        </div><!-- #nav-search -->
+    </div>
+
+    <div class="page-content">
+        <div class="page-header">
+            <h1>
+                预约管理
+                <small>
+                    <i class="icon-double-angle-right"></i>
+                    预约列表
+                </small>
+            </h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+
+
+                <div class="table-responsive">
+                    <form class="form-search" action="{:url('wxadmint1/learn/list')}">
+                        <input type="hidden" name="v" value="1">
+                        <span class="input-icon">
+
+						<input type="text" placeholder="姓名/手机号/服务人员" class="nav-search-input" id="nav-search-input" autocomplete="off" name='search'/>
+                                </span>
+                        <input type="hidden" name="learn_id" value="{$learn}"/>
+                        <input type="submit" value='搜索' class="btn btn-info" style="border:0;padding:4px 10px;background:#4f99c6;color:#fff;">
+
+                    </form>
+                    <!-- 搜索框 -->
+                    <a href="daochu.html?learn_id={$learn}&status=1"><input type="button" value='导出' class="btn btn-info" style="border:0;padding:4px 10px;background:#4f99c6;color:#fff;"></a>
+                    <a href="daochu.html?learn_id={$learn}&status=-1"><input type="button" value='导出未关注' class="btn btn-info" style="border:0;padding:4px 10px;background:#4f99c6;color:#fff;"></a>
+
+总数：{$count}
+                    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th class="center">
+                                <label>
+                                    <input type="checkbox" class="ace" />
+                                    <span class="lbl"></span>
+                                </label>
+                            </th>
+                            <th>id</th>
+                            <th>用户姓名</th>
+                            <th>手机号</th>
+                            <th>服务人员</th>
+                            <th>预约时间</th>
+                            <th>预约手机号</th>
+                            <th>排序</th>
+                            <th>状态</th>
+                            <th>操作</th>
+
+                        </tr>
+                        </thead>
+                        {volist name="data" id="data"}
+
+
+                        <tbody>
+                        <tr>
+                            <td class="center">
+                                <label>
+
+                                    <i class="icon-edit bigger-120"></i>
+
+                                    <span class="lbl"></span>
+                                </label>
+                            </td>
+                            <td>{$data.userlearn_id}</td>
+                            <td>{$data.user_name}</td>
+                            <td>{$data.user_tel}</td>
+                            <td>{$data.user_server_people}</td>
+                            <td>{$data.userlearn_addtime|date="Y-m-d H:i:s",###}</td>
+                            <td>{if condition="$data.learn_tel eq ''"}暂无{else /}{$data.learn_tel}{/if}</td>
+                            <td>{$data.userlearn_sort}</td>
+                            <td>{if $data.user_status eq 1}<span style="color:red;">关注</span>
+                                {elseif $data.out_time eq ''/}<span style="color:blue;">未关注</span>
+                                {else}
+                                <span style="color:green;">取消关注</span>{/if}
+                            </td>
+                            <td>
+                                <span id="upd_one">
+
+                                    {if condition="$data.userlearn_status eq 1"}
+                                     <button id="upd" style="border:0;background:#0099cc;padding:3px 5px;color:#fff;" onclick="checked(this,'{$data.userlearn_id}','{$data.userlearn_status}')">
+                                        正常
+                                         </button>
+                                        {elseif condition="$data.userlearn_status eq 2"}
+                                          <button id="upd" style="border:0;background:#ff0000;padding:3px 5px;color:#fff;" onclick="checked(this,'{$data.userlearn_id}','{$data.userlearn_status}')">
+                                        暂停
+                                        {/if}</button>
+                                </span>
+                            </td>
+
+
+
+
+                        </tr>
+                        </tbody>
+                        {/volist}
+
+
+
+
+                    </table>
+                    {neq name="page" value=""}
+                    {$page}
+                    {/neq}
+
+                </div><!-- /.table-responsive -->
+            </div><!-- /span -->
+        </div><!-- /row -->
+
+
+
+
+    </div><!-- /.col -->
+</div><!-- /.row -->
+</div><!-- /.page-content -->
+</div><!-- /.main-content -->
+<script>
+
+    function checked(ts,$userlearn_id,$userlearn_status)
+    {
+        var userlearn_id = $userlearn_id;
+        var userlearn_status = $userlearn_status;
+        var a= document.getElementById("upd");
+
+        //alert(userlearn_id);
+        $.ajax({
+            data:{'userlearn_id':userlearn_id,'userlearn_status':userlearn_status},
+            url:"{:url('wxadmint1/learn/upd')}",
+            type:'POST',
+            success:function(msg)
+            {
+                //alert(msg);
+                if(msg == 1)
+                {
+                   // alert('正常');
+                    a.style.background="#0099cc";
+                    a.innerHTML="正常";
+                    window.location.reload()
+                }else if(msg == 2)
+                {
+
+                    //alert('暂停');
+                    a.style.background="#ff0000";
+                    a.innerHTML="暂停";
+                    window.location.reload()
+                }else if(msg == 3)
+                {
+                    alert('修改失败');
+                }
+            }
+
+        })
+
+
+
+
+
+    }
+    </script>
+

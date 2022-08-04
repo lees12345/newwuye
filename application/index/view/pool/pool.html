@@ -1,0 +1,145 @@
+{__NOLAYOUT__}
+<!-- __STYLE__ -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <link rel="stylesheet" href="__STYLE__css/publicStyle.css"/>
+        <link rel="stylesheet" href="__STYLE__css/leading_strategy.css"  />
+        <script src="__STYLE__js/rem.js"></script>
+        <script src="__STYLE__js/jquery-1.11.3.js"></script>
+        <script src="__STYLE__js/leading_strategy.js"></script>
+        <script src="__STYLE__js/template.js"></script>
+        <script src="__STYLE__js/vconsole.min.js"></script>
+        <!-- 页面调试 -->
+        <script>
+        // var vConsole = new VConsole();// 初始化
+        </script>
+        <style>
+            body{
+                background-color: #F5F5F5;
+            }
+        </style>
+        <title>标的股</title>
+        <script>
+            var adminstate ="";//用户身份
+            var product_id ="";//购买信息
+            var pool_id = "";// 第一个视频的id
+            //格式化日期
+            Date.prototype.Format = function (fmt) {
+                var o = {
+                        "M+": this.getMonth() + 1, // 月份
+                        "d+": this.getDate(), // 日
+                        "h+": this.getHours(), // 小时
+                        "m+": this.getMinutes(), // 分
+                        "s+": this.getSeconds(), // 秒
+                        "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+                        "S": this.getMilliseconds() // 毫秒
+                };
+                if (/(y+)/.test(fmt))
+                    fmt = fmt.replace(RegExp.$1, (this.getFullYear() + ""));
+                for (var k in o)
+                    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                return fmt;
+            }
+            /* 用户类型 */
+            $.ajax({
+                url: "http://tin.1yuaninfo.com/index/classes/usertype",
+                type:"get",
+                dataType:'json',//数据类型
+                success: function (msg) {
+                    console.log(msg);
+                    // console.log(msg.result);//用户状态值
+                    if(msg.result.type_id == 1){
+                        // 判断游客跳转注册页面
+                        window.location.href="http://tin.1yuaninfo.com/index/register/index";
+                    }else{
+                        adminstate = msg.result.type_id;//用户身份
+                        product_id = msg.result.product_id;//购买信息
+                        $.ajax({
+                            url: "http://tin.1yuaninfo.com/index/pool/index",
+                            type:"get",
+                            dataType:'json',//数据类型
+                            success: function (msg) {
+                                console.log(msg);
+                                //全部可以看
+                                    console.log("我是签约用户，我都可以看");
+                                    for(var i=0;i<msg.result.length;i++){
+                                        // console.log(msg.result[i]);
+                                        // is_see查阅状态 1未查阅2已查阅
+                                        var seestate = (msg.result[i].is_see == 1)?'未查阅':'已查阅';
+                                        // console.log(seestate);
+                                        var time = msg.result[i].pool_addtime;
+                                        var dateTime = new Date( time * 1000).Format('yy-MM-dd hh:mm:ss');
+                                        var list = '<a href="http://tin.1yuaninfo.com/index/pool/details?pool_id='+msg.result[i].pool_id+'" style="overflow:hidden;display:block" ><div class="stockpool_list_div" id="'+msg.result[i].pool_id+'"><img src="__STYLE__img/viewpoint_icon_dotline.png" class="stockpool_list_div_img"/><dl class="stockpool_dl" id="'+msg.result[i].pool_id+'"><dt id="'+msg.result[i].pool_id+'"><img src="http://tin.1yuaninfo.com/public/uploads/'+msg.result[i].pool_img+'" id="'+msg.result[i].pool_id+'" /></dt>';
+                                        var state = (msg.result[i].is_see == 1)?'<dd class="stockpool_dl_tit" id="'+msg.result[i].pool_id+'">'+msg.result[i].pool_title+'<span class="stockpool_dl_statew" id="'+msg.result[i].pool_id+'">'+seestate+'</span></dd>':'<dd class="stockpool_dl_tit" id="'+msg.result[i].pool_id+'">'+msg.result[i].pool_title+'<span class="stockpool_dl_statey" id="'+msg.result[i].pool_id+'">'+seestate+'</span></dd>';
+                                        var list2 ='<dd class="stockpool_dl_time" id="'+msg.result[i].pool_id+'">'+dateTime+'</dd></dl></div></a>' 
+                                        $(".stockpool_list").append(list+state+list2);
+                                    }   
+                            }
+                        })
+                    }
+                }
+            })
+           
+        </script>
+    </head>
+    <body>
+        <div class="stockpool_list">
+            <!-- <div class="stockpool_list_div">
+                <img src="__STYLE__img/viewpoint_icon_dotline.png" class="stockpool_list_div_img"/>
+                
+                <dl class="stockpool_dl">
+                    <dt><img src="__STYLE__img/tou_icon_1.png" /></dt>
+                    <dd class="stockpool_dl_tit">2020年2月15日股票池<span class="stockpool_dl_statey">已查阅</span></dd>
+                    <dd class="stockpool_dl_time">2020-02-26 09:00:21</dd>
+                </dl>
+            </div> -->
+            <!-- <div class="stockpool_list_div">
+                <img src="__STYLE__img/viewpoint_icon_dotline.png" class="stockpool_list_div_img"/>
+                
+                <dl class="stockpool_dl">
+                    <dt><img src="__STYLE__img/tou_icon_1.png" /></dt>
+                    <dd class="stockpool_dl_tit">2020年2月15日股票池<span class="stockpool_dl_statew">未查阅</span></dd>
+                    <dd class="stockpool_dl_time">2020-02-26 09:00:21</dd>
+                </dl>
+            </div> -->
+        </div>
+        <script>
+            // $(document).ready(function(){
+                // 点击列表进入详情页
+                    $(".stockpool_list").on('click','.stockpool_list_div',function(e){
+                        var target=e.target||e.srcElement;//获取当前点击的对象
+                        var cls=target.id;//获取当前点击对象的class名
+                    if(cls == "" || cls == "undefined"){
+                        alert("请开通会员后查看");
+                        return false;
+                    }else{
+                        $.ajax({
+                            type:"GET",
+                            url: "http://tin.1yuaninfo.com/index/pool/detail",
+                            dataType:'json',//数据类型
+                            data: {
+                                pool_id:cls
+                            },
+                            success: function (res) {
+                                console.log(res);//列表详情返回值
+                                window.location.href="http://tin.1yuaninfo.com/index/pool/details?pool_id="+res.result.pool_id;
+                                
+                            },
+                            error:function(error){
+                                console.log(error);
+                            }
+                        })
+                        
+                    }
+                    
+                })
+                
+                
+            // })
+        </script>
+    </body>
+</html>
+ 

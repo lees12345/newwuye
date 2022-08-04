@@ -1,0 +1,143 @@
+
+<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">首页</a>
+							</li>
+
+							<li>
+								<a href="#">消息管理</a>
+							</li>
+							<li class="active">消息列表</li>
+						</ul><!-- .breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- #nav-search -->
+					</div>
+
+					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								消息
+								<small>
+									<i class="icon-double-angle-right"></i>
+								消息列表
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="table-responsive">
+										<!-- 搜索框 -->
+							<!--<form class="form-search" action="{:url('wxadmint1/news/index')}">-->
+							  <!--<input type="hidden" name="v" value="1">-->
+								<!--<span class="input-icon">-->
+									<!--<select name="is_shares" class="nav-search-input">-->
+											<!--<option value="">是否为股票</option>-->
+												<!--<option value="1">是-->
+												<!--<option value="0">否-->
+											<!--</select>-->
+								<!--</span>-->
+								<!--<input type="submit" value='搜索' class="small_sou" style="border:0;padding:4px 10px;background:#4f99c6;color:#fff;">-->
+							<!--</form>-->
+							<br/>
+
+											<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+												<thead>
+													<tr>
+														<th class="center">
+															<label>
+																<input type="checkbox" class="ace" />
+																<span class="lbl"></span>
+															</label>
+														</th>
+														<th>消息id</th>
+														<th>服务类型</th>
+														<th>模板标题</th>
+														<th>备注</th>
+														<th>通知标题</th>
+														<th>通知时间</th>
+														<th>摘要</th>
+														<th>通知内容</th>
+														<th>客户类型</th>
+														<th>员工身份</th>
+														<th>查看次数</th>
+														<th>添加时间</th>
+														<th>修改时间</th>
+														<th>操作</th>
+
+													</tr>
+												</thead>
+										{volist name="data" id="data"}
+												<tbody>
+													<tr>
+														<td class="center">
+															<label>
+																<input type="checkbox" class="ace" />
+																<span class="lbl"></span>
+															</label>
+														</td>
+
+														<td>{$data.id}</td>
+														<td>{$data.mt_name}</td>
+														<td>{$data.first}</td>
+														<td>{$data.remark}</td>
+														<td>{$data.title}</td>
+														<td>{$data.time}</td>
+														<td width="300" height="100px"><textarea rows="5" cols="20">{$data.news_adstracts}</textarea></td>
+														<td width="300" height="100px"><textarea rows="5" cols="20">{$data.new_content}</textarea></td>
+														<td>{$data.users_type}</td>
+														<td>{$data.user_auth}</td>
+														<td style="color: #3b97d7;"><a href="{:url('news/recods')}?news_id={$data.id}">{$data.number}</a></td>
+														<td>{$data.addtime}</td>
+														<td>{$data.updatetime}</td>
+														<td>
+															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+
+																<a href="{:url('wxadmint1/news/upd')}?news_id={$data.id}"><button class="btn btn-xs btn-info">
+																	<i class="icon-edit bigger-120"></i>
+																</button>
+																</a>
+
+															</div>
+														</td>
+
+
+
+													</tr>
+												</tbody>
+										{/volist}
+											</table>
+											{neq name="page" value=""}
+                                         
+                                            {$page}
+
+                                          {/neq}
+										</div><!-- /.table-responsive -->
+									</div><!-- /span -->
+								</div><!-- /row -->
+
+						
+								
+
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->

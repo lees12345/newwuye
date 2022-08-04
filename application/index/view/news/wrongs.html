@@ -1,0 +1,38 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    	<script type="text/javascript" src="__STYLE__js/jquery-2.1.1.min.js" ></script>
+
+		<title>有奖问答</title>
+		<style>
+			.true{width:80%;margin:auto}
+			h1 img{margin:auto;display: block;width:40%;margin-top:20%}
+			.orange{color:#3F69F9;font-size:20px;text-align:center;font-weight: bold;margin-bottom:40px;}
+			.world{color:#3D3D3D;line-height:30px;font-size:18px;margin-top:10px;}
+			.complete{color:#fff;background:#3F69F9;width:100%;border:none;font-size:18px;padding:8px 0;border-radius: 8px;margin-top:15%;cursor:pointer;-webkit-appearance:none;}
+			.black{font-size:20px;text-align: center}
+		</style>
+	</head>
+	<body>
+		<div class="true">
+			<h1><img src="__STYLE__img/wrong.png"></h1>
+			
+			<p class="orange">啊哦，答错了！</p>
+			<p class="black">正确答案：{$gue.gu_andesc}</p>
+			<p class="world">非常遗憾，1次体验机会从您的身边溜走，希望您和我们一样一起学习，天天向上！积极准备下一期有奖问答！</p>
+			<p><input type="button" value="完成" class="complete" onclick="submit()"></p>
+		</div>
+		<script type="text/javascript">
+		function submit()
+		{
+			WeixinJSBridge.call('closeWindow');
+		}
+
+
+		</script>
+	</body>
+</html>

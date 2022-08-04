@@ -1,0 +1,206 @@
+<style type="text/css">
+	th{
+
+		vertical-align:middle;/** 设置垂直方向居中 */
+		font-size:15px;
+		color:#000000;
+	}
+	.center{
+		text-align:center;/** 设置水平方向居中 */
+	}
+	.inputLabel{
+		margin:10px 10px;
+	}
+	.inputLabel a  input{
+		border:0;
+		font-size: 14px;
+		background-color: #cccccc;
+		color:#ffffff;
+		border-radius: 3px;
+		margin-right: 8px;
+		padding:4px 8px;
+	}
+	a input.inputchecked{
+		background-color: #0091FF;
+		color:#ffffff;
+		border-radius: 3px;
+	}
+</style>
+<style>
+  .radioLabel{
+    font-size: 18px;
+  }
+  </style>
+<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">首页</a>
+							</li>
+
+							<li>
+								<a href="#">用户</a>
+							</li>
+							<li class="active">用户列表</li>
+						</ul><!-- .breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- #nav-search -->
+					</div>
+
+					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								用户
+								<small>
+									<i class="icon-double-angle-right"></i>
+								用户列表
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+						<a href="{:url('wxadmint1/users/index')}">返回列表页</a>
+								<form class="form-search" action="{:url('wxadmint1/users/stock')}">
+									<input type="hidden" name="v" value="1">
+									<input type="hidden" name="user_id" value="{$user_id}">
+									<input type="hidden" name="user_name" value="{$user_name}">
+									<input type="hidden" name="s_status" value="{$s_status}">
+									<span class="input-icon">
+					<!-- <select name="click_type">
+						<option value="">请选择查看类型
+						<option value="1">交易时段查看
+						<option value="2">超时
+						<option value="3">失效
+						<option value="4">结束点击需要
+
+					</select> -->
+          <!--<div style="display: block;margin-top: 10px;margin-left: 10px;">-->
+            <!--<lable class="radioLabel"><input type="radio" value="1" name="click_type">交易时段查看</lable>-->
+            <!--<lable class="radioLabel"><input type="radio" value="2" name="click_type">超时</lable>-->
+            <!--<lable class="radioLabel"><input type="radio" value="3" name="click_type">失效</lable>-->
+            <!--<lable class="radioLabel"><input type="radio" value="4" name="click_type">结束点击需要</lable>-->
+            <!--&lt;!&ndash; <lable class="radioLabel"><input type="radio" value="6" name="click_type">结束不需要</lable> &ndash;&gt;-->
+          <!--</div>-->
+							<select id="bi" name="is_order">
+								<option value="">请选择查看状态</option>
+								<option value="0">正常
+								<option value="1">付费
+							</select>
+						<input type="submit" value='搜索' class="btn btn-info" style="border:0;padding:4px 10px;background:#4f99c6;color:#fff;">&nbsp;&nbsp;查看次数：<span style="color:red;">{$count}</span>
+				</span>
+								</form>
+								<div style="display: block;margin-top: 10px;" class="inputLabel">
+									<a href="{:url('wxadmint1/users/stock')}?v=1&user_id={$user_id}&user_name={$user_name}&s_status={$s_status}&click_type=0"><input type="button" value="全部" name="click_type" {if($click_type==0)} class="inputchecked" {/if}></a>
+									<a href="{:url('wxadmint1/users/stock')}?v=1&user_id={$user_id}&user_name={$user_name}&s_status={$s_status}&click_type=1"><input type="button" value="交易时段查看" name="click_type" {if($click_type==1)} class="inputchecked" {/if}></a>
+									<a href="{:url('wxadmint1/users/stock')}?v=1&user_id={$user_id}&user_name={$user_name}&s_status={$s_status}&click_type=2"><input type="button" value="超时查看" name="click_type" {if($click_type==2)} class="inputchecked" {/if}></a>
+									<a href="{:url('wxadmint1/users/stock')}?v=1&user_id={$user_id}&user_name={$user_name}&s_status={$s_status}&click_type=3"><input type="button" value="失效查看" name="click_type" {if($click_type==3)} class="inputchecked" {/if}></a>
+									<a href="{:url('wxadmint1/users/stock')}?v=1&user_id={$user_id}&user_name={$user_name}&s_status={$s_status}&click_type=4"><input type="button" value="结束点击需要" name="click_type" {if($click_type==4)} class="inputchecked" {/if}></a>
+									<a href="{:url('wxadmint1/users/stock')}?v=1&user_id={$user_id}&user_name={$user_name}&s_status={$s_status}&click_type=6"><input type="button" value="结束查看" name="click_type" {if($click_type==6)} class="inputchecked" {/if}></a>
+									<a href="{:url('wxadmint1/users/stock')}?v=1&user_id={$user_id}&user_name={$user_name}&s_status={$s_status}&click_type=7"><input type="button" value="点击解锁按钮" name="click_type" {if($click_type==7)} class="inputchecked" {/if}></a>
+									<a href="{:url('wxadmint1/users/stock')}?v=1&user_id={$user_id}&user_name={$user_name}&s_status={$s_status}&click_type=8&is_order=1"><input type="button" value="付费解锁" name="click_type" {if($click_type==8)} class="inputchecked" {/if}></a>
+									<a href="{:url('wxadmint1/users/stock')}?v=1&user_id={$user_id}&user_name={$user_name}&s_status={$s_status}&click_type=10"><input type="button" value="游客查看" name="click_type" {if($click_type==10)} class="inputchecked" {/if}></a>
+								</div>
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="table-responsive">
+
+											<table id="sample-table-1" class="table table-striped table-bordered table-hover font">
+												<thead>
+													<tr>
+														<th class="center" width="50px">股票ID</th>
+														<th class="center" width="80px">用户姓名</th>
+														<th class="center" width="150px">股票名称</th>
+														<th class="center" width="150px">推送时间</th>
+														<th class="center" width="150px">点击时间</th>
+														<th class="center" width="60px">卖出状态</th>
+														<th class="center" width="150px">卖出时间</th>
+														<th class="center" width="150px">查看类型</th>
+														<th class="center" width="150px">查看状态</th>
+														<th>备注</th>
+													</tr>
+												</thead>
+										{volist name="re" id="re"}
+
+										
+												<tbody>
+													<tr>
+														
+														<td>{$re.news_id}</td>
+														<td>{$re.user_name}</td>
+														<td>
+															{switch name="$re.shares_status"}
+															{case value="1"}<span style="color:#ff0000">{$re.news_code}</span>{/case}
+															{case value="2"}<span style="color:#009900">{$re.news_code}</span>{/case}
+															{case value="3"}<span style="color:#8B8989">{$re.news_code}</span>{/case}
+															{default /}
+															<span style="color:#000000">{$re.news_code}</span>
+															{/switch}
+
+														</td>
+														<td>{$re.add_time|date='Y-m-d H:i:s',###}</td>
+														<td>{notempty name='$re.click_time'}{$re.click_time|date='Y-m-d H:i:s',###}{else /}暂无{/notempty}</td>
+														<td>{switch name="$re.shares_status"}
+															{case value="1"}<span style="color:#ff0000">止盈</span>{/case}
+															{case value="2"}<span style="color:#009900">止损</span>{/case}
+															{case value="3"}<span style="color:#009900">超时卖出</span>{/case}
+															{case value="4"}<span style="color:#8B8989">调仓</span>{/case}
+															{default /}
+															<span style="color:#000000">暂无</span>
+															{/switch}
+														</td>
+														<td>{if $re.end_time eq 0}暂无{else /}{$re.end_time|date='Y-m-d H:i:s',###}{/if}</td>
+
+														<td>{switch name="$re.click_type"}
+															{case value="1"}交易时段查看{/case}
+															{case value="2"}<span style="color:blue">超时查看</span>{/case}
+															{case value="3"}<span style="color:green">失效查看</span>{/case}
+															{case value="4"}<span style="color:red">结束点击需要</span>{/case}
+															{case value="6"}<span>结束查看</span>{/case}
+															{case value="7"}<span style="color:red">点击解锁</span>{/case}
+															{case value="10"}<span style="color:#660099">游客查看</span>{/case}
+															{/switch}
+														</td>
+														<td>{if condition="$re.is_order eq 0"}正常{else /}<span style="color:blue">解锁查看</span>{/if}</td>
+														<td>{notempty name='$re.remark'}{$re.remark}{else /}暂无{/notempty}</td>
+
+													</tr>
+												</tbody>
+											
+										{/volist}
+											</table>
+											
+										</div><!-- /.table-responsive -->
+									</div><!-- /span -->
+								</div><!-- /row -->
+
+						
+								
+
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+<script>
+	$(".inputLabel a input").click(function(){
+		//通过 .index()方法获取元素下标，从0开始，赋值给某个变量
+		//var _index = $(this).index();
+		//让内容框的第 _index 个显示出来，其他的被隐藏
+		// $(".tab-box>div").eq(_index).show().siblings().hide();
+		//改变选中时候的选项框的样式，移除其他几个选项的样式
+		//$(this).addClass("inputchecked").siblings().removeClass("inputchecked");
+	});
+</script>

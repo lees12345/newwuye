@@ -1,0 +1,114 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,	minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="./CSS/index.css">
+    <script src="./js/rem.js"></script>
+    <script src="./js/vue.js"></script>
+    <title>我的项目</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- nav -->
+        <div class="navContainer">
+            <div class="navBarItem" @click="changeNavFn(index)" v-for="(item,index) in navButtonList" :key="index">
+                <span :style=" item.navLineShow ? { color: '#3A9EFF' } : '' ">{{ item.button }}</span>
+                <div :class=" item.navLineShow ? 'bottomLine' : '' "></div>
+            </div>
+        </div>
+        <!-- 信息栏 -->
+        <div class="infoItem" v-for=" (item,index) in infoItemList" :key="index">
+
+            <div class="top">
+                <div class="icon">
+                    <img :src="item.imgUrl">
+                </div>
+                <div class="text">
+                    <p class="p1">报修人：{{ item.name }}（{{ item.telephone }}）</p>
+                    <p class="p2">维修地址：{{ item.address }}</p>
+                </div>
+            </div>
+
+            <div class="middle">
+                <div class="title">
+                    <p>{{ item.title }}</p>
+                </div>
+                <div class="content">
+                    <p>{{ item.content }}</p>
+                </div>
+            </div>
+
+            <div class="bottom">
+                <div class="detail">
+                    <p>查看详情>></p>
+                </div>
+                <div class="button">
+                    <button class="b1">结束任务</button>
+                    <button class="b2">进度汇报</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                // 导航栏按钮
+                navButtonList: [{
+                    navLineShow: true,
+                    button: '全部'
+                }, {
+                    navLineShow: false,
+                    button: '未接收'
+                }, {
+                    navLineShow: false,
+                    button: '处理中'
+                }, {
+                    navLineShow: false,
+                    button: '已完成'
+                }, ],
+                // "全部"按钮数据
+                infoItemList: [{
+                    name: '张三',
+                    telephone: '17696057130',
+                    address: '北京市朝阳区潘家园新建村2层',
+                    title: '维修事件任务提醒',
+                    content: '我想用艺术感动人们的内心。我希望他们这样说到：他的感受深刻而温柔。',
+                    imgUrl: './img/gear.png'
+                }, {
+                    name: '李四',
+                    telephone: '17696057130',
+                    address: '北京市朝阳区潘家园新建村2层',
+                    title: '维修事件任务提醒',
+                    content: '我想用艺术感动人们的内心。我希望他们这样说到：他的感受深刻而温柔。',
+                    imgUrl: './img/personalCenter.png'
+                }, {
+                    name: '王五',
+                    telephone: '17696057130',
+                    address: '北京市朝阳区潘家园新建村2层',
+                    title: '维修事件任务提醒',
+                    content: '我想用艺术感动人们的内心。我希望他们这样说到：他的感受深刻而温柔。',
+                    imgUrl: './img/wrench.png'
+                }, ]
+            },
+            methods: {
+                changeNavFn(index) {
+                    // console.log(index)
+                    for (var i = 0; i < this.navButtonList.length; i++) {
+                        this.navButtonList[i].navLineShow = false
+                    }
+                    this.navButtonList[index].navLineShow = true
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

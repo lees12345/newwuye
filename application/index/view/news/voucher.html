@@ -1,0 +1,181 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="0">
+    <link rel="stylesheet" href="/public/static/platform/css/vouchars.css" />
+    <script src="/public/static/platform/js/jquery-2.1.1.min.js"></script>
+    <title>千万红包 感恩回馈</title>
+</head>
+<body>
+<div class="vouchers_div">
+    <div class="black_div"></div>
+    <div class="open_div">
+        <div class="open_again">
+            <h1 class="open_img"><img src="/public/static/platform/img/open.gif"></h1>
+            <img src="/public/static/platform/img/close.png"  class="close"/>
+        </div>
+
+        <!-- 注册用户 -->
+        <div class="open_user">
+            <h1 class="open_img_two"><img src="/public/static/platform/img/user.png"></h1>
+            <img src="/public/static/platform/img/close.png"  class="close"/>
+        </div>
+        
+        <!-- 未注册用户 -->
+        <div class="open_no">
+            <h1 class="open_img_three"><img src="/public/static/platform/img/no_register.png"></h1>
+            <img src="/public/static/platform/img/close.png"  class="close"/>
+        </div>
+    </div>
+</div>
+<!-- 以抵用 -->
+<div class="diyong_div">
+    <div class="varch_black_div"></div>
+    <div class="diyong">
+        <h1 class="diyong"><img src="/public/static/platform/img/diyong.png"></h1>
+    </div>
+</div>
+
+<!-- 领取未使用 -->
+<div class="effective_div">
+    <div class="varch_black_div"></div>
+    <div class="you_div_two">
+        <h1 class="effect_img">
+            <img src="/public/static/platform/img/have_been.png">
+            <span class="time_num_two">{$data.between}</span>
+        </h1>
+    </div>
+</div>
+<input name="type_name" value="{$data.type_name}" type="hidden"/>
+<input name="mobile_phone" value="{$data.mobile_phone}" type="hidden"/>
+<input name="nickname" value="{$data.nickname}" type="hidden"/>
+<input name="picture" value="{$data.picture}" type="hidden"/>
+<input name="openid" value="{$data.openid}" type="hidden"/>
+<input name="user_id" value="{$data.user_id}" type="hidden"/>
+
+<input name="time_out" value="{$data.time_out}" type="hidden"/>
+<input name="status" value="{$data.status}" type="hidden"/>
+<!-- ytianshu -->
+<input name="between" value="{$data.between}" type="hidden"/>
+<input name="remark" value="200" type="hidden"/>
+
+<script src="/public/static/platform/layui/layui.js"></script>
+
+<script src="http://zztong.admin.gszx77.com/public/static/admin/assets/js/distios/axios.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $(".close").click(function(){
+            $(".vouchers_div").hide();
+            WeixinJSBridge.call('closeWindow');
+        });
+
+        //状态123 天数
+            var status = $("input[name='status']").val();
+            var between = $("input[name='between']").val();
+            var time_out = $("input[name='time_out']").val();
+        if(status==1){
+            // alert("未领取成功领取！");
+            $(".vouchers_div").show();
+            $(".open_img").click(function(){
+            var type_name = $("input[name='type_name']").val();
+            var mobile_phone = $("input[name='mobile_phone']").val();
+            var nickname = $("input[name='nickname']").val();
+            var picture = $("input[name='picture']").val();
+            var openid = $("input[name='openid']").val();
+            var user_id = $("input[name='user_id']").val();
+            var openid = $("input[name='openid']").val();
+            var remark = $("input[name='remark']").val();
+            $(".open_again").hide();
+
+            function getUserAccount() {
+              return axios.post('http://vip.1yuaninfo.com/money/add/user',{
+                type_name,
+                mobile_phone,
+                nickname,
+                picture,
+                openid,
+                user_id,
+                openid,
+                remark
+              })
+            }
+            function getUserPermissions() {
+              return axios.post('/index/news/update_status.html',{
+                 openid
+              })
+            }
+            axios.all([getUserAccount(), getUserPermissions()])
+              .then(axios.spread(function (response, perms) {
+                // 两个请求现在都执行完成
+                console.log(response);
+                var json = JSON.parse(response.config.data);
+                console.log(json);
+                  if(json.mobile_phone == ''||json.mobile_phone == null){
+                    // alert(json.mobile_phone);
+                    //未注册用户
+                    layui.use('layer', function(){
+                        var layer = layui.layer;
+                        layer.msg('领取成功', {
+                            time: 1500, //1.5s后自动关闭
+                            area:['160px', '50px']
+                        });
+                    });
+                    $(".open_no").show();
+                }else{
+                    // alert(status);
+                      //注册用户
+                        layui.use('layer', function(){
+                          var layer = layui.layer;
+                           layer.msg('领取成功', {
+                              time: 1500, //1.5s后自动关闭
+                              area:['160px', '50px']
+                           });
+                        })
+                        $(".open_user").show();     
+                }
+            }))
+            // axios.post('http://vip.1yuaninfo.com/money/add/user', {
+            //   })
+              // .then(function (response) {
+               
+              // })
+              .catch(function (error) {
+                console.log(error);
+              });
+            // 点击去使用
+            $(".open_img_three").click(function(){
+                window.location = ("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc013297214b78bc8&redirect_uri=http%3A%2F%2Fonly.1yuaninfo.com%2Findex%2Fpersonal%2Findex.html&name=only&response_type=code&scope=snsapi_base&state=123#wechat_redirect");
+            })
+        })
+                      
+        }else if(status==2){        
+            // alert("已领取未使用！");
+            $(".vouchers_div").hide();
+            $(".effective_div").show();
+            $(".effective_div").click(function(){
+                 $(".effective_div").hide();
+                WeixinJSBridge.call('closeWindow');
+            });
+           
+        }else{
+            // alert("已使用");
+            $(".vouchers_div").hide();
+            $(".effective_div").hide();
+            $(".diyong_div").show();
+            $(".diyong_div").click(function(){
+                 $(".diyong_div").hide();
+                WeixinJSBridge.call('closeWindow');
+            });
+        }
+        
+
+    })
+</script>
+</body>
+</html>

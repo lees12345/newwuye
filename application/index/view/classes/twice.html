@@ -1,0 +1,455 @@
+{__NOLAYOUT__}
+<!-- __STYLE__ -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <link rel="stylesheet" href="__STYLE__css/publicStyle.css"/>
+        <link rel="stylesheet" href="__STYLE__css/leading_strategy.css"  />
+        <script src="__STYLE__js/rem.js"></script>
+        <script src="__STYLE__js/jquery-1.11.3.js"></script>
+        <script src="__STYLE__js/leading_strategy.js"></script>
+        <script src="__STYLE__js/template.js"></script>
+        <script src="__STYLE__js/vconsole.min.js"></script>
+        <!-- 页面调试 -->
+        <script>
+        // var vConsole = new VConsole();// 初始化
+        </script>
+        <script>
+            var adminstate ="";//用户身份
+            var class_id = "";// 第一个视频的id
+            var myDate = new Date();
+            clicktime = myDate.toLocaleString();
+            console.log(clicktime);
+             // //格式化日期
+            Date.prototype.Format = function (fmt) {
+                var o = {
+                        "M+": this.getMonth() + 1, // 月份
+                        "d+": this.getDate(), // 日
+                        "h+": this.getHours(), // 小时
+                        "m+": this.getMinutes(), // 分
+                        "s+": this.getSeconds(), // 秒
+                        "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+                        "S": this.getMilliseconds() // 毫秒
+                };
+                if (/(y+)/.test(fmt))
+                    fmt = fmt.replace(RegExp.$1, (this.getFullYear() + ""));
+                for (var k in o)
+                    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                return fmt;
+            }
+            // 获取用户状态
+            $.ajax({
+                type:"GET",
+                url: "http://tin.1yuaninfo.com/index/classes/usertype",
+                dataType:'json',
+                async : true, //异步
+                success: function (res) {
+                    // console.log(res);//用户状态返回值
+                    // console.log("用户类型"+res.result.type_id);
+                    if(res.result.type_id == 1){
+                        // 判断游客跳转注册页面 除游客之外都可以看
+                        window.location.href="http://tin.1yuaninfo.com/index/register/index";
+                    }else{
+                        adminstate = res.result.type_id;//用户身份
+                    }
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            });
+          
+            
+            
+        </script>
+        <title>收盘总结</title>
+        
+    </head>
+    <body>
+        <div class="video_first">
+            <!-- <video id="video" controls autoplay="autoplay" muted height="210px" poster="img/home_icon_1.png">
+                <source src="http://cdn.gszx77.com/20200217a.mp4" type="video/mp4" />
+                 <source src="http://cdn.gszx77.com/20200217a.mp4" type="video/ogg">
+                您的浏览器不支持 video 标签。
+            </video>
+            <div class="video_intro">
+                <p class="video_intro_tit">2020年2月19日盘前策略
+                    <span><img src="img/huo_icon_1.png" /><img src="img/xin_icon_1.png" /><img src="img/ding_icon_1.png" /></span>
+                </p>
+                <p class="video_intro_time">2020-02-19 08:35 
+                <span class="video_zan"><img src="img/dianzan_icon_1.png">5点赞</span> 
+                <span class="video_lun"><img src="img/pinglun_icon_1.png">3评论</span></p>
+            </div> -->
+        </div>
+        <div class="video_list">
+            <p class="video_tit">服务列表</p>
+            <div>
+                <ul class="video_ul">
+                    <!-- <li><img src="img/viewpoint_icon_dot.png" /><span>2020年2月18日盘前策略</span></li> -->
+                </ul>
+            </div>
+        </div>
+        <!-- 评论区 -->
+        <!-- .video_zan -->
+        <div class="video_pinglun" style="display: none;">
+            <p class="video_pinglun_close"><img src="__STYLE__img/close_icon_1.png"> 3条评论</p>
+            <div class="video_pldiv">
+                <div class="video_pldiv_dl">
+                   <!--  <dl class="question_content">
+                        <dt><img src="__STYLE__img/tou_icon_1.png"></dt>
+                        <dd class="content_name">某某</dd>
+                        <dd>我提问的问题你能解答了</dd>
+                        <dd class="question_content_time">2018-08-09 02:02:01</dd>
+                    </dl>
+                    <dl class="reply_content">
+                        <dt><img src="__STYLE__img/tou_icon_1.png">老师:我来帮您解答问题呀</dt>
+                    </dl> -->
+                </div>  
+            </div>
+            <input type="text" placeholder="添加你的评论…" class="video_submit"/>
+            <input type="button" value="提交" class="video_button"/>
+            
+        </div>
+    </body>
+    
+    <script>     
+        $(document).ready(function(){
+            $.ajax({
+                url: "http://tin.1yuaninfo.com/index/classes/index_two",
+                type:"get",
+                dataType:'json',//数据类型
+                async : true, //异步
+                success: function (msg) {
+                     console.log(msg);
+                    // 判断当数据为空时;
+                    // console.log(msg.result.length);
+                    if (msg.result.length == 0) {
+                        // alert("数据为空！");
+                        var html = '<div class="wu_img"><img src="__STYLE__img/zanwu_video.png" /><span>暂无视频</span></div>';
+                        
+                        $("body").html(html);
+                    }else{
+                        // 第一条数据置顶
+                        //签约用户全部可以看
+                        var first = msg.result;//视频数据
+                            class_id = first.class_id;
+                        var pinglun = '<img src="__STYLE__img/close_icon_1.png">'+first.comment_count+'条评论';
+                        $(".video_pinglun_close").html(pinglun);
+                        // 时间戳转换
+                        var time = first.class_addtime;
+                        var dateTime = new Date( time * 1000).Format('yy-MM-dd hh:mm:ss');
+                        // 1未点赞2已点赞
+                        var zan = (first.is_give == 1)?'<span class="video_zan"><img src="__STYLE__img/dianzan_icon_1.png">'+first.give_count+'点赞</span> ':'<span class="video_zan"><img src="__STYLE__img/dianzan_icon_2.png">'+first.give_count+'点赞</span>';
+                        // 置顶数据 全部能看
+                        if(first.class_video_type == 1){
+                            // 1网页
+                            var html = '<a href="'+first.class_url+'" style="overflow:hidden;display:block" ><div class="click_seeimg"><img src="__STYLE__img/click_see_img.png" /></div></a><div class="video_intro"><p class="video_intro_tit">'+first.class_title+'<span><img src="__STYLE__img/huo_icon_1.png" /><img src="__STYLE__img/xin_icon_1.png" /><img src="__STYLE__img/ding_icon_1.png" /></span></p><p class="video_intro_time">'+dateTime+'';
+                            var html2 = '<span class="video_lun"><img src="__STYLE__img/pinglun_icon_1.png">'+first.comment_count+'评论</span></p></div>';
+                            $(".video_first").html(html+zan+html2);
+                        }else if(first.class_video_type == 2){
+                            // 2视频
+                           var html = '<video id="video" controls autoplay="autoplay" muted height="210px" poster="http://tin.1yuaninfo.com/public/uploads/'+first.class_picture+'"><source src="'+first.class_url+'" type="video/mp4" /><source src="'+first.class_url+'" type="video/ogg">您的浏览器不支持 video 标签.</video><div class="video_intro"><p class="video_intro_tit">'+first.class_title+'<span><img src="__STYLE__img/huo_icon_1.png" /><img src="__STYLE__img/xin_icon_1.png" /><img src="__STYLE__img/ding_icon_1.png" /></span></p><p class="video_intro_time">'+dateTime+'';
+                            var html2='<span class="video_lun"><img src="__STYLE__img/pinglun_icon_1.png">'+first.comment_count+'评论</span></p></div>';
+                            $(".video_first").html(html+zan+html2);
+                        }else{
+                            // 3腾讯
+                            // console.log('dianza'+zan);
+                            var html = '<iframe frameborder="0" src="'+first.class_url+'" allowFullScreen="true" height="210px" width="100%" ></iframe><div class="video_intro"><p class="video_intro_tit">'+first.class_title+'<span><img src="__STYLE__img/huo_icon_1.png" /><img src="__STYLE__img/xin_icon_1.png" /><img src="__STYLE__img/ding_icon_1.png" /></span></p><p class="video_intro_time">'+dateTime+''
+                            var html2='<span class="video_lun"><img src="__STYLE__img/pinglun_icon_1.png">'+first.comment_count+'评论</span></p></div>';
+                            $(".video_first").html(html+zan+html2);
+                        }
+                        // 传递点击时间和课程id
+                        $.ajax({
+                            type:"GET",
+                            url: "http://tin.1yuaninfo.com/index/classes/click",
+                            data:{
+                                class_id:class_id,
+                                click_time:clicktime
+                            },
+                            dataType:'json',//数据类型
+                            success: function (res) {
+                                // console.log(res);
+                                
+                            },
+                            error:function(error){
+                                console.log(error);
+                            }
+                        })
+                    }
+                }
+            })
+            $.ajax({
+                url: "http://tin.1yuaninfo.com/index/classes/index_pro",
+                type:"get",
+                async : true, //异步
+                dataType:'json',//数据类型
+                success: function (msg) {
+                    // console.log(msg);
+                    var residue = msg.result.data;//下方全部列表
+                   
+                    for(var i=0;i<residue.length;i++){
+                        // console.log(residue[i]);
+                        var time = residue[i].class_addtime;
+                        var dateTime = new Date( time * 1000).Format('yy-MM-dd hh:mm:ss');
+                        var seestate = (residue[i].is_see == 1)?'未查阅':'已查阅';
+                        var state = (residue[i].is_see == 1)?'<b class="stockpool_dl_statew" id="'+residue[i].class_id+'">'+seestate+'</b></span></li>':'<b class="stockpool_dl_statey" id="'+residue[i].class_id+'">'+seestate+'</b></span></li>';
+
+                        var list = '<li id="'+residue[i].class_id+'"><img src="__STYLE__img/viewpoint_icon_dot.png"  id="'+residue[i].class_id+'" /><span id="'+residue[i].class_id+'">'+dateTime+'';
+                        $(".video_ul").append(list+state);
+                    } 
+                    
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            }) 
+// 公共资源
+            // 点击评论事件
+            $(".video_lun").click(function(){
+                $(".video_pinglun").slideDown(600);
+                $("body").addClass('overflow-x-hidden');
+                $.ajax({
+                    type:"GET",
+                    url: "http://tin.1yuaninfo.com/index/classes/detail",
+                    data:{
+                        class_id
+                    },
+                    dataType:'json',//数据类型
+                    success: function (res) {
+                        console.log(res);
+                        var comments = res.result.comment_list;
+                        $(".video_pldiv_dl").empty();
+                        for(var i=0;i<comments.length;i++){
+                            var time = comments[i].comment_time;
+                            var dateTime = new Date( time * 1000).Format('yy-MM-dd hh:mm:ss');
+                            if (comments[i].reply_detail == null||comments[i].reply_detail == "" ) {
+                                // 没有回复内容
+                                var html = '<dl class="question_content"><dt><img src="'+comments[i].user_picture+'"></dt><dd class="content_name">'+comments[i].nickname+'</dd><dd>'+comments[i].comment_detail+'</dd><dd class="question_content_time">'+dateTime+'</dd></dl>';
+
+                                $(".video_pldiv_dl").append(html)
+                            }else{
+
+                                var html = '<dl class="question_content"><dt><img src="'+comments[i].user_picture+'"></dt><dd class="content_name">'+comments[i].nickname+'</dd><dd>'+comments[i].comment_detail+'</dd><dd class="question_content_time">'+dateTime+'</dd></dl><dl class="reply_content"><dt><img src="__STYLE__img/tou_icon_1.png">'+comments[i].reply_detail+'</dt></dl>';
+
+                                $(".video_pldiv_dl").append(html)
+                            }
+                           
+                            
+                        }
+                        $(".video_button").click(function(){
+                            // 点击提交评论
+                            var comment_detail = $(".video_submit").val();
+                            if(comment_detail == ""){
+                                alert('评论不能为空！');
+                                return false;
+                            }else{
+                                $.ajax({
+                                    type:"GET",
+                                    url: "http://tin.1yuaninfo.com/index/classes/comment",
+                                    data:{
+                                        class_id,
+                                        comment_detail
+                                    },
+                                    dataType:'json',//数据类型
+                                    success: function (res) {
+                                        // console.log("评论入库");
+                                        // console.log(res);
+                                        alert("提交成功！");
+                                        $(".video_submit").val("");
+                                    },
+                                    error:function(error){
+                                        console.log(error);
+                                    }
+                                })
+                            }
+                            
+                        })
+                    },
+                    error:function(error){
+                        console.log(error);
+                    }
+                })
+            })
+            // 点击评论关闭按钮
+            $(".video_pinglun_close").click(function(){
+                $(".video_pinglun").slideUp(500);
+                $("body").removeClass('overflow-x-hidden');
+            });
+            
+            // 点赞入库接口
+            $(".video_zan").click(function(){  
+                $.ajax({
+                    type:"GET",
+                    url: "http://tin.1yuaninfo.com/index/classes/give",
+                    data:{
+                        class_id
+                    },
+                    dataType:'json',//数据类型
+                    success: function (res) {
+                        // console.log(res);
+                        // 点完赞之后
+                        if(res.msg == "ok"){
+                            var zan = first.give_count +1 ;
+                            
+                            var html = '<img src="__STYLE__img/dianzan_icon_2.png">'+zan+'点赞';
+                        }else{
+                            var html = '<img src="__STYLE__img/dianzan_icon_1.png">'+first.give_count+'点赞';
+                        }
+                        $(".video_zan").html(html);
+                    },
+                    error:function(error){
+                        console.log(error);
+                    }
+                })
+            })
+            //获取滚动条当前的位置
+            function getScrollTop() {
+                var scrollTop = 0;
+                if (document.documentElement && document.documentElement.scrollTop){
+                    scrollTop = document.documentElement.scrollTop;
+                } else if (document.body) {
+                    scrollTop = document.body.scrollTop;
+                }
+                return scrollTop;
+            }
+
+            //获取当前可视范围的高度
+            function getClientHeight() {
+                var clientHeight = 0;
+                if (document.body.clientHeight && document.documentElement.clientHeight) {
+                    clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+                } else {
+                    clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+                }
+                return clientHeight;
+            }
+            //获取文档完整的高度
+            function getScrollHeight() {
+                return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+            }
+            var page = 2;
+            //滚动事件触发
+            window.onscroll = function () {
+                // console.log(getScrollTop());//视窗上面隐藏掉的部分，即滚动条滚动的距离
+                // console.log(getClientHeight());//视窗的高度，即在浏览器中所能看到的内容的高度
+                // console.log(getScrollHeight());//视窗上面隐藏掉的部分，即滚动条滚动的距离
+                if (getScrollTop() + getClientHeight() == getScrollHeight()) {
+                    // console.log('下拉刷新了')     
+                    $.ajax({
+                        url: "http://tin.1yuaninfo.com/index/classes/index_pro",
+                        type:"get",
+                        dataType:'json',//数据类型
+                        async : true, //异步
+                        data:{
+                            page
+                        },
+                        success: function (msg) {
+                            // console.log(page);
+                            // console.log(msg);
+                            var loading = msg.result.data;
+                            // console.log(msg.result.data.length);
+                            page++;
+                            // 可以看的
+                            for(var i=0;i<loading.length;i++){
+                                // console.log(loading[i]);
+
+                                var seestate = (loading[i].is_see == 1)?'未查阅':'已查阅';
+                                var time = loading[i].class_addtime;
+                                var dateTime = new Date( time * 1000).Format('yy-MM-dd hh:mm:ss');
+                                var list = '<li id="'+loading[i].class_id+'"><img src="__STYLE__img/viewpoint_icon_dot.png"  id="'+loading[i].class_id+'" /><span id="'+loading[i].class_id+'">'+dateTime+'';
+                                var state = (loading[i].is_see == 1)?'<b class="stockpool_dl_statew" id="'+loading[i].class_id+'">'+seestate+'</b></span></li>':'<b class="stockpool_dl_statey" id="'+loading[i].class_id+'">'+seestate+'</b></span></li>';
+                                $(".video_ul").append(list+state); 
+                            } 
+                        },
+                        error:function(error) {
+                            console.log(error);
+                        }
+                    })
+                }
+            }
+            // 点击列表进入详情页
+            $('.video_ul').on('click',function (e) {
+                var target=e.target||e.srcElement;//获取当前点击的对象
+                var cls=target.id;//获取当前点击对象的id名
+                // console.log(cls);
+                if(cls == ""){
+                    alert("请开通会员后查看");
+                }else{
+                    var newtime = '';
+                    $.ajax({
+                        type:"GET",
+                        url: "http://tin.1yuaninfo.com/index/classes/detail",
+                        dataType:'json',//数据类型
+                        async : true, //异步
+                        data: {
+                            class_id:cls
+                        },
+                        success: function (res) {
+                            // console.log(res);//列表详情返回值
+                            var  state = res.result.class_video_type;
+                            var myDate = new Date();
+                                newtime = myDate.toLocaleString();
+                                // console.log(newtime);
+                            if(state == 1){
+                                // 课程点击接口
+                                // var class_id = 2;
+                                $.ajax({
+                                    type:"GET",
+                                    url: "http://tin.1yuaninfo.com/index/classes/click",
+                                    data:{
+                                        class_id:cls,
+                                        click_time:newtime
+                                    },
+                                    dataType:'json',//数据类型
+                                    success: function (res) {
+                                        // console.log(res);
+                                        
+                                    },
+                                    error:function(error){
+                                        console.log(error);
+                                    }
+                                })
+                                //获取日期与时间
+                                window.location.href= res.result.class_url;
+                            }else{
+                                var myDate = new Date();
+                                newtime = myDate.toLocaleString()
+                                // console.log(newtime);
+                                window.location.href="http://tin.1yuaninfo.com/index/classes/all_detail?class_id="+res.result.class_id+"&newtime="+newtime;
+                                // 课程点击接口
+                                // var class_id = 2;
+                                $.ajax({
+                                    type:"GET",
+                                    url: "http://tin.1yuaninfo.com/index/classes/click",
+                                    data:{
+                                        class_id:cls,
+                                        click_time:newtime
+                                    },
+                                    dataType:'json',//数据类型
+                                    success: function (res) {
+                                        // console.log(res);
+                                        
+                                    },
+                                    error:function(error){
+                                        console.log(error);
+                                    }
+                                })
+                            }
+                          
+                            
+                        },
+                        error:function(error){
+                            console.log(error);
+                        }
+                    })
+                    
+                    
+                }
+                
+            })
+            
+            
+        })       
+    </script>
+</html>

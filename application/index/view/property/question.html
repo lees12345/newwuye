@@ -1,0 +1,154 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>问题反馈</title>
+  <script src="../../../../public/static/property_project/js/rem.js"></script>
+  <link rel="stylesheet" href="../../../../public/static/property_project/CSS/vant.css" />
+  <script src="../../../../public/static/property_project/js/vue.js"></script>
+  <script src="../../../../public/static/property_project/js/axios.js"></script>
+  <script src="../../../../public/static/property_project/js/vant.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      border: none;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    #app {
+      width: 100%;
+      height: 100%;
+      background-color: rgb(239, 239, 239);
+    }
+
+    .btnSubmit {
+      height: 1rem;
+      background-color: rgb(25, 137, 250);
+      margin-left: .35rem;
+      border-radius: 20px;
+      width: 90%;
+      font-size: 14px;
+      margin-bottom: .3rem;
+      color: white;
+    }
+
+    .van-cell,
+    .van-cell--large,
+    .van-field {
+      flex-direction: column;
+    }
+
+    .van-uploader__upload {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .field-input {
+      height: 35%;
+    }
+
+    .uploadPic {
+      position: relative;
+      width: 100%;
+      height: 35%;
+      margin-top: 10%;
+      background-color: #fff;
+    }
+
+    .uploadPic>.move {
+      position: absolute;
+      top: 1rem;
+      left: .3rem;
+    }
+
+    .van-uploader__preview-image {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <van-cell style="font-size: 16px;font-weight: bold;margin-bottom: 10%;height: 1rem;" size="large"
+      value="欢迎您提供宝贵的意见和建议"></van-cell>
+
+    <van-field v-model="message" class="field-input" size="large" rows="2" autosize label="意见反馈" type="textarea"
+      placeholder="我们将为您不断改进" show-word-limit> </van-field>
+
+    <div class="uploadPic">
+      <van-cell style="font-weight: bold;" size="large" value="添加图片"></van-cell>
+      <div class="move">
+
+        <van-uploader v-model="fileList" multiple :max-count="2"></van-uploader>
+
+      </div>
+    </div>
+
+    <button class="btnSubmit" @click="submitFn">提交</button>
+  </div>
+
+  <script>
+    Vue.use(vant.Cell);
+    Vue.use(vant.CellGroup);
+    Vue.use(vant.Button);
+    Vue.use(vant.Form);
+    Vue.use(vant.Field);
+    Vue.use(vant.Uploader);
+    new Vue({
+      data() {
+        return {
+          // 反馈内容
+          message: '',
+          // 图片数据
+          fileList: []
+        }
+      },
+      methods: {
+        submitFn() {
+          if (this.message.trim() == '') {
+            return alert('反馈内容不能为空')
+          }
+          if (this.fileList.length == 0) {
+            return alert('图片不能为空')
+          }
+          axios({
+            method: 'POST',
+            url: 'http://estate.1yuaninfo.com/Login/addIdea',
+            data: {
+              question_content: this.message,
+              image: this.changeImageFn
+            }
+          }).then(res => {
+            console.log('then', res)
+            alert('提交成功')
+          }).catch(err => {
+            console.log('上传将进入catch', err)
+          })
+        }
+      },
+      computed: {
+        // 返回图片的url数组
+        changeImageFn() {
+          return this.fileList.map((item, index) => item.content)
+        }
+      },
+      created() {
+
+      }
+    }).$mount('#app')
+  </script>
+</body>
+
+</html>

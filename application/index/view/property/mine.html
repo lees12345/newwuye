@@ -1,0 +1,429 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer" />
+    <title>个人信息</title>
+    <link rel="stylesheet" href="../../../../public/static/property_project/CSS/vant.css" />
+    <script src="../../../../public/static/property_project/js/rem.js"></script>
+    <script src="../../../../public/static/property_project/js/vue.js"></script>
+    <script src="../../../../public/static/property_project/js/axios.js"></script>
+    <script src="../../../../public/static/property_project/js/vant.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            background-color: #F5F5F5;
+        }
+
+        #app {
+            width: 7.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .view {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            background-color: #ffffff;
+        }
+
+        .select {
+            height: 1.2rem;
+            line-height: 1.2rem;
+            border-bottom: .02rem solid #eeeeee;
+            font-size: .28rem;
+        }
+
+        .select_left {
+            width: 1.7rem;
+            height: 1rem;
+            padding-left: .3rem;
+            line-height: 1.2rem;
+            text-align: left;
+            color: #222;
+            font-size: .28rem;
+            position: relative;
+        }
+
+        .select_center {
+            width: 4.5rem;
+            margin-left: .2rem;
+            height: 1rem;
+            line-height: 1.2rem;
+            text-align: left;
+            font-size: .28rem;
+            color: #999999;
+            text-align: right;
+        }
+
+        .select_center_no {
+            width: 5rem;
+            margin-left: .2rem;
+            height: 1rem;
+            line-height: 1.2rem;
+            text-align: left;
+            font-size: .28rem;
+            color: #222222;
+            text-align: right;
+        }
+
+        .select_center_no_gary {
+            width: 5rem;
+            margin-left: .2rem;
+            height: 1rem;
+            line-height: 1.2rem;
+            text-align: left;
+            font-size: .28rem;
+            color: #999999;
+            text-align: right;
+        }
+
+        .select_right {
+            width: .5rem;
+            margin-left: .2rem;
+            height: 1.2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .select_right_ {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .select_right img {
+            width: .15rem;
+            height: .2rem;
+        }
+
+        .head {
+            height: 1.2rem;
+            line-height: 1.4rem;
+            position: relative;
+        }
+
+        .head_center {
+            width: 4rem;
+        }
+
+        .head_img {
+            position: absolute;
+            right: .21rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* .head_img img {
+            display: block;
+            width: 0.64rem;
+            height: 0.64rem;
+        } */
+
+        .item_bock {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 1.2rem;
+            line-height: 1.2rem;
+            border-bottom: .02rem solid #eeeeee;
+            font-size: .28rem;
+            background-color: #fff;
+        }
+
+        .head_img img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50px
+        }
+
+        .setting_right {
+            display: flex;
+            height: 37px;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .hiddenInput {
+            display: none;
+        }
+
+        .caption {
+            margin-left: .3rem;
+        }
+
+        .editName {
+            position: relative;
+            font-size: .28rem;
+            width: 80%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .editName>p {
+            text-align: center;
+            position: absolute;
+            top: .3rem;
+            left: 46%;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .editName>.editInput {
+            position: absolute;
+            top: 1.5rem;
+            border: 1px solid #000;
+            border-right: none;
+            border-left: none;
+            width: 124.2%;
+            height: 17%;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .editName>.editBtn {
+            position: absolute;
+            left: 27.5%;
+            bottom: 10%;
+            width: 97%;
+            font-weight: bold;
+        }
+
+        .editName>.editBtn>button:nth-child(1) {
+            color: #fff;
+            width: 55%;
+            height: .7rem;
+            margin-left: .37rem;
+            background-color: rgb(25, 137, 250);
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="item_bock head_p">
+            <div @click.stop="uploadHeadImg" class="head_img">
+                <img style="display: block;width: 0.64rem;height: 0.64rem;" :src="userinfoList.user_picture" />
+                <!--图片地址动态绑定-->
+            </div>
+            <div class="setting_right">
+                <div class="caption">头像</div>
+            </div>
+            <input type="file" accept="image/*" @change="handleFile" class="hiddenInput" />
+        </div>
+        <div class="view select">
+            <div class="select_left">个人ID号</div>
+            <div class="select_center_no">{{userinfoList.id}}</div>
+        </div>
+        <div class="view select">
+            <div class="select_left">账号</div>
+            <div class="select_center"> </div>
+            <div class="select_right">
+                <div class="select_right_">
+                    <img src="../../../../public/static/property_project/img/right.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="view select">
+            <div class="select_left">手机号</div>
+            <div class="select_center">{{userinfoList.user_tel}}</div>
+            <div class="select_right">
+                <div class="select_right_">
+                    <img src="../../../../public/static/property_project/img/right.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="view select">
+            <div class="select_left">姓名</div>
+            <div @click="editShow = true" class="select_center_no_gary">{{userinfoList.user_name}}</div>
+            <div @click="editShow = true" style="margin-right: .13rem;" class="select_right">
+                <div class="select_right_">
+                    <img src="../../../../public/static/property_project/img/right.png" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- 编辑弹出层 -->
+        <van-popup v-model="editShow" closeable position="center" :style="{ width: '80%',height: '35%' }">
+            <div class="editName">
+                <p>编辑姓名</p>
+                <input class="editInput" :placeholder="userinfoList.user_name" v-model="editUserName" type="text">
+                <div class="editBtn">
+                    <button @click="editSaveFn">保存</button>
+                </div>
+
+            </div>
+
+        </van-popup>
+    </div>
+    <script>
+        Vue.use(vant.Popup);
+        Vue.use(vant.Cell);
+        Vue.use(vant.CellGroup);
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    userinfoList: {},
+                    qiNiuPic: '',
+                    editShow: false, // 弹出层
+                    imgUrl: "", // 记得删
+                    editUserName: '' // 用户编辑的姓名
+                }
+            },
+            methods: {
+                // 编辑状态保存按钮
+                editSaveFn() {
+                    this.editUserNameAPI()
+                },
+                // 调用修改姓名接口
+                editUserNameAPI() {
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/editUserInfo',
+                        headers: {
+                            authorization: window.localStorage.getItem('token')
+                        },
+                        data: {
+                            user_name: this.editUserName
+                        }
+                    }).then(res => {
+                        console.log('上传用户姓名', res)
+                        this.editShow = false
+                        this.editUserName = ''
+                        this.getUserinfoFn()
+                    }).catch(err => {
+                        console.log('上传用户姓名进入catch', err)
+                    })
+                },
+                // 打开图片上传
+                uploadHeadImg: function () {
+                    this.$el.querySelector('.hiddenInput').click()
+                },
+                // 调用接口修改头像方法
+                handleFile: function (e) {
+                    let $target = e.target || e.srcElement
+                    let file = $target.files[0]
+                    console.log('file', file)
+                    var reader = new FileReader()
+                    let that = this
+                    reader.addEventListener("load", function () {
+                        // console.log('进入了事件', that)
+                        // console.log(1, reader.result)
+                        // that.$nextTick(() => {
+                        // })
+                        // 调用修改接口上传到服务器
+                        axios({
+                            method: 'POST',
+                            url: 'http://estate.1yuaninfo.com/editUserInfo',
+                            headers: {
+                                authorization: window.localStorage.getItem('token')
+                            },
+                            data: {
+                                file: reader.result
+                            }
+                        }).then(res => {
+                            console.log('上传用户头像', res)
+                            that.userinfoList.user_picture = res.data.result
+                        }).catch(err => {
+                            console.log('头像上传失败', err)
+                        })
+                    }, false);
+                    if (file) {
+                        reader.readAsDataURL(file);
+                    }
+                },
+                // 点击拍照
+                clickPaiZhaoFn(e) {
+                    this.$refs.paiZhao.click()
+                    let formData = new FormData();
+                    // formData.append("file", e.target.files[0]);
+                    console.log(e)
+                    this.showShare = false
+                },
+                // 获取个人信息方法
+                getUserinfoFn() {
+                    axios({
+                        method: 'POST',
+                        url: 'http://estate.1yuaninfo.com/getUserInfo',
+                        headers: {
+                            authorization: window.localStorage.getItem('token') || ''
+                        }
+                    }).then(res => {
+                        console.log('个人信息', res)
+                        if (res.data.status == 1002) {
+                            // token过期
+                            alert('登录已过期')
+                            window.location.href = 'http://estate.1yuaninfo.com/index/property/logins'
+                        } else if (res.data.status == 200) {
+                            // 一切正常
+                            this.userinfoList = res.data.result
+                        }
+                    }).catch(err => {
+                        console.log('个人信息进入catch', err)
+                    })
+                },
+                // 修改个人信息方法
+                update(e) {
+                    let token;
+                    if (localStorage.getItem("token")) {
+                        token = localStorage.getItem("token")
+                    }
+                    // console.log(e);
+                    let formData = new FormData();
+                    formData.append("file", e.target.files[0]);
+                    console.log("dsa", formData);
+                    axios.post("http://xxx.com/xxx/xxx/xxx?", {
+                        data: formData
+                    }).then(res => {
+                        // 此数据是为了获取到本地选择的图片
+                        console.log(res);
+                        //res.data.data.path是接口中获取本地图片的地址
+                        if (res.data.code === 200) {
+                            axios
+                                .put(
+                                    `https://www.365msmk.com/api/app/user/?avatar=${res.data.data.path}`, {}, {
+                                        headers: {
+                                            authorization: `Bearer ${localStorage.getItem("token")}`
+                                        }
+                                    }
+                                )
+                                .then(res => {
+                                    console.log("图像路径", res);
+                                    this.imgUrl = res.data.data.avatar;
+                                    this.getUserFor(); //这个方法是为了更新这个页面的数据
+                                    this.showShare = false;
+                                });
+                        }
+                    });
+                },
+                cancle() {
+                    this.showShare = false
+                },
+                // 
+            },
+            created() {
+                // 个人信息方法
+                this.getUserinfoFn()
+            }
+        })
+    </script>
+</body>
+
+</html>

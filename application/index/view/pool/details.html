@@ -1,0 +1,103 @@
+{__NOLAYOUT__}
+<!-- __STYLE__ -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <link rel="stylesheet" href="__STYLE__css/publicStyle.css"/>
+        <link rel="stylesheet" href="__STYLE__css/leading_strategy.css"  />
+        <script src="__STYLE__js/rem.js"></script>
+        <script src="__STYLE__js/jquery-1.11.3.js"></script>
+        <script src="__STYLE__js/leading_strategy.js"></script>
+        <title>详情</title>
+        <script>
+            
+           
+        </script>
+    </head>
+    <body>
+        <div class="stockdet_div">
+            <p class="stockdet_tit">股票池</p>
+            <p class="stockdet_tim">2020-02-26 09:00:21</p>
+            <div class="stockdet_detail">
+                <!-- <p>2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池2020年2月15日股票池</p>
+                <img src="__STYLE__img/home_icon_1.png" /> -->
+            </div>
+            <span class="read_number">1</span>
+        </div>
+        <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript">
+             var url2 = window.location.href;//获取整个url
+            console.log(url2)
+            var temp2 = url2.split('?')[1];
+            console.log(temp2)
+            var pool_id = url2.split('=')[1];
+            // var pram2 = new URLSearchParams('?'+temp2);
+            // console.log(pram2)
+            // console.log(pram2.get('pool_id'));
+            // var pool_id = pram2.get('pool_id');//获取指定搜索参数的第一个值。
+             //格式化日期
+              Date.prototype.Format = function (fmt) {
+                var o = {
+                        "M+": this.getMonth() + 1, // 月份
+                        "d+": this.getDate(), // 日
+                        "h+": this.getHours(), // 小时
+                        "m+": this.getMinutes(), // 分
+                        "s+": this.getSeconds(), // 秒
+                        "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+                        "S": this.getMilliseconds() // 毫秒
+                };
+                if (/(y+)/.test(fmt))
+                    fmt = fmt.replace(RegExp.$1, (this.getFullYear() + ""));
+                for (var k in o)
+                    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                return fmt;
+            }
+            $.ajax({
+                type:"GET",
+                url: "http://tin.1yuaninfo.com/index/pool/detail",
+                data:{
+                    pool_id
+                },
+                dataType:'json',//数据类型
+                success: function (res) {
+                    console.log(res);
+                    var time = res.result.pool_addtime;
+                    var dateTime = new Date( time * 1000).Format('yy-MM-dd hh:mm:ss');
+                    // console.log(dateTime)
+                    // console.log(formatDate(dateTime));
+                    $(".stockdet_tit").html(res.result.pool_title);
+                    $(".stockdet_tim").html(dateTime)
+                    $(".stockdet_detail").html(res.result.pool_content);
+                    $(".read_number").html(''+res.result.see_count+'阅读');
+                    var imglis = [];
+                    var imgObj = $(".stockdet_detail img");//img对象  注意路径必须为绝对路径
+                    // alert(imgObj);
+                    function imginfo(){
+                    　　for(var i=0; i<imgObj.length; i++){
+                          imgObj.eq(i).click(function(){
+                    　　　　imglis = [('http://z.1yuaninfo.com'+$(this).attr('src'))]
+                    　　　　console.log($(this).attr('src'))
+                    　　　　var Imgurl = $(this).attr('src');
+                    　　　　WeixinJSBridge.invoke("imagePreview",{
+                    　　　　　　"urls":imglis,
+                    　　　　　　"current":Imgurl
+                    　　　　});
+                    　　});
+
+                    　　}
+                    }
+
+                    imginfo();
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            })
+        window.onload=function(){
+            
+        }
+        </script>
+    </body>
+</html>
